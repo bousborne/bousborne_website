@@ -1,21 +1,297 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{title}}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+<nav class="navbar navbar-toggleable-md navbar-inverse bg-primary">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+    aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class="navbar-brand" href="#">Navbar</a>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home
+          <span class="sr-only">(current)</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Features</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Pricing</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">
+          Dropdown link
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div style="position:relative">
+  <div style="width:100%" ng-view ng-animate="{enter: 'view-enter', leave: 'view-leave'}"></div>
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+
+<h1>
+  <div class="text-center color-complement-0">
+    {{title}}'s Home Page, you faggot
+  </div>
+</h1>
+<abbr>
+    <div class="container-fluid bottom-buffer full-width">
+      <div class="btn btn-block btn-primary container-fluid" data-toggle="collapse" href="#collapseTraffic" aria-expanded="false"
+        aria-controls="collapseTraffic">
+        <div class="container-fluid full-width">Traffic</div>
+      </div>
+      <div class="collapse container-fluid" id="collapseTraffic">
+        <div class="container-fluid">
+          <div class="row">
+          
+            <div class="container-fluid col-sm">
+              <div class="col text-center">
+                <div>
+                  <a>I70 Frisco Looking West</a>
+                </div>
+                <div>
+                  <img width="300" alt="I70 Frisco Looking West" src="https://webcams.opensnow.com/current/1966.jpg?time=">
+                </div>
+              </div>
+            </div>
+            <div class="container-fluid col-sm">
+              <div class="col text-center">
+                <div>
+                  <a>I70 Frisco Looking East</a>
+                </div>
+                <div>
+                  <img width="300" alt="I70 Frisco Looking East" src="https://webcams.opensnow.com/current/1967.jpg?time=">
+                </div>
+              </div>
+            </div>
+            <div class="container-fluid col-sm">
+              <div class="col text-center">
+                <div>
+                  <a>US-6 Looking East</a>
+                </div>
+                <div>
+                  <img width="300" alt="US-6 Looking East" src="http://i.cotrip.org/dimages/camera?imageURL=liveview/US6Mile220East.jpg&v=00536">
+                </div>
+              </div>
+            </div>
+          </div>
+  
+          <div class="container-fluid col-sm">
+            <div class="col text-center">
+              <div>
+                <a>Directions</a>
+              </div>
+              <div>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d392941.51418100944!2d-105.86368992356236!3d39.69795100542459!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e0!4m5!1s0x876b899a57958bd1%3A0x7cde499e795bac43!2s9829+Otis+Dr%2C+Westminster%2C+CO+80021-5457%2C+USA!3m2!1d39.87571!2d-105.0697263!4m5!1s0x876a588438e09649%3A0x708859ce83ce12cc!2s607+Gold+Run+Gulch+Rd%2C+Breckenridge%2C+CO+80424!3m2!1d39.522886199999995!2d-106.0241765!5e0!3m2!1sen!2sus!4v1515909915146"
+                  width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>">
+              </div>
+            </div>
+          </div>
+  
+        </div>
+      </div>
+    </div>
+  </abbr>
+<abbr>
+  <div class="container-fluid bottom-buffer full-width">
+    <div class="btn btn-block btn-primary container-fluid" data-toggle="collapse" href="#collapseBreckenridge" aria-expanded="false"
+      aria-controls="collapseBreckenridge">
+      <div class="container-fluid full-width">Breckenridge</div>
+    </div>
+    <div class="collapse container-fluid" id="collapseBreckenridge">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="container-fluid col-sm">
+            <div class="col text-center">
+              <div>
+                <a>Breck 5AM Snow Stake</a>
+              </div>
+              <div>
+                <img width="300" alt="Breck 5AM Snow Stake" src="https://webcams.opensnow.com/current/613.jpg?time=">
+              </div>
+            </div>
+          </div>
+          <div class="container-fluid col-sm">
+            <div class="col text-center">
+              <div>
+                <a>Breck Snow Stake</a>
+              </div>
+              <div>
+                <img width="300" alt="Breck Snow Stake" src="https://webcams.opensnow.com/current/607.jpg?time=">
+              </div>
+            </div>
+          </div>
+          <div class="container-fluid col-sm">
+            <div class="col text-center">
+              <div>
+                <a>Breck Peak 8 Base</a>
+              </div>
+              <div>
+                <img width="300" alt="Breck Peak 8 Base" src="http://common.snow.com/Mtncams/peak8base.jpg?time=">
+              </div>
+            </div>
+          </div>
+          <div class="container-fluid col-sm">
+            <div class="col text-center">
+              <div>
+                <a>Horseshow Bowl</a>
+              </div>
+              <div>
+                <img width="300" alt="Horseshoe Bowl" src="http://webcams.opensnow.com/current/25.jpg?time=">
+              </div>
+            </div>
+          </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</abbr>
+<abbr>
+  <div class="container-fluid bottom-buffer">
+    <div class="btn btn-block btn-primary container-fluid" data-toggle="collapse" href="#collapseKeystone" aria-expanded="false"
+      aria-controls="collapseKeystone">
+      <div>Keystone</div>
+    </div>
+    <div class="collapse container-fluid" id="collapseKeystone">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="container-fluid col-sm">
+            <div class="col text-center">
+              <div>
+                <a>Keystone 5AM Stake</a>
+              </div>
+              <div>
+                <img width="300" alt="Keystone 5AM Stake" src="https://webcams.opensnow.com/current/612.jpg?time=">
+              </div>
+            </div>
+          </div>
+          <div class="container-fluid col-sm">
+            <div class="col text-center">
+              <div>
+                <a>Keystone Snow Stake</a>
+              </div>
+              <div>
+                <img width="300" alt="Keystone Snow Stake" src="https://webcams.opensnow.com/current/606.jpg?time=">
+              </div>
+            </div>
+          </div>
+          <div class="container-fluid col-sm">
+            <div class="col text-center">
+              <div>
+                <a>River Run</a>
+              </div>
+              <div>
+                <img width="300" alt="River Run" src="https://webcams.opensnow.com/current/540.jpg?time">
+              </div>
+            </div>
+          </div>
+          <div class="container-fluid col-sm">
+            <div class="col text-center">
+              <div>
+                <a>Base Village</a>
+              </div>
+              <div>
+                <img width="300" alt="Base Village" src="https://webcams.opensnow.com/current/1886.jpg?">
+              </div>
+            </div>
+          </div>
+          <div class="container-fluid col-sm">
+            <div class="col text-center">
+              <div>
+                <a>Kidtopia Fort</a>
+              </div>
+              <div>
+                <img width="300" alt="Kidtopia Fort" src="https://webcams.opensnow.com/current/483.jpg?201801140638">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<div class="panel-group" ng-model="panels.activePanel" role="tablist" aria-multiselectable="true" bs-collapse>
+  <div class="panel panel-default" ng-repeat="panel in panels">
+    <div class="panel-heading" role="tab">
+      <h4 class="panel-title">
+        <a bs-collapse-toggle>
+          {{ panel.title }}
+        </a>
+      </h4>
+    </div>
+    <div class="panel-collapse" role="tabpanel" bs-collapse-target>
+      <div class="panel-body">
+        {{ panel.body }}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div style="align-self:center">
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Open modal for @mdo</button>
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@fat">Open modal for @fat</button>
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Open modal for @getbootstrap</button>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="recipient-name" class="form-control-label">Recipient:</label>
+            <input type="text" class="form-control" id="recipient-name">
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="form-control-label">Message:</label>
+            <textarea class="form-control" id="message-text"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Send message</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="paddRow contactRow">
+  <div class="wrap">
+    <div class="head">Contact Us</div>
+    <img class="close" src="images/close.png" ng-click="closeForm()" />
+    <form ng-submit="save()" class="contactForm" name="form" ng-hide="loaded">
+      <input class="input" required="required" type="text" name="name" placeholder="your name" ng-model="message.name" />
+      <input class="input email" required="required" type="email" name="email" value="" placeholder="your email" ng-model="message.email"
+      />
+      <br />
+      <textarea class="textarea" rows="5" required="required" placeholder="your message" ng-model="message.text"></textarea>
+      <button class="btn green">send message</button>
+    </form>
+    <!-- contact us form response messages -->
+    <div ng-show="process" style="text-align:center">
+      <img class="loader" src="images/loader.png" />
+    </div>
+    <div ng-show="success">
+      <p>Your message has been sent, thank you.</p>
+    </div>
+  </div>
+</div>
 
 <router-outlet></router-outlet>
