@@ -1,3 +1,38 @@
+# Angular Version - ng --version
+     _                      _                 ____ _     ___
+    / \   _ __   __ _ _   _| | __ _ _ __     / ___| |   |_ _|
+   / △ \ | '_ \ / _` | | | | |/ _` | '__|   | |   | |    | |
+  / ___ \| | | | (_| | |_| | | (_| | |      | |___| |___ | |
+ /_/   \_\_| |_|\__, |\__,_|_|\__,_|_|       \____|_____|___|
+                |___/
+    
+
+Angular CLI: 7.1.0
+Node: 11.2.0
+OS: linux x64
+Angular: 7.1.1
+... animations, common, compiler, compiler-cli, core, forms
+... language-service, platform-browser, platform-browser-dynamic
+... router
+
+Package                           Version
+-----------------------------------------------------------
+@angular-devkit/architect         0.11.0
+@angular-devkit/build-angular     0.11.0
+@angular-devkit/build-optimizer   0.11.0
+@angular-devkit/build-webpack     0.11.0
+@angular-devkit/core              7.1.0
+@angular-devkit/schematics        7.1.0
+@angular/cli                      7.1.0
+@ngtools/webpack                  7.1.0
+@schematics/angular               7.1.0
+@schematics/update                0.11.0
+rxjs                              6.3.3
+typescript                        3.1.6
+webpack                           4.23.1
+
+# npm version 6.4.1
+
 # Temp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.0.
