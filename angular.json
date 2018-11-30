@@ -20,6 +20,7 @@
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
+              "src/snow-flake.ico",
               "src/assets"
             ],
             "styles": [
@@ -84,6 +85,7 @@
             "scripts": [],
             "assets": [
               "src/favicon.ico",
+              "src/snow_flake.ico",
               "src/assets"
             ]
           }
