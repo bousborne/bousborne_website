@@ -4,11 +4,13 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
+import { SnowComponent } from './snow/snow.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SnowComponent
   ],
   imports: [
     BrowserModule,

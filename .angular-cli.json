@@ -20,6 +20,7 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
+        "src/app/snow/snow.component.css",
         "styles.css"
       ],
       "scripts": [],
