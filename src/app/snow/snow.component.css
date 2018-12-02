@@ -6,8 +6,7 @@ h1 {
 
 
 /* As hex codes */
-
-.color-primary-0 { color: #492E74 }	/* Main Primary color */
+#color-primary-0 { color: #492E74 }	/* Main Primary color */
 .color-primary-1 { color: #8E79AE }
 .color-primary-2 { color: #694F91 }
 .color-primary-3 { color: #2F1557 }
@@ -66,8 +65,8 @@ h1 {
 }
 /* navbar */
 .navbar-default {
-    background-color: color-primary-0;
-    border-color: color-primary-1;
+    background-color: #492E74; opacity: .75;
+    border-color: #492E74; opacity: .75;
 }
 /* Title */
 .navbar-default .navbar-brand {

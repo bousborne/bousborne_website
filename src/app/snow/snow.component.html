@@ -1,11 +1,10 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<nav class="navbar navbar-toggleable-md navbar-inverse bg-primary">
+<nav class="navbar sticky-top navbar-toggleable-md navbar-inverse navbar-default">
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
     aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <a class="navbar-brand" href="#">Navbar</a>
-  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+  <div class="collapse navbar-collapse navbar-default" id="navbarNavDropdown">
     <ul class="navbar-nav">
       <li class="nav-item active">
         <a class="nav-link" href="#">Home
@@ -44,9 +43,9 @@
 </h1>
 <abbr>
     <div class="container-fluid bottom-buffer full-width">
-      <div class="btn btn-block btn-primary container-fluid" data-toggle="collapse" href="#collapseTraffic" aria-expanded="false"
+      <div class="btn btn-block btn-primary container-fluid navbar-default" data-toggle="collapse" href="#collapseTraffic" aria-expanded="false"
         aria-controls="collapseTraffic">
-        <div class="container-fluid full-width">Traffic</div>
+        <img height="150" alt="Traffic" src="../../assets/cw-traffic.png">
       </div>
       <div class="collapse container-fluid" id="collapseTraffic">
         <div class="container-fluid">
@@ -102,9 +101,9 @@
   </abbr>
 <abbr>
   <div class="container-fluid bottom-buffer full-width">
-    <div class="btn btn-block btn-primary container-fluid" data-toggle="collapse" href="#collapseBreckenridge" aria-expanded="false"
+    <div class="btn btn-block navbar-default btn-primary container-fluid" data-toggle="collapse" href="#collapseBreckenridge" aria-expanded="false"
       aria-controls="collapseBreckenridge">
-      <div class="container-fluid full-width">Breckenridge</div>
+      <img height="150" alt="Breckenridge" src="../../assets/breckenridge-logo-504x240-300x143_white.png">
     </div>
     <div class="collapse container-fluid" id="collapseBreckenridge">
       <div class="container-fluid">
@@ -156,9 +155,9 @@
 </abbr>
 <abbr>
   <div class="container-fluid bottom-buffer">
-    <div class="btn btn-block btn-primary container-fluid" data-toggle="collapse" href="#collapseKeystone" aria-expanded="false"
+    <div class="btn btn-block navbar-default btn-primary container-fluid" data-toggle="collapse" href="#collapseKeystone" aria-expanded="false"
       aria-controls="collapseKeystone">
-      <div>Keystone</div>
+      <img height="150" alt="Keystone" src="../../assets/Keystone_logo.png">
     </div>
     <div class="collapse container-fluid" id="collapseKeystone">
       <div class="container-fluid">
@@ -233,63 +232,75 @@
     </div>
   </div>
 </div>
-
 <div style="align-self:center">
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Open modal for @mdo</button>
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@fat">Open modal for @fat</button>
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Open modal for @getbootstrap</button>
+  <button type="button" class="btn navbar-default btn-primary" data-toggle="modal" data-target="#exampleModal"
+    data-whatever="@mdo">Open modal for @mdo</button>
+  <button type="button" class="btn navbar-default btn-primary" data-toggle="modal" data-target="#exampleModal"
+    data-whatever="@fat">Open modal for @fat</button>
+  <button type="button" class="btn navbar-default btn-primary" data-toggle="modal" data-target="#exampleModal"
+    data-whatever="@getbootstrap">Open modal for @getbootstrap</button>
 </div>
+<div class="row col-sm-12">
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="recipient-name" class="form-control-label">Recipient:</label>
+              <input type="text" class="form-control" id="recipient-name">
+            </div>
+            <div class="form-group">
+              <label for="message-text" class="form-control-label">Message:</label>
+              <textarea class="form-control" id="message-text"></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn navbar-default btn-primary">Send message</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+  <div class="paddRow contactRow">
+    <div class="wrap">
+      <div class="head">Contact Us</div>
+      <img class="close" src="images/close.png" ng-click="closeForm()" />
+      <form ng-submit="save()" class="contactForm" name="form" ng-hide="loaded">
+        <input class="input" required="required" type="text" name="name" placeholder="your name" ng-model="message.name" />
+        <input class="input email" required="required" type="email" name="email" value="" placeholder="your email"
+          ng-model="message.email" />
+        <br />
+        <textarea class="textarea" rows="5" required="required" placeholder="your message" ng-model="message.text"></textarea>
+        <button class="btn green">send message</button>
+      </form>
+      <!-- contact us form response messages -->
+      <div ng-show="process" style="text-align:center">
+        <img class="loader" src="images/loader.png" />
       </div>
-      <div class="modal-body">
-        <form>
-          <div class="form-group">
-            <label for="recipient-name" class="form-control-label">Recipient:</label>
-            <input type="text" class="form-control" id="recipient-name">
-          </div>
-          <div class="form-group">
-            <label for="message-text" class="form-control-label">Message:</label>
-            <textarea class="form-control" id="message-text"></textarea>
-          </div>
-        </form>
+      <div ng-show="success">
+        <p>Your message has been sent, thank you.</p>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Send message</button>
+    </div>
+  </div>
+  <div class="d-flex flex-row-reverse">
+    <div class="card" style="width: 18rem;">
+      <img class="card-img-top" src="../../assets/SmoothSak.png" alt="SmoothSak.com Logo">
+      <div class="card-body">
+        <nav class="nav">
+          <a class="nav-link active" href="http://www.smoothsak.com">Sponsored by SmoothSak.</a>
+        </nav>
       </div>
     </div>
   </div>
 </div>
-
-<div class="paddRow contactRow">
-  <div class="wrap">
-    <div class="head">Contact Us</div>
-    <img class="close" src="images/close.png" ng-click="closeForm()" />
-    <form ng-submit="save()" class="contactForm" name="form" ng-hide="loaded">
-      <input class="input" required="required" type="text" name="name" placeholder="your name" ng-model="message.name" />
-      <input class="input email" required="required" type="email" name="email" value="" placeholder="your email" ng-model="message.email"
-      />
-      <br />
-      <textarea class="textarea" rows="5" required="required" placeholder="your message" ng-model="message.text"></textarea>
-      <button class="btn green">send message</button>
-    </form>
-    <!-- contact us form response messages -->
-    <div ng-show="process" style="text-align:center">
-      <img class="loader" src="images/loader.png" />
-    </div>
-    <div ng-show="success">
-      <p>Your message has been sent, thank you.</p>
-    </div>
-  </div>
-</div>
-
 <router-outlet></router-outlet>
 
