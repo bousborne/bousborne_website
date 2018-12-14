@@ -26,7 +26,14 @@
     </div>
   </div>
 </div>
-
+<p>add image button</p>
+<div class="form-group">
+  <button (click)="addImage('/assets/gallery/nature.jpg')"
+      [disabled]="angForm.pristine || angForm.invalid" 
+      class="btn btn-primary">
+      Add Image
+   </button>
+</div>
 <p>lightbox
 </p>
 <section class="gallery-block compact-gallery">

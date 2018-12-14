@@ -15,6 +15,10 @@ export class GalleryComponent implements OnInit, OnChanges {
     this.visibleImages = this.imagesService.getImages();
   }
 
+  addImage() {
+    this.imagesService.addImage('/assets/gallery/nature.jpg');
+  }
+
   ngOnChanges(){
     this.visibleImages = this.imagesService.getImages();
   }

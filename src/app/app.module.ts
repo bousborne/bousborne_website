@@ -1,5 +1,6 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { RouterModule, Routes } from '@angular/router';
@@ -11,6 +12,9 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { GalleryComponent } from './gallery/gallery.component';
 import { ImagesService } from './_shared/images-service/images.service';
 import { AngularFileUploaderModule } from "angular-file-uploader";
+import { GstAddComponent } from './gst-add/gst-add.component';
+import { GstGetComponent } from './gst-get/gst-get.component';
+import { GstEditComponent } from './gst-edit/gst-edit.component';
 
 const appRoutes: Routes = [
   { path: 'snow', component: SnowComponent },
@@ -28,7 +32,10 @@ const appRoutes: Routes = [
     SnowComponent,
     NavigationComponent,
     PageNotFoundComponent,
-    GalleryComponent
+    GalleryComponent,
+    GstAddComponent,
+    GstGetComponent,
+    GstEditComponent
     
   ],
   imports: [
@@ -37,6 +44,7 @@ const appRoutes: Routes = [
       { enableTracing: true } // <-- debugging purposes only
     ),
     BrowserModule,
+    HttpClientModule,
     AngularFileUploaderModule,
     AppRoutingModule
   ],

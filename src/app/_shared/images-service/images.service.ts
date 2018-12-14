@@ -1,18 +1,39 @@
 import { Injectable } from '@angular/core';
-// import { readFile } from 'fs';
-// import { Observable, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+// import * as fs from 'graceful-fs';
+import { Observable, of } from 'rxjs';
+import { map } from 'rxjs/operators';
+// declare function getFiles(path): any;
+// import { O_DIRECTORY } from 'constants';
+// import { readdir, fstat } from 'fs';
 
-
+// var fs = require('graceful-fs')
+ 
 @Injectable({
   providedIn: 'root'
 })
 export class ImagesService {
-  constructor() { }
+  uri = 'http://localhost:4000/image';
 
+  constructor(private http: HttpClient) { 
+    // this.visibleImages = [];
+    // this.visibleImages = getFiles('/assets/gallery/');
+  }
+  
+  addImage(imageURL) {
+    imageURL = '/assets/gallery/nature.jpg';
+
+    const obj = {
+      image_url: imageURL
+    };
+    console.log(obj);
+    this.http.post(`${this.uri}/add`, obj)
+        .subscribe(res => console.log('Done'));
+  }
+  
   visibleImages = [];
   filesInDirectory = [];
   getImages(){
-
     // return this.visibleImages = readdirp;
     // this.listFiles('../../assets/gallery');
     // console.log("here");
@@ -23,6 +44,21 @@ export class ImagesService {
     //   throw err;
     // });
     // return data;
+    // this.filesInDirectory = fs.readdirSync('../../assets/gallery');
+
+    // readdir('/assets/gallery');
+
+    // Directory
+    // this.visibleImages = this.http.get('/assets/gallery.json').pipe(map(response => response.json()));
+    // debugger;
+    // console.log('testimg');
+    // this.visibleImages = getFiles('/assets/gallery/');
+    // console.log('themtherefiles', this.visibleImages);
+    // return this.visibleImages;
+
+    // this.getFiles('/assets/gallery/');
+    //return this.getFiles('/assets/gallery/');
+    
     return this.visibleImages = IMAGES.slice(0);
   }
 
@@ -55,9 +91,20 @@ export class ImagesService {
   //   this.readdirp(path).forEach(file => {
   //     this.filesInDirectory.push(file);
   //   });
+  //   return of(this.filesInDirectory); 
+  // }
+  // getFiles(path) {
+  //   // debugger;
+  //   this.filesInDirectory = [];
+
+  //   this.http.get(path).forEach( file => {
+  //     // debugger;
+  //     this.filesInDirectory.push(file);
+  //   });
+  //   // debugger; 
+  //   console.log('data', this.filesInDirectory)
   //   return of(this.filesInDirectory);
   // }
-
 
 
 
