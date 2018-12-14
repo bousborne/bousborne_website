@@ -9,10 +9,10 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { GalleryComponent } from './gallery/gallery.component';
 import { AngularFileUploaderModule } from "angular-file-uploader";
-import { ImageAddComponent } from './image-add/image-add.component';
-import { ImageEditComponent } from './image-edit/image-edit.component';
-import { ImageGetComponent } from './image-get/image-get.component';
-import { ImageService } from './image.service';
+import { ImageAddComponent } from './gallery/image-add/image-add.component';
+import { ImageEditComponent } from './gallery/image-edit/image-edit.component';
+import { ImageGetComponent } from './gallery/image-get/image-get.component';
+import { ImageService } from './shared/image-service/image.service';
 
 const appRoutes: Routes = [
   { path: 'snow', component: SnowComponent },

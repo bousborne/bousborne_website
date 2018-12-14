@@ -38,6 +38,7 @@ export class ImageService {
       .http
       .get(`${this.uri}/delete/${id}`);
   }
+
   updateImage(image_url, image_name, image_description, id) {
 
     const obj = {
@@ -50,5 +51,4 @@ export class ImageService {
       .post(`${this.uri}/update/${id}`, obj)
       .subscribe(res => console.log('Done'));
   }
-  
 }
