@@ -1,5 +1,5 @@
 // DB.js
 
 module.exports = {
-    DB: 'mongodb://localhost:27017/ng7crud'
+    DB: 'mongodb://localhost:27017/benousbornecom'
  };

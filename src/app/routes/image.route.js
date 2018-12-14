@@ -45,9 +45,9 @@ imageRoutes.route('/update/:id').post(function (req, res) {
     if (!image)
       return next(new Error('Could not load Document'));
     else {
-        image.person_name = req.body.person_name;
+        image.image_url = req.body.image_url;
         image.image_name = req.body.image_name;
-        image.image_gst_number = req.body.image_gst_number;
+        image.image_description = req.body.image_description;
 
         image.save().then(image => {
           res.json('Update complete');

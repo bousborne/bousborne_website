@@ -13,10 +13,10 @@
       </button>
     </div> -->
     <div class="card-columns deck-gallery zoom-on-hover">
-      <div class="card text-center" *ngFor="let image of visibleImages">
-        <a href="{{image.url}}" class="img-fluid" data-size="1600x1067" data-toggle="lightbox">
-          <a href="{{image.url}}">
-            <img class="card-img-top" src="{{image.url}}" alt="{{image.caption}}">
+      <div class="card text-center" *ngFor="let image of images">
+        <a href="{{image.image_url}}" class="img-fluid" data-size="1600x1067" data-toggle="lightbox">
+          <a href="{{image.image_url}}">
+            <img class="card-img-top" src="{{image.image_url}}" alt="{{image.image_name}}">
           </a>
           <!-- <div class="card-body">
           <h5 class="card-title-center">{{image.caption}}</h5>
@@ -28,32 +28,12 @@
 </div>
 <p>add image button</p>
 <div class="form-group">
-  <button (click)="addImage('/assets/gallery/nature.jpg')"
-      [disabled]="angForm.pristine || angForm.invalid" 
-      class="btn btn-primary">
+  <li class="nav-item">
+    <a routerLink="image/create" class="nav-link" routerLinkActive="active">
       Add Image
-   </button>
+    </a>
+  </li>
 </div>
-<p>lightbox
-</p>
-<section class="gallery-block compact-gallery">
-  <div class="container">
-    <div class="heading">
-      <h2>Bootstrap 4 compact lightbox gallery</h2>
-    </div>
-    <div class="row no-gutters">
-      <div class="col-md-6 col-lg-4 item zoom-on-hover" *ngFor="let image of visibleImages">
-        <a class="lightbox" href="{{image.url}}">
-          <img class="img-fluid image" src="{{image.url}}">
-          <span class="description">
-            <span class="description-heading">head{{image.description}}</span>
-            <span class="description-body">testt</span>
-          </span>
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
 
 
 <!-- Modal -->

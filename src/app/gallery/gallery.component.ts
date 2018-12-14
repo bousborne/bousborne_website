@@ -1,5 +1,7 @@
 import { Component, OnChanges, OnInit, Input } from '@angular/core';
 import { ImagesService } from "../_shared/images-service/images.service";
+import Image from '../Image';
+import { ImageService } from '../image.service';
 
 @Component({
   selector: 'app-gallery',
@@ -11,7 +13,9 @@ export class GalleryComponent implements OnInit, OnChanges {
   @Input() filterBy?: string = 'all'
   visibleImages: any[] = [];
   
-  constructor(private imagesService: ImagesService){
+  images: Image[];
+  
+  constructor(private imagesService: ImagesService, private is: ImageService){
     this.visibleImages = this.imagesService.getImages();
   }
 
@@ -24,6 +28,11 @@ export class GalleryComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
+    this.is
+    .getImages()
+    .subscribe((data: Image[]) => {
+      this.images = data;
+  });
   }
 
   afuConfig = {
