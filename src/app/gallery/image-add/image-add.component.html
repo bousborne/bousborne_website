@@ -3,28 +3,25 @@
     <form>
       <div class="form-group">
         <label class="col-md-4">Image URL</label>
-        <input type="text" class="form-control" formControlName="image_url" #image_url/>
+        <input type="text" class="form-control" formControlName="image_url" #image_url />
       </div>
       <div class="form-group">
         <label class="col-md-4">Image Name</label>
-        <input type="text" class="form-control" formControlName="image_name" #image_name/>
+        <input type="text" class="form-control" formControlName="image_name" #image_name />
       </div>
       <div class="form-group">
         <label class="col-md-4">Image Description</label>
-        <input type="text" class="form-control" formControlName="image_description" #image_description/>
+        <input type="text" class="form-control" formControlName="image_description" #image_description />
       </div>
       <div class="form-group">
-        <button (click)="addImage(image_url.value, image_name.value, image_description.value)"
-            [disabled]="angForm.pristine || angForm.invalid" 
-            class="btn btn-primary">
-            Add Image
-         </button>
+        <input type="file" (change)="onFileSelected($event)" class="btn btn-primary" text="Select Image">
       </div>
     </form>
   </div>
 </div>
-
-
+<button type="submit" (click)="onUpload($event, image_url.value, image_name.value, image_description.value)" class="btn btn-primary">Add
+  Image</button>
+  
 <!-- <div class="card">
   <div class="card-body">
     <form [formGroup]="angForm" novalidate>

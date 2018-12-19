@@ -13,20 +13,19 @@
       </button>
     </div> -->
     <div class="card-columns deck-gallery zoom-on-hover">
-      <div class="card text-center" *ngFor="let image of images">
-        <a href="{{image.image_url}}" class="img-fluid" data-size="1600x1067" data-toggle="lightbox">
-          <a href="{{image.image_url}}">
-            <img class="card-img-top" src="{{image.image_url}}" alt="{{image.image_name}}">
+      <div class="card text-center" *ngFor="let image of imagesOutput">
+        <a href="{{this.image}}" class="img-fluid" data-size="1600x1067" data-toggle="lightbox">
+          <a href="{{this.image}}">
+            <img class="card-img-top" src="{{this.image}}" alt="{{image}}">
           </a>
           <!-- <div class="card-body">
           <h5 class="card-title-center">{{image.caption}}</h5>
-        </div> -->
-        </a>
+        </div>  -->
+      </a>
       </div>
     </div>
   </div>
 </div>
-<p>add image button</p>
 <div class="form-group">
   <li class="nav-item">
     <a routerLink="image/create" class="nav-link" routerLinkActive="active">
@@ -47,7 +46,7 @@
           </button>
         </div>
         <div class="modal-body">
-            <img class="card-img-top" src="../../assets/gallery/fjords.jpg" alt="{{image.caption}}">
+            <!-- <img class="card-img-top" src="../../assets/gallery/fjords.jpg" alt="{{image.caption}}"> -->
 
         </div>
         <div class="modal-footer">

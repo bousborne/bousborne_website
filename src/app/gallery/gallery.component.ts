@@ -1,6 +1,8 @@
 import { Component, OnChanges, OnInit, Input } from '@angular/core';
 import Image from '../shared/image-service/Image';
 import { ImageService } from '../shared/image-service/image.service';
+import { HttpClient } from '@angular/common/http';
+import { Buffer } from 'buffer';
 
 @Component({
   selector: 'app-gallery',
@@ -10,37 +12,29 @@ import { ImageService } from '../shared/image-service/image.service';
 export class GalleryComponent implements OnInit, OnChanges {
   title = 'Recent Photos'
   @Input() filterBy?: string = 'all'
-  // visibleImages: any[] = [];
-  
   images: Image[];
-  
-  constructor(private is: ImageService){
+  imagesOutput;
+
+  constructor(private http: HttpClient, private is: ImageService) {
   }
 
-  ngOnChanges(){
+  ngOnChanges() {
   }
 
   ngOnInit() {
-    this.is
-    .getImages()
-    .subscribe((data: Image[]) => {
+    // this.is.getImages(this.images, this.imagesOutput);
+    var imageObjectMap: any;
+    var fulldata = [];
+    this.is.getImages().subscribe((data: Image[]) => {
       this.images = data;
-  });
-  }
-
-  afuConfig = {
-    multiple: false,
-    formatsAllowed: ".jpg,.png",
-    maxSize: "1",
-    uploadAPI: {
-      url: "../../assets/gallery/",
-      headers: {
-        "Content-Type": "text/plain;charset=UTF-8",
+      for (let key in this.images) {
+        imageObjectMap = Object.values(this.images[key].file.data)[1]
+        var imageObjectUInt8 = new Uint8Array(imageObjectMap);
+        var imageObjectUInt8Buffer = new Buffer(imageObjectUInt8)
+        var imageObjectUInt8BufferParsed: String = JSON.parse(imageObjectUInt8Buffer.toString());
+        fulldata.push(imageObjectUInt8BufferParsed)
       }
-    },
-    theme: "dragNDrop",
-    hideProgressBar: true,
-    hideResetBtn: true,
-    hideSelectBtn: true
-  };
+      this.imagesOutput = fulldata
+    });
+  }
 }

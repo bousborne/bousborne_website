@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ImageService } from '../../shared/image-service/image.service';
+import { HttpClient } from '@angular/common/http';
+import { Buffer } from 'buffer';
+import Image from '../../shared/image-service/Image';
 
 @Component({
   selector: 'app-image-add',
@@ -7,48 +10,39 @@ import { ImageService } from '../../shared/image-service/image.service';
   styleUrls: ['./image-add.component.css']
 })
 export class ImageAddComponent implements OnInit {
+  file;
+  image: Image;
+  fileBase64;
+  fileBuffer;
 
-  constructor(private is: ImageService) {
-    // this.createForm();
+  constructor(private http: HttpClient, private is: ImageService) {
   }
 
-  addImage(image_url, image_name: 'n/a', image_description: 'n/a') {
-    this.is.addImage(image_url, image_name, image_description);
+  addImage(file, image_url, image_name, image_description) {
+    this.is.addImage(file, image_url, image_name, image_description);
+  }
+
+  onUpload(event, image_url, image_name: 'n/a', image_description: 'n/a') {
+    this.addImage(this.file, image_url, image_name, image_description);
+  }
+
+  onFileSelected(event) {
+    console.log("event", event);
+    console.log("test", event.target.ownerdocument)
+    if (<File>event.target.files && <File>event.target.files[0]) {
+      const reader = new FileReader;
+      reader.onload = (event) => {
+        this.fileBase64 = reader.result;
+        this.fileBuffer = new Buffer(JSON.stringify(this.fileBase64)); //use stringify?
+        this.file = { data: this.fileBuffer, contentType: ".jpg" };
+        console.log("fileBuffer", this.fileBuffer.toString('base64'))
+        console.log("fileBuffer", this.fileBuffer)
+
+      }
+      reader.readAsDataURL(<File>event.target.files[0]);
+    }
   }
 
   ngOnInit() {
   }
-
 }
-
-// import { Component, OnInit } from '@angular/core';
-// import { FormGroup,  FormBuilder,  Validators } from '@angular/forms';
-// import { ImageService } from '../image.service';
-
-// @Component({
-//   selector: 'app-image-add',
-//   templateUrl: './image-add.component.html',
-//   styleUrls: ['./image-add.component.css']
-// })
-// export class ImageAddComponent implements OnInit {
-
-//   angForm: FormGroup; 
-//   constructor(private fb: FormBuilder, private is: ImageService) {
-//     this.createForm();
-//   }
-
-//   createForm() {
-//     this.angForm = this.fb.group({
-//       image_url: ['', Validators.required ],
-//       image_name: ['', Validators.required ],
-//       image_description: ['', Validators.required ]
-//     });
-//   }
-
-//   addImage(image_url, image_name, image_description) {
-//     this.is.addImage(image_url, image_name, image_description);
-//   }
-//   ngOnInit() {
-//   }
-
-// }
