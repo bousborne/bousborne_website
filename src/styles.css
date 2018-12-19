@@ -1,1 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
+@font-face {
+    font-family: cabin;
+    src: url(assets/font/cabin/Cabin-Regular.ttf) format("opentype");
+  }
+
+  @font-face {
+    font-family: poppins;
+    src: url(assets/font/poppins/Poppins-Regular.ttf) format("opentype");
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'poppins', 'cabin', 'lato', 'arial', sans-serif;
+  }
