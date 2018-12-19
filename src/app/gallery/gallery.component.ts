@@ -33,8 +33,9 @@ export class GalleryComponent implements OnInit, OnChanges {
         var imageObjectUInt8Buffer = new Buffer(imageObjectUInt8)
         var imageObjectUInt8BufferParsed: String = JSON.parse(imageObjectUInt8Buffer.toString());
         fulldata.push(imageObjectUInt8BufferParsed)
+        this.images[key].fileBuffer = imageObjectUInt8BufferParsed
       }
-      this.imagesOutput = fulldata
+      console.log("logger", this.images[0].fileBuffer)
     });
   }
 }

@@ -12,12 +12,13 @@ export class ImageService {
 
   constructor(private http: HttpClient) { }
 
-  addImage(file, image_url, image_name, image_description) {
+  addImage(file, image_url, image_name, image_description, fileBuffer) {
     const obj = {
       file: file,
       image_url: image_url,
       image_name: image_name,
-      image_description: image_description
+      image_description: image_description,
+      fileBuffer: fileBuffer
     };
     console.log("image service upload", obj);
     this.http.post(`${this.uri}/add`, obj)

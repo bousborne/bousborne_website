@@ -18,12 +18,12 @@ export class ImageAddComponent implements OnInit {
   constructor(private http: HttpClient, private is: ImageService) {
   }
 
-  addImage(file, image_url, image_name, image_description) {
-    this.is.addImage(file, image_url, image_name, image_description);
+  addImage(file, image_url, image_name, image_description, fileBuffer) {
+    this.is.addImage(file, image_url, image_name, image_description, fileBuffer);
   }
 
-  onUpload(event, image_url, image_name: 'n/a', image_description: 'n/a') {
-    this.addImage(this.file, image_url, image_name, image_description);
+  onUpload(event, image_url, image_name: 'n/a', image_description: 'n/a', fileBuffer: 'n/a') {
+    this.addImage(this.file, image_url, image_name, image_description, fileBuffer);
   }
 
   onFileSelected(event) {
