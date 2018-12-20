@@ -66,12 +66,25 @@ export class ImageGetComponent implements OnInit {
   }
 
   ngOnInit() {
+    var imageObjectMap: any;
+    var fulldata = [];
     this.is
       .getImages()
       .subscribe((data: Image[]) => {
         this.images = data;
         console.log(this.images)
+        for (let key in this.images) {
 
+          imageObjectMap = Object.values(this.images[key].file.data)[1]
+          var imageObjectUInt8 = new Uint8Array(imageObjectMap);
+          var imageObjectUInt8Buffer = new Buffer(imageObjectUInt8)
+          var imageObjectUInt8BufferParsed: String = JSON.parse(imageObjectUInt8Buffer.toString());
+          fulldata.push(imageObjectUInt8BufferParsed)
+          console.log(imageObjectUInt8BufferParsed)
+          this.images[key].fileBuffer = imageObjectUInt8BufferParsed
+          console.log("buffed", this.images[key])
+
+        }
       });
     console.log(this.images)
     // this.getDatImageForm();

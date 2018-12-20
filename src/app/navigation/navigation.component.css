@@ -153,8 +153,8 @@ h1 {
     }
 }
 .icons-default {
-    background-color: #dddddd;
-    color: #FFF6AA
+    /* background-color: #dddddd; */
+    color: #dddddd
 }
 
 .custom-toggler .navbar-toggler-icon {
@@ -164,3 +164,4 @@ h1 {
   .custom-toggler.navbar-toggler {
     border-color: rgba(170,158, 57,1);
   } 
+

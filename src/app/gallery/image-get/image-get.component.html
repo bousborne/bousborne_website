@@ -1,24 +1,29 @@
-<table class="table table-hover">
-    <thead>
-        <tr>
-            <td>Image Thumbnail</td>
-            <td>Image Name</td>
-            <td>Image Description</td>
-            <td colspan="2">Actions</td>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let image of images">
-            <td><a target="_blank" href="{{this.image.fileBuffer}}" ngFor>
-                    <img src="{{this.image.fileBuffer}}" alt="{{image.image_name}}">
-                </a></td>
-            <td>{{ image.image_name }}</td>
-            <td>{{ image.image_description }}</td>
-            <td><a [routerLink]="['/edit', image._id]" class="btn btn-primary">Edit</a></td>
-            <td><a (click)="deleteImage(image._id)" class="btn btn-danger">Delete</a></td>
-        </tr>
-    </tbody>
-    <p>pic:</p>
-    <img class="card-img-top" (change)="getImageForm($event)" src="{{this.image.fileBuffer}}" alt="{{image.image_name}}">
-    <p>endpic</p>
-</table>
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <td>Image Thumbnail</td>
+                <td>Image Name</td>
+                <td>Image Description</td>
+                <td colspan="2">Actions</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let image of images">
+                <td><a target="_blank" href="{{this.image.fileBuffer}}">
+                        <img src="{{this.image.fileBuffer}}" alt="{{image.image_name}}">
+                    </a></td>
+                <td>{{ image.image_name }}</td>
+                <td>{{ image.image_description }}</td>
+                <td><a [routerLink]="['/edit', image._id]" class="btn btn-primary">Edit</a></td>
+                <td><a (click)="deleteImage(image._id)" class="btn btn-danger">Delete</a></td>
+            </tr>
+        </tbody>
+
+    </table>
+</div>
+<p>pic:</p>
+<div *ngFor="let image of images">
+    <img class="card-img-top" (change)="getImageForm($event)" src="{{image.fileBuffer}}" alt="{{image.image_name}}">
+</div>
+<p>endpic</p>

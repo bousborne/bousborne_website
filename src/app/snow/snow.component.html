@@ -1,128 +1,81 @@
-<!--The content below is only a placeholder and can be replaced.-->
-
-
 <div style="position:relative">
   <div style="width:100%" ng-view ng-animate="{enter: 'view-enter', leave: 'view-leave'}"></div>
 </div>
-
 <h1>
   <div ng-style="navbar-default" class="text-center">
-      <img src="../../assets/matrix_narrow.png" class="img-fluid" alt="Responsive image">
+    <img src="../../assets/80s_narrow.jpg" class="img-fluid" alt="Responsive image">
   </div>
 </h1>
 <abbr>
-    <div class="container-fluid bottom-buffer full-width">
-      <div class="btn btn-block btn-primary container-fluid navbar-default" data-toggle="collapse" href="#collapseTraffic" aria-expanded="false"
-        aria-controls="collapseTraffic">
-        <img class="img-fluid traffic-image" alt="Traffic" src="../../assets/cw-traffic.png">
-      </div>
-      <div class="collapse container-fluid" id="collapseTraffic">
-        <div class="container-fluid">
+  <div class="container-fluid bottom-buffer full-width">
+    <div class="btn btn-block btn-primary container-fluid navbar-default" data-toggle="collapse" href="#collapseTraffic"
+      aria-expanded="false" aria-controls="collapseTraffic">
+      <img class="img-fluid traffic-image" alt="Traffic" src="../../assets/cw-traffic.png">
+    </div>
+    <div class="collapse container-fluid" id="collapseTraffic">
+      <div class="container-fluid">
+        <div class="row">
           <div class="row">
-          
-            <div class="container-fluid col-sm">
-              <div class="col text-center">
-                <div>
-                  <a>I70 Frisco Looking West</a>
-                </div>
-                <div>
-                  <img width="300" alt="I70 Frisco Looking West" src="https://webcams.opensnow.com/current/1966.jpg?time=">
-                </div>
-              </div>
-            </div>
-            <div class="container-fluid col-sm">
-              <div class="col text-center">
-                <div>
-                  <a>I70 Frisco Looking East</a>
-                </div>
-                <div>
-                  <img width="300" alt="I70 Frisco Looking East" src="https://webcams.opensnow.com/current/1967.jpg?time=">
-                </div>
-              </div>
-            </div>
-            <div class="container-fluid col-sm">
-              <div class="col text-center">
-                <div>
-                  <a>US-6 Looking East</a>
-                </div>
-                <div>
-                  <img width="300" alt="US-6 Looking East" src="http://i.cotrip.org/dimages/camera?imageURL=liveview/US6Mile220East.jpg&v=00536">
+            <div class="text-center">
+              <div class="card-columns deck-gallery zoom-on-hover">
+                <div *ngFor="let webcam of webcams">
+                  <div class="card text-center zoom-img" *ngIf="webcam.webcam_location_tag == 'traffic'">
+                    <a href="{{this.webcam.webcam_url}}" class="img-fluid" data-size="1600x1067" data-toggle="lightbox">
+                      <img class="card-img-top zoom" src="{{this.webcam.webcam_url}}" alt="{{this.webcam.webcam_name}}">
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-  
-          <div class="container-fluid col-sm">
-            <div class="col text-center">
-              <div>
-                <a>Directions to Breck</a>
-              </div>
-              <div>
-                <iframe src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d392941.51418100944!2d-105.86368992356236!3d39.69795100542459!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e0!4m5!1s0x876b899a57958bd1%3A0x7cde499e795bac43!2s9829+Otis+Dr%2C+Westminster%2C+CO+80021-5457%2C+USA!3m2!1d39.87571!2d-105.0697263!4m5!1s0x876a588438e09649%3A0x708859ce83ce12cc!2s607+Gold+Run+Gulch+Rd%2C+Breckenridge%2C+CO+80424!3m2!1d39.522886199999995!2d-106.0241765!5e0!3m2!1sen!2sus!4v1515909915146"
-                  width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>">
-              </div>
-            </div>
-            <div class="col text-center">
-              <div>
-                <a>Directions Home</a>
-              </div>
-              <div>
-                <iframe src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d392935.7993572553!2d-105.86291322315799!3d39.69895477373818!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e6!4m5!1s0x876a588438e09649%3A0x708859ce83ce12cc!2s607+Gold+Run+Gulch+Road%2C+Breckenridge%2C+CO!3m2!1d39.522886199999995!2d-106.0241765!4m5!1s0x876b899a57958bd1%3A0x7cde499e795bac43!2s9829+Otis+Dr%2C+Westminster%2C+CO+80021-5457%2C+USA!3m2!1d39.8756967!2d-105.06973789999999!5e0!3m2!1sen!2sus!4v1544221806677" 
-                  width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+        </div>
+        <div class="container-fluid col-sm">
+          <div class="col text-center">
+            <div class="row">
+              <div class="text-center">
+                <div class="card-columns deck-gallery zoom-on-hover">
+                  <div class="card text-center zoom-img">
+                    <a>Directions to Breck</a>
+                    <div>
+                      <iframe class="card-img-top zoom" src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d392941.51418100944!2d-105.86368992356236!3d39.69795100542459!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e0!4m5!1s0x876b899a57958bd1%3A0x7cde499e795bac43!2s9829+Otis+Dr%2C+Westminster%2C+CO+80021-5457%2C+USA!3m2!1d39.87571!2d-105.0697263!4m5!1s0x876a588438e09649%3A0x708859ce83ce12cc!2s607+Gold+Run+Gulch+Rd%2C+Breckenridge%2C+CO+80424!3m2!1d39.522886199999995!2d-106.0241765!5e0!3m2!1sen!2sus!4v1515909915146"
+                        width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+                    </div>
+                  </div>
+                  <div class="card text-center">
+                    <a>Directions to Home</a>
+                    <div>
+                      <iframe src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d392935.7993572553!2d-105.86291322315799!3d39.69895477373818!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e6!4m5!1s0x876a588438e09649%3A0x708859ce83ce12cc!2s607+Gold+Run+Gulch+Road%2C+Breckenridge%2C+CO!3m2!1d39.522886199999995!2d-106.0241765!4m5!1s0x876b899a57958bd1%3A0x7cde499e795bac43!2s9829+Otis+Dr%2C+Westminster%2C+CO+80021-5457%2C+USA!3m2!1d39.8756967!2d-105.06973789999999!5e0!3m2!1sen!2sus!4v1544221806677"
+                        width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-  
         </div>
       </div>
     </div>
-  </abbr>
+  </div>
+</abbr>
 <abbr>
   <div class="container-fluid bottom-buffer full-width">
-    <div class="btn btn-block navbar-default btn-primary container-fluid" data-toggle="collapse" href="#collapseBreckenridge" aria-expanded="false"
-      aria-controls="collapseBreckenridge">
+    <div class="btn btn-block navbar-default btn-primary container-fluid" data-toggle="collapse" href="#collapseBreckenridge"
+      aria-expanded="false" aria-controls="collapseBreckenridge">
       <img class="img-fluid breck-image" alt="Breckenridge" src="../../assets/breckenridge-logo-504x240-300x143_white.png">
     </div>
     <div class="collapse container-fluid" id="collapseBreckenridge">
       <div class="container-fluid">
         <div class="row">
-          <div class="container-fluid col-sm">
-            <div class="col text-center">
-              <div>
-                <a>Breck 5AM Snow Stake</a>
-              </div>
-              <div>
-                <img width="300" alt="Breck 5AM Snow Stake" src="https://webcams.opensnow.com/current/613.jpg?time=">
-              </div>
-            </div>
-          </div>
-          <div class="container-fluid col-sm">
-            <div class="col text-center">
-              <div>
-                <a>Breck Snow Stake</a>
-              </div>
-              <div>
-                <img width="300" alt="Breck Snow Stake" src="https://webcams.opensnow.com/current/607.jpg?time=">
-              </div>
-            </div>
-          </div>
-          <div class="container-fluid col-sm">
-            <div class="col text-center">
-              <div>
-                <a>Breck Peak 8 Base</a>
-              </div>
-              <div>
-                <img width="300" alt="Breck Peak 8 Base" src="http://common.snow.com/Mtncams/peak8base.jpg?time=">
-              </div>
-            </div>
-          </div>
-          <div class="container-fluid col-sm">
-            <div class="col text-center">
-              <div>
-                <a>Horseshow Bowl</a>
-              </div>
-              <div>
-                <img width="300" alt="Horseshoe Bowl" src="http://webcams.opensnow.com/current/25.jpg?time=">
+          <div class="row">
+            <div class="text-center">
+              <div class="card-columns deck-gallery zoom-on-hover">
+                <div *ngFor="let webcam of webcams">
+                  <div class="card text-center zoom-img" *ngIf="webcam.webcam_location_tag == 'breckenridge'">
+                    <a href="{{this.webcam.webcam_url}}" class="img-fluid" data-size="1600x1067" data-toggle="lightbox">
+                      <img class="card-img-top zoom" src="{{this.webcam.webcam_url}}" alt="{{this.webcam.webcam_name}}">
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -133,152 +86,45 @@
 </abbr>
 <abbr>
   <div class="container-fluid bottom-buffer">
-    <div class="btn btn-block navbar-default btn-primary container-fluid" data-toggle="collapse" href="#collapseKeystone" aria-expanded="false"
-      aria-controls="collapseKeystone">
+    <div class="btn btn-block navbar-default btn-primary container-fluid" data-toggle="collapse" href="#collapseKeystone"
+      aria-expanded="false" aria-controls="collapseKeystone">
       <img class="img-fluid keystone-image" alt="Keystone" src="../../assets/Keystone_logo.png">
     </div>
     <div class="collapse container-fluid" id="collapseKeystone">
       <div class="container-fluid">
         <div class="row">
-          <div class="container-fluid col-sm">
-            <div class="col text-center">
-              <div>
-                <a>Keystone 5AM Stake</a>
-              </div>
-              <div>
-                <img width="300" alt="Keystone 5AM Stake" src="https://webcams.opensnow.com/current/612.jpg?time=">
-              </div>
-            </div>
-          </div>
-          <div class="container-fluid col-sm">
-            <div class="col text-center">
-              <div>
-                <a>Keystone Snow Stake</a>
-              </div>
-              <div>
-                <img width="300" alt="Keystone Snow Stake" src="https://webcams.opensnow.com/current/606.jpg?time=">
+          <div class="row">
+            <div class="text-center">
+              <div class="card-columns deck-gallery zoom-on-hover">
+                <div *ngFor="let webcam of webcams">
+                  <div class="card text-center zoom-img" *ngIf="webcam.webcam_location_tag == 'keystone'">
+                    <a href="{{this.webcam.webcam_url}}" class="img-fluid" data-size="1600x1067" data-toggle="lightbox">
+                      <img class="card-img-top zoom" src="{{this.webcam.webcam_url}}" alt="{{this.webcam.webcam_name}}">
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="container-fluid col-sm">
-            <div class="col text-center">
-              <div>
-                <a>River Run</a>
-              </div>
-              <div>
-                <img width="300" alt="River Run" src="https://webcams.opensnow.com/current/540.jpg?time=">
-              </div>
-            </div>
-          </div>
-          <div class="container-fluid col-sm">
-            <div class="col text-center">
-              <div>
-                <a>Base Village</a>
-              </div>
-              <div>
-                <img width="300" alt="Base Village" src="https://webcams.opensnow.com/current/1886.jpg?time=">
-              </div>
-            </div>
-          </div>
-          <div class="container-fluid col-sm">
-            <div class="col text-center">
-              <div>
-                <a>Kidtopia Fort</a>
-              </div>
-              <div>
-                <img width="300" alt="Kidtopia Fort" src="https://webcams.opensnow.com/current/483.jpg?time=">
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-<div class="panel-group" ng-model="panels.activePanel" role="tablist" aria-multiselectable="true" bs-collapse>
-  <div class="panel panel-default" ng-repeat="panel in panels">
-    <div class="panel-heading" role="tab">
-      <h4 class="panel-title">
-        <a bs-collapse-toggle>
-          {{ panel.title }}
-        </a>
-      </h4>
-    </div>
-    <div class="panel-collapse" role="tabpanel" bs-collapse-target>
-      <div class="panel-body">
-        {{ panel.body }}
-      </div>
-    </div>
-  </div>
-</div>
-<div style="align-self:center">
-  <button type="button" class="btn navbar-default btn-primary" data-toggle="modal" data-target="#exampleModal"
-    data-whatever="@mdo">Open modal for @mdo</button>
-  <button type="button" class="btn navbar-default btn-primary" data-toggle="modal" data-target="#exampleModal"
-    data-whatever="@fat">Open modal for @fat</button>
-  <button type="button" class="btn navbar-default btn-primary" data-toggle="modal" data-target="#exampleModal"
-    data-whatever="@getbootstrap">Open modal for @getbootstrap</button>
-</div>
-<div class="row col-sm-12">
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">New message</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form>
-            <div class="form-group">
-              <label for="recipient-name" class="form-control-label">Recipient:</label>
-              <input type="text" class="form-control" id="recipient-name">
-            </div>
-            <div class="form-group">
-              <label for="message-text" class="form-control-label">Message:</label>
-              <textarea class="form-control" id="message-text"></textarea>
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn navbar-default btn-primary">Send message</button>
-        </div>
-      </div>
-    </div>
-  </div>
 
-  <div class="paddRow contactRow">
-    <div class="wrap">
-      <div class="head">Contact Us</div>
-      <img class="close" src="images/close.png" ng-click="closeForm()" />
-      <form ng-submit="save()" class="contactForm" name="form" ng-hide="loaded">
-        <input class="input" required="required" type="text" name="name" placeholder="your name" ng-model="message.name" />
-        <input class="input email" required="required" type="email" name="email" value="" placeholder="your email"
-          ng-model="message.email" />
-        <br />
-        <textarea class="textarea" rows="5" required="required" placeholder="your message" ng-model="message.text"></textarea>
-        <button class="btn green">send message</button>
-      </form>
-      <!-- contact us form response messages -->
-      <div ng-show="process" style="text-align:center">
-        <img class="loader" src="images/loader.png" />
-      </div>
-      <div ng-show="success">
-        <p>Your message has been sent, thank you.</p>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="d-flex flex-row-reverse">
-    <div class="card" style="width: 18rem; position:absolute; right:0;">
-      <img class="card-img-top" src="../../assets/SmoothSak.png" alt="SmoothSak.com Logo">
-      <div class="card-body">
-        <nav class="nav">
-          <a class="nav-link active" href="http://www.smoothsak.com">Sponsored by SmoothSak.</a>
-        </nav>
+    <div class="panel-group" ng-model="panels.activePanel" role="tablist" aria-multiselectable="true" bs-collapse>
+      <div class="panel panel-default" ng-repeat="panel in panels">
+        <div class="panel-heading" role="tab">
+          <h4 class="panel-title">
+            <a bs-collapse-toggle>
+              {{ panel.title }}
+            </a>
+          </h4>
+        </div>
+        <div class="panel-collapse" role="tabpanel" bs-collapse-target>
+          <div class="panel-body">
+            {{ panel.body }}
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
-<router-outlet></router-outlet>
 
+    <router-outlet></router-outlet>

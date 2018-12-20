@@ -13,6 +13,17 @@ import { ImageAddComponent } from './gallery/image-add/image-add.component';
 import { ImageEditComponent } from './gallery/image-edit/image-edit.component';
 import { ImageGetComponent } from './gallery/image-get/image-get.component';
 import { ImageService } from './shared/image-service/image.service';
+import { WebcamAddComponent } from './snow/webcam-add/webcam-add.component';
+import { WebcamEditComponent } from './snow/webcam-edit/webcam-edit.component';
+import { WebcamGetComponent } from './snow/webcam-get/webcam-get.component';
+import { WebcamService } from './shared/webcam-service/webcam.service';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faCoffee } from '@fortawesome/free-solid-svg-icons';
+import { far } from '@fortawesome/free-regular-svg-icons';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+import { fab, faGithub, faInstagram, faGithubAlt, faGithubSquare } from '@fortawesome/free-brands-svg-icons';
+import { FooterComponent } from './footer/footer.component';
 
 const appRoutes: Routes = [
   { path: 'snow', component: SnowComponent },
@@ -20,6 +31,9 @@ const appRoutes: Routes = [
   { path: 'gallery/image/create', component: ImageAddComponent },
   { path: 'gallery/image/edit/:id', component: ImageEditComponent },
   { path: 'gallery/image', component: ImageGetComponent },
+  { path: 'snow/webcam/create', component: WebcamAddComponent },
+  { path: 'snow/webcam/edit/:id', component: WebcamEditComponent },
+  { path: 'snow/webcam', component: WebcamGetComponent },
   { path: '**', component: PageNotFoundComponent },
   { path: '',
     redirectTo: '/',
@@ -35,8 +49,12 @@ const appRoutes: Routes = [
     ImageAddComponent,
     ImageGetComponent,
     ImageEditComponent,
+    WebcamAddComponent,
+    WebcamGetComponent,
+    WebcamEditComponent,
     PageNotFoundComponent,
     GalleryComponent,
+    FooterComponent,
   ],
   imports: [
     RouterModule.forRoot(
@@ -46,10 +64,17 @@ const appRoutes: Routes = [
     BrowserModule,
     HttpClientModule,
     AngularFileUploaderModule,
+    FontAwesomeModule,
     AppRoutingModule
   ],
   providers: [ImageService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+
+  constructor() {
+    // Add an icon to the library for convenient access in other components
+    library.add(faCoffee, far, fas, fab, faGithub, faInstagram, faGithubAlt, faGithubSquare);
+  }
+}
 

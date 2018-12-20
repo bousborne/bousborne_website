@@ -1,0 +1,26 @@
+<div class="card">
+  <div class="card-body">
+    <form>
+      <div class="form-group">
+        <label class="col-md-4">Webcam URL</label>
+        <input type="text" class="form-control" formControlName="webcam_url" #webcam_url />
+      </div>
+      <div class="form-group">
+        <label class="col-md-4">Webcam Name</label>
+        <input type="text" class="form-control" formControlName="webcam_name" #webcam_name />
+      </div>
+      <div class="form-group">
+        <label class="col-md-4">Webcam Description</label>
+        <select class="form-control" formControlName="webcam_name" #webcam_location_tag matNativeControl required>
+          <option value="traffic">Traffic</option>
+          <option value="breckenridge">Breckenridge</option>
+          <option value="keystone">Keystone</option>
+          <option value="google_map">Google Map</option>
+        </select>
+      </div>
+    </form>
+  </div>
+</div>
+<button type="submit" (click)="onWebcamUpload($event, webcam_url.value, webcam_name.value, webcam_location_tag.value)"
+  class="btn btn-primary">Add
+  Webcam</button>

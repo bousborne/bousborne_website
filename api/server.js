@@ -8,6 +8,8 @@ const express = require('express'),
   config = require('./DB');
 
 const imageRoute = require('./routes/image.route');
+const webcamRoute = require('./routes/webcam.route');
+
 mongoose.Promise = global.Promise;
 mongoose.connect(config.DB, { useNewUrlParser: true }).then(
   () => { console.log('Database is connected') },
@@ -21,6 +23,8 @@ app.use(bodyParser.json({ limit: '50mb' }));
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 app.use(cors());
 app.use('/gallery/image', imageRoute);
+app.use('/snow/webcam', webcamRoute);
+
 const port = process.env.PORT || 4000;
 
 const server = app.listen(port, function () {

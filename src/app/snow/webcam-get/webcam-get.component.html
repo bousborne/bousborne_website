@@ -1,0 +1,33 @@
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <td>Webcam Thumbnail</td>
+                <td>Webcam Name</td>
+                <td>Webcam Description</td>
+                <td colspan="2">Actions</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let webcam of webcams">
+                <ng-container>
+                    <ng-template [ngIf]="(webcam.webcam_location_tag == 'traffic') || (webcam.webcam_location_tag == 'keystone') || (webcam.webcam_location_tag == 'breckenridge')">
+                        <td class="table-column">
+                            <img width=" 100px" src="{{this.webcam.webcam_url}}" alt="{{this.webcam.webcam_url}}">
+                        </td>
+                    </ng-template>
+                    <ng-template [ngIf]="webcam.webcam_location_tag == 'google_map'">
+                        <td class="table-column">
+                            <img width=" 100px" src="../../../assets/google-maps-screenshot.png" alt="'Google Map'">
+                        </td>
+                    </ng-template>
+                </ng-container>
+                <td>{{ this.webcam.webcam_name }}</td>
+                <td>{{ this.webcam.webcam_location_tag }}</td>
+                <td><a [routerLink]="
+                                ['/edit', webcam._id]" class="btn btn-primary">Edit</a></td>
+                <td><a (click)="deleteWebcam(webcam._id)" class="btn btn-danger">Delete</a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
