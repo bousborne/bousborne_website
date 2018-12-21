@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
-import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { SnowComponent } from './snow/snow.component';
 import { NavigationComponent } from './navigation/navigation.component';
@@ -25,21 +24,7 @@ import { fas } from '@fortawesome/free-solid-svg-icons';
 import { fab, faGithub, faInstagram, faGithubAlt, faGithubSquare } from '@fortawesome/free-brands-svg-icons';
 import { FooterComponent } from './footer/footer.component';
 
-const appRoutes: Routes = [
-  { path: 'snow', component: SnowComponent },
-  { path: 'gallery', component: GalleryComponent },
-  { path: 'gallery/image/create', component: ImageAddComponent },
-  { path: 'gallery/image/edit/:id', component: ImageEditComponent },
-  { path: 'gallery/image', component: ImageGetComponent },
-  { path: 'snow/webcam/create', component: WebcamAddComponent },
-  { path: 'snow/webcam/edit/:id', component: WebcamEditComponent },
-  { path: 'snow/webcam', component: WebcamGetComponent },
-  { path: '**', component: PageNotFoundComponent },
-  { path: '',
-    redirectTo: '/',
-    pathMatch: 'full'
-  }
-];
+
 
 @NgModule({
   declarations: [
@@ -57,20 +42,21 @@ const appRoutes: Routes = [
     FooterComponent,
   ],
   imports: [
-    RouterModule.forRoot(
-      appRoutes,
-      { enableTracing: true } // <-- debugging purposes only
-    ),
     BrowserModule,
     HttpClientModule,
     AngularFileUploaderModule,
     FontAwesomeModule,
     AppRoutingModule
   ],
-  providers: [ImageService],
-  bootstrap: [AppComponent]
+  providers: [
+    ImageService,
+    WebcamService
+  ],
+  bootstrap: [
+    AppComponent
+  ]
 })
-export class AppModule { 
+export class AppModule {
 
   constructor() {
     // Add an icon to the library for convenient access in other components
