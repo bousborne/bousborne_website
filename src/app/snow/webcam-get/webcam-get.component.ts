@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import Webcam from '../../shared/webcam-service/Webcam';
 import { WebcamService } from '../../shared/webcam-service/webcam.service';
 import { HttpClient } from '@angular/common/http';
+import { ActivatedRoute, Router, ParamMap } from '@angular/router';
+import { Observable } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-webcam-get',
@@ -13,20 +16,27 @@ export class WebcamGetComponent implements OnInit {
   uri = 'http://localhost:4000/snow/webcam';
 
   webcams: Webcam[];
-  constructor(private is: WebcamService, private http: HttpClient) { }
+  selectedID: number;
+  // webcams$: any;
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private webService: WebcamService,
+    private http: HttpClient
+  ) { }
 
   deleteWebcam(id) {
-    this.is.deleteWebcam(id).subscribe(res => {
+    this.webService.deleteWebcam(id).subscribe(res => {
       console.log('Deleted');
     });
   }
 
   getWebcams() {
-    this.is.getWebcams()
+    this.webService.getWebcams()
   }
 
   ngOnInit() {
-    this.is
+    this.webService
       .getWebcams()
       .subscribe((data: Webcam[]) => {
         this.webcams = data;

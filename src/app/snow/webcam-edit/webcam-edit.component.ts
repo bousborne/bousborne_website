@@ -1,10 +1,12 @@
-// webcam-edit.component.ts
-
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, ParamMap } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { switchMap } from 'rxjs/operators';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import Webcam from '../../shared/webcam-service/Webcam';
 import { WebcamService } from '../../shared/webcam-service/webcam.service';
+import Webcam from '../../shared/webcam-service/Webcam';
+// import 'rxjs/add/operator/switchMap';
+// import 'rxjs/add/operator/destination';
 
 @Component({
   selector: 'app-webcam-edit',
@@ -13,26 +15,45 @@ import { WebcamService } from '../../shared/webcam-service/webcam.service';
 })
 export class WebcamEditComponent implements OnInit {
 
-  webcam: any = {};
+  webcams: Webcam[];
+  webcam: Webcam;
+  id: String;
 
-  constructor(private route: ActivatedRoute,
+  constructor(
+    private route: ActivatedRoute,
     private router: Router,
-    private is: WebcamService,
-    private fb: FormBuilder) {
+    private webService: WebcamService,
+    private http: HttpClient
+  ) { }
+
+  onWebcamUpdate(event, webcam_url, webcam_name, webcam_location_tag) {
+    this.webService.updateWebcam(webcam_url, webcam_name, webcam_location_tag, this.id)
+    this.gotoWebcams();
   }
 
-  updateWebcam(webcam_url, webcam_name, webcam_location_tag) {
-    this.route.params.subscribe(params => {
-      this.is.updateWebcam(webcam_url, webcam_name, webcam_location_tag, params['id']);
-      this.router.navigate(['webcam']);
-    });
+  gotoWebcams() {
+    this.router.navigate(['/snow/webcam']);
   }
+
+
 
   ngOnInit() {
-    this.route.params.subscribe(params => {
-      this.is.editWebcam(params['id']).subscribe(res => {
-        this.webcam = res;
+    this.webService
+      .getWebcams()
+      .subscribe((data: Webcam[]) => {
+        this.webcams = data;
+        this.id = this.route.snapshot.paramMap.get('id')
+        this.webcam = this.findObjectByKey(this.webcams, '_id', this.id)
+
       });
-    });
+  }
+
+  findObjectByKey(array, key, value) {
+    for (var i = 0; i < array.length; i++) {
+      if (array[i][key] === value) {
+        return array[i];
+      }
+    }
+    return null;
   }
 }

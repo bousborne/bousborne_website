@@ -46,6 +46,8 @@ import { FooterComponent } from './footer/footer.component';
     HttpClientModule,
     AngularFileUploaderModule,
     FontAwesomeModule,
+
+    //Always last (I think)
     AppRoutingModule
   ],
   providers: [

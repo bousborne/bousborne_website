@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import Webcam from './Webcam';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WebcamService {
-  webcams: Webcam[];
-
+  webcam: Webcam;
   uri = 'http://localhost:4000/snow/webcam';
 
   constructor(private http: HttpClient) { }
@@ -23,16 +23,16 @@ export class WebcamService {
       .subscribe(res => console.log('Done', res));
   }
 
-  getWebcams() {
+  getWebcams(): Observable<Webcam[]> {
     return this
       .http
-      .get(`${this.uri}`);
+      .get<Webcam[]>(`${this.uri}`);
   }
 
-  editWebcam(id) {
+  getWebcam(id): Observable<Webcam> {
     return this
       .http
-      .get(`${this.uri}/edit/${id}`);
+      .get<Webcam>(`${this.uri}/edit/${id}`);
   }
 
   deleteWebcam(id) {
@@ -42,7 +42,6 @@ export class WebcamService {
   }
 
   updateWebcam(webcam_url, webcam_name, webcam_location_tag, id) {
-
     const obj = {
       webcam_url: webcam_url,
       webcam_name: webcam_name,
@@ -50,7 +49,7 @@ export class WebcamService {
     };
     this
       .http
-      .post(`${this.uri}/update/${id}`, obj)
-      .subscribe(res => console.log('Done'));
+      .put(`${this.uri}/update/${id}`, obj)
+      .subscribe(res => console.log('Done', res));
   }
 }

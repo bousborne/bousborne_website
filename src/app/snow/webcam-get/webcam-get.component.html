@@ -2,14 +2,22 @@
     <table class="table table-hover">
         <thead>
             <tr>
-                <td>Webcam Thumbnail</td>
-                <td>Webcam Name</td>
-                <td>Webcam Description</td>
-                <td colspan="2">Actions</td>
+                <td>
+                    <h5>Webcam Thumbnail</h5>
+                </td>
+                <td>
+                    <h5>Webcam Name</h5>
+                </td>
+                <td>
+                    <h5>Webcam Description</h5>
+                </td>
+                <td colspan="2">
+                    <h5>Actions</h5>
+                </td>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let webcam of webcams">
+            <tr *ngFor="let webcam of webcams" [class.selected]="webcam._id == selectedID">
                 <ng-container>
                     <ng-template [ngIf]="(webcam.webcam_location_tag == 'traffic') || (webcam.webcam_location_tag == 'keystone') || (webcam.webcam_location_tag == 'breckenridge')">
                         <td class="table-column">
@@ -24,8 +32,7 @@
                 </ng-container>
                 <td>{{ this.webcam.webcam_name }}</td>
                 <td>{{ this.webcam.webcam_location_tag }}</td>
-                <td><a [routerLink]="
-                                ['/edit', webcam._id]" class="btn btn-primary">Edit</a></td>
+                <td><a routerLink="/snow/webcam/edit/{{webcam._id}}" class="btn btn-primary">Edit</a></td>
                 <td><a (click)="deleteWebcam(webcam._id)" class="btn btn-danger">Delete</a></td>
             </tr>
         </tbody>

@@ -15,19 +15,18 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 
 const appRoutes: Routes = [
   { path: 'snow', component: SnowComponent },
+  { path: 'snow/webcam', component: WebcamGetComponent, data: { animation: 'webcams' } },
   { path: 'snow/webcam/create', component: WebcamAddComponent },
   { path: 'snow/webcam/edit/:id', component: WebcamEditComponent },
-  { path: 'snow/webcam', component: WebcamGetComponent },
+
   { path: 'gallery', component: GalleryComponent },
+  { path: 'gallery/image', component: ImageGetComponent },
   { path: 'gallery/image/create', component: ImageAddComponent },
   { path: 'gallery/image/edit/:id', component: ImageEditComponent },
-  { path: 'gallery/image', component: ImageGetComponent },
-  { path: '**', component: PageNotFoundComponent },
-  {
-    path: '',
-    redirectTo: '/',
-    pathMatch: 'full'
-  }
+
+  { path: '', redirectTo: '/', pathMatch: 'full' },
+  { path: '**', component: PageNotFoundComponent }
+
 ];
 @NgModule({
   imports: [
@@ -36,6 +35,10 @@ const appRoutes: Routes = [
       { enableTracing: true } // <-- debugging purposes only
     ),
   ],
+  // declarations: [
+  //   WebcamGetComponent,
+  //   WebcamEditComponent
+  // ],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

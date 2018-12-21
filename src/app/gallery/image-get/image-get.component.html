@@ -22,8 +22,3 @@
 
     </table>
 </div>
-<p>pic:</p>
-<div *ngFor="let image of images">
-    <img class="card-img-top" (change)="getImageForm($event)" src="{{image.fileBuffer}}" alt="{{image.image_name}}">
-</div>
-<p>endpic</p>
