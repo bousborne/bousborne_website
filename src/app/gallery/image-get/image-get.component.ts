@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import Image from '../../shared/image-service/Image';
 import { ImageService } from '../../shared/image-service/image.service';
 import { HttpClient } from '@angular/common/http';
+import { Buffer } from 'buffer';
 
 @Component({
   selector: 'app-image-get',
