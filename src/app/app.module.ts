@@ -23,6 +23,7 @@ import { far } from '@fortawesome/free-regular-svg-icons';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { fab, faGithub, faInstagram, faGithubAlt, faGithubSquare } from '@fortawesome/free-brands-svg-icons';
 import { FooterComponent } from './footer/footer.component';
+import { HomeComponent } from './home/home.component';
 
 
 
@@ -40,6 +41,7 @@ import { FooterComponent } from './footer/footer.component';
     PageNotFoundComponent,
     GalleryComponent,
     FooterComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,

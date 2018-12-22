@@ -12,8 +12,11 @@ import { ImageEditComponent } from './gallery/image-edit/image-edit.component';
 import { ImageGetComponent } from './gallery/image-get/image-get.component';
 
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { HomeComponent } from './home/home.component';
 
 const appRoutes: Routes = [
+  { path: 'home', component: HomeComponent },
+
   { path: 'snow', component: SnowComponent },
   { path: 'snow/webcam', component: WebcamGetComponent, data: { animation: 'webcams' } },
   { path: 'snow/webcam/create', component: WebcamAddComponent },
@@ -24,7 +27,9 @@ const appRoutes: Routes = [
   { path: 'gallery/image/create', component: ImageAddComponent },
   { path: 'gallery/image/edit/:id', component: ImageEditComponent },
 
-  { path: '', redirectTo: '/', pathMatch: 'full' },
+
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  // { path: '/', component: HomeComponent },
   { path: '**', component: PageNotFoundComponent }
 
 ];
