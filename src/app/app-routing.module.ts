@@ -11,11 +11,21 @@ import { ImageAddComponent } from './gallery/image-add/image-add.component';
 import { ImageEditComponent } from './gallery/image-edit/image-edit.component';
 import { ImageGetComponent } from './gallery/image-get/image-get.component';
 
+import { LoginComponent } from './auth/login/login.component'
+import { RegisterComponent } from './auth/register/register.component';
+
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { HomeComponent } from './home/home.component';
+import { AuthGuard } from './auth/auth.guard';
+
 
 const appRoutes: Routes = [
-  { path: 'home', component: HomeComponent },
+  { path: '', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+
+
+  // { path: 'home', component: HomeComponent },
 
   { path: 'snow', component: SnowComponent },
   { path: 'snow/webcam', component: WebcamGetComponent, data: { animation: 'webcams' } },
@@ -27,8 +37,10 @@ const appRoutes: Routes = [
   { path: 'gallery/image/create', component: ImageAddComponent },
   { path: 'gallery/image/edit/:id', component: ImageEditComponent },
 
+  { path: 'login', component: LoginComponent },
 
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
+
+  { path: '', redirectTo: '/', pathMatch: 'full' },
   // { path: '/', component: HomeComponent },
   { path: '**', component: PageNotFoundComponent }
 

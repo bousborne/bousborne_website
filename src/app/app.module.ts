@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SnowComponent } from './snow/snow.component';
@@ -24,8 +24,20 @@ import { fas } from '@fortawesome/free-solid-svg-icons';
 import { fab, faGithub, faInstagram, faGithubAlt, faGithubSquare } from '@fortawesome/free-brands-svg-icons';
 import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
+import { AdminModule } from './admin/admin.module';
+import { LoginComponent } from './auth/login/login.component';
+import { AuthModule } from './auth/auth.module';
 
+import { AlertComponent } from './auth/alert/alert.component';
+import { JwtInterceptor } from './auth/_helpers/jwt.interceptor';
+import { ErrorInterceptor } from './auth/_helpers/error.interceptor';
 
+import { RegisterComponent } from './auth/register/register.component';
+import { fakeBackendProvider } from './auth/_helpers/fake-backend';
+import { Alert } from 'selenium-webdriver';
+// import { routing } from './app.routing';
+
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -42,19 +54,31 @@ import { HomeComponent } from './home/home.component';
     GalleryComponent,
     FooterComponent,
     HomeComponent,
+    LoginComponent,
+    RegisterComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule,
     AngularFileUploaderModule,
     FontAwesomeModule,
-
+    AdminModule,
+    AuthModule,
     //Always last (I think)
     AppRoutingModule
   ],
   providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+
     ImageService,
-    WebcamService
+    WebcamService,
+
+    // provider used to create fake backend
+    // fakeBackendProvider
   ],
   bootstrap: [
     AppComponent

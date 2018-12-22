@@ -3,6 +3,24 @@
 <!-- <div [@routeAnimation]="getAnimationData(routerOutlet)">
   <router-outlet #routerOutlet="outlet"></router-outlet>
 </div> -->
+<!-- <nav>
+  <a routerLink="/admin" routerLinkActive="active">Admin</a>
+</nav> -->
 <router-outlet></router-outlet>
+
+
+<!-- nav -->
+<nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="currentUser">
+  <div class="navbar-nav">
+    <a class="nav-item nav-link" routerLink="/">Home</a>
+    <a class="nav-item nav-link" (click)="logout()">Logout</a>
+  </div>
+</nav>
+
+<!-- main app container -->
+
+<alert></alert>
+<router-outlet></router-outlet>
+
 
 <app-footer></app-footer>
