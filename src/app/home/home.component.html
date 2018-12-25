@@ -1,9 +1,430 @@
-<h1>Hi {{currentUser.firstName}}!</h1>
-<p>You're logged in with Angular 7!!</p>
-<h3>All registered users:</h3>
-<ul>
-  <li *ngFor="let user of users">
-    {{user.username}} ({{user.firstName}} {{user.lastName}})
-    - <a (click)="deleteUser(user.id)" class="text-danger">Delete</a>
-  </li>
-</ul>
+<!-- Header section start -->
+<!-- <header class="header-section">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="site-logo">
+          <h2><a href="#">Civic</a></h2>
+          <p>Enhance your online presence</p>
+        </div>
+      </div>
+      <div class="col-md-8 text-md-right header-buttons">
+        <a href="#" class="site-btn">Download CV</a>
+        <a href="#" class="site-btn">Discover me</a>
+      </div>
+    </div>
+  </div>
+</header> -->
+<!-- Header section end -->
+
+<!-- bio section start -->
+<section class="bio-section spad">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xl-10 offset-xl-1">
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="bio-text">
+              <h2>Ben Ousborne</h2>
+              <p>I’m a software engineer with passion in embedded software, design, and algorithms. I like to make
+                things do things.</p>
+            </div>
+            <div class="bio-info">
+              <h2>Contact Info</h2>
+              <ul>
+                <li><span>Address</span>9829 Otis Drive, Westminster, CO 80021</li>
+                <li><span>E-mail</span>me@benousborne.com</li>
+                <li><span>Phone </span>443 745 5018</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <figure class="bio-image">
+              <img src="../../assets/gallery/benny_3.png" alt="">
+            </figure>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- bio section end -->
+
+<!-- Social links section start -->
+<div class="social-section">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xl-10 offset-xl-1">
+        <div class="social-link-warp">
+          <div class="social-links">
+            <a href="https://github.com/bousborne">
+              <fa-icon [icon]="['fab', 'github']" class="icons-default"></fa-icon>
+              <!-- <fa-icon [icon]="['fab', 'github-alt']" class="icons-default"></fa-icon> -->
+              <!-- <fa-icon [icon]="['fab', 'github-square']" class="icons-default"></fa-icon> -->
+            </a>
+            <a href="https://linkedin.com/in/bousborne">
+              <fa-icon [icon]="['fab', 'linkedin']" class="icons-default"></fa-icon>
+            </a>
+          </div>
+          <h2 class="hidden-md hidden-sm">My Professional Profiles</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Social links section end -->
+
+<!-- Resume section start -->
+<section class="resume-section spad">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xl-7 offset-xl-2">
+        <div class="section-title">
+          <h2>Work Experience</h2>
+        </div>
+        <ul class="resume-list">
+          <li>
+            <h2>Spectra Logic Corporation</h2>
+            <h3>Embedded Software Engineer</h3>
+            <h4>February 2017 – Present</h4>
+            <p>
+              <span>&#176;</span> Design and develop embedded firmware for a Real Time Operating System on an Arm
+              Cortex M4 STM
+              microprocessor board for a Deep Storage Tape Library Robotics system in C/C++
+            </p>
+            <p>
+              <span>&#176;</span> Design and develop Python scripts to run tests on the Robotics system involving
+              interoperability with
+              embedded C/C++ firmware
+            </p>
+            <p>
+              <span>&#176;</span> Integrate CAN and Serial protocol communications into the firmware systems to
+              interact
+              with the
+              robotics action and response API
+            </p>
+            <p>
+              <span>&#176;</span> Continually add functionality to a robotics system that included EEPROMs, brushless
+              motors, ambient
+              light sensors, cameras, and pulley belts
+            </p>
+            <p>
+              <span>&#176;</span> Work with a team to develop implementation plans, and integrate new software testing
+              suites for
+              automation robotics devices in the tape and disk storage solutions industry
+            </p>
+            <p>
+              <span>&#176;</span> Design and develop top to bottom applications in Java, Python, and Ruby on Rails to
+              test manufacturing
+              builds of the robotics systems and maintain an integrated manufacturing database
+            </p>
+            <p>
+              <span>&#176;</span> Applied unit, subsystem, and system level testing to embedded project and application
+              projects
+            </p>
+          </li>
+          <li>
+            <h2>Cubic Transportation Systems Australia</h2>
+            <h3>Embedded Software Engineer (Contract Position)</h3>
+            <h4>June 2015 – January 2016</h4>
+            <p>
+              <span>&#176;</span> Designed and developed upgrades to real time operating system embedded microchip code
+              in PL/M-80 and
+              C/C++ in order to upgrade from a paper based Magnetic Strip Ticketing system to a Smartcard
+              tap-on/tap-off only system on all Sydney Transportation Train legacy gates
+            </p>
+            <p>
+              <span>&#176;</span> Worked with a team to develop an implementation plan, and integrate software and
+              hardware upgrades to
+              Sydney Transportation Train legacy gates
+            </p>
+            <p>
+              <span>&#176;</span> Deployed into field on time, and now 300,000 to 400,000 people use the code every day
+            </p>
+            <p>
+              <span>&#176;</span> Designed and developed applications in object oriented C++ to analyze train gate
+              information
+            </p>
+            <p>
+              <span>&#176;</span> Wrote scripts in Bash to analyze any critical in field failures and reproduce
+              failures in test lab
+            </p>
+          </li>
+          <li>
+            <h2>Western Services Corporation</h2>
+            <h3>Electrical Engineer</h3>
+            <h4>February 2014 – August 2014</h4>
+            <p>
+              <span>&#176;</span> Developed the electrical component of an Operator Training Simulator of a low-sulfur
+              coal power plant
+              using Western Services Corporation's 3KEYSOFTWARE Technology
+            </p>
+            <p>
+              <span>&#176;</span> Developed electrical system process model simulators of generators, transformers,
+              transmitters,
+              breakers, electrical buses, substations, motor control centers, and emergency systems for Xcel Energy
+              and Alstom North Bangkok GeneratingvStations
+            </p>
+            <p>
+              <span>&#176;</span> Interpreted one line electrical graphs and electrical schematics of a power plant and
+              implement the
+              designs into the simulator software using 3KEYSOFTWARE
+            </p>
+            <p>
+              <span>&#176;</span> Worked closely with my team to implement the electrical component of the simulator
+              with all other
+              components and tools
+            </p>
+            <p>
+              <span>&#176;</span> Edited and maintained electrical systems on simulation projects of combined cycle
+              power plants
+            </p>
+          </li>
+          <li>
+            <h2>Compusearch Software Systems</h2>
+            <h3>Information Technology Consultant</h3>
+            <h4>August 2009 – August 2010</h4>
+            <p>
+              <span>&#176;</span> Maintained an active role in the user support of PRISM Classic Grant Procurement
+              System at the
+              Department of Homeland Security Immigrations and Customs Enforcement
+            </p>
+            <p>
+              <span>&#176;</span> Provided PRISM Classic Grant Procurement System support to Department of Homeland
+              Security clients to
+              increase efficiency, reduce errors, and foster compliance with Department of Homeland Security and
+              federal government procurement policies, procedures, and regulations
+            </p>
+            <p>
+              <span>&#176;</span> Provided and administered multiple training sessions for Department of Homeland
+              Security clients on
+              many aspects of the PRISM Classic Grant Procurement System
+            </p>
+            <p>
+              <span>&#176;</span> Assisted and supported users with creating contracts, awards, modifications, delivery
+              orders to
+              existing contracts, and general issue resolution
+            </p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Resume section end -->
+
+<!-- Resume section start -->
+<section class="resume-section with-bg spad">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xl-7 offset-xl-2">
+        <div class="section-title">
+          <h2>Education</h2>
+        </div>
+        <ul class="resume-list">
+          <li>
+            <h2>B.S. Electrical Engineering, December 2013</h2>
+            <h3>Microelectronics, Development & Programming</h3>
+            <h4>University of Maryland</h4>
+          </li>
+          <li>
+            <h2>B.S. Business Information Technology</h2>
+            <h3>Decision Support Systems</h3>
+            <h4>Virginia Tech</h4>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Resume section end -->
+
+
+<!-- Review section start -->
+<!-- <section class="review-section spad pb-0">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xl-7 offset-xl-2">
+        <div class="section-title">
+          <h2>References</h2>
+        </div>
+        <div class="review-slider owl-carousel">
+          <div class="single-review">
+            <div class="qut">“</div>
+            <p>Sit amet, consectetur adipiscing elit. Sed porttitor orci ut sapien scelerisque viverra. Sed trist
+              ique justo nec mauris efficitur, ut lacinia elit dapibus. In egestas elit in dap ibus laoreet. Duis
+              magna libero, fermentum ut facilisis id, pulvinar eget tortor. Vestibulum pelle ntesque tincidunt
+              lorem, vitae euismod felis porttitor sed. </p>
+            <h3>Robert G. Smith</h3>
+            <h4>Manager, Company</h4>
+          </div>
+          <div class="single-review">
+            <div class="qut">“</div>
+            <p>Sit amet, consectetur adipiscing elit. Sed porttitor orci ut sapien scelerisque viverra. Sed trist
+              ique justo nec mauris efficitur, ut lacinia elit dapibus. In egestas elit in dap ibus laoreet. Duis
+              magna libero, fermentum ut facilisis id, pulvinar eget tortor. Vestibulum pelle ntesque tincidunt
+              lorem, vitae euismod felis porttitor sed. </p>
+            <h3>Robert G. Smith</h3>
+            <h4>Manager, Company</h4>
+          </div>
+          <div class="single-review">
+            <div class="qut">“</div>
+            <p>Sit amet, consectetur adipiscing elit. Sed porttitor orci ut sapien scelerisque viverra. Sed trist
+              ique justo nec mauris efficitur, ut lacinia elit dapibus. In egestas elit in dap ibus laoreet. Duis
+              magna libero, fermentum ut facilisis id, pulvinar eget tortor. Vestibulum pelle ntesque tincidunt
+              lorem, vitae euismod felis porttitor sed. </p>
+            <h3>Robert G. Smith</h3>
+            <h4>Manager, Company</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+<!-- Review section end -->
+
+
+<!-- Portfolio section start -->
+<!-- <section class="portfolio-section spad pb-0">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xl-4 col-md-8 offset-xl-2 ">
+        <div class="section-title">
+          <h2>Portfolio</h2>
+        </div>
+      </div>
+      <div class="col-md-4 text-md-right">
+        <a href="#" class="site-btn mb-5">See All Portfolio</a>
+      </div>
+    </div>
+    <div class="portfolio-warp">
+      <div class="row">
+        <div class="col-xl-3 col-lg-6 col-md-6">
+          <div class="portfolio-item">
+            <a href="img/portfolio/1.jpg" class="set-bg port-pic" data-setbg="img/portfolio/1.jpg"></a>
+            <h2>Brand Campaign</h2>
+            <p>Graphic design</p>
+          </div>
+        </div>
+        <div class="col-xl-3 col-lg-6 col-md-6">
+          <div class="portfolio-item">
+            <a href="img/portfolio/2.jpg" class="set-bg port-pic" data-setbg="img/portfolio/2.jpg"></a>
+            <h2>A Corporate Identity</h2>
+            <p>Graphic design</p>
+          </div>
+        </div>
+        <div class="col-xl-3 col-lg-6 col-md-6">
+          <div class="portfolio-item">
+            <a href="img/portfolio/3.jpg" class="set-bg port-pic" data-setbg="img/portfolio/3.jpg"></a>
+            <h2>Web Design Website</h2>
+            <p>Graphic design</p>
+          </div>
+        </div>
+        <div class="col-xl-3 col-lg-6 col-md-6">
+          <div class="portfolio-item">
+            <a href="img/portfolio/4.jpg" class="set-bg port-pic" data-setbg="img/portfolio/4.jpg"></a>
+            <h2>Logo design</h2>
+            <p>Graphic design</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+<!-- Portfolio section end -->
+
+<!-- Extra section start -->
+<!-- <section class="extra-section spad pb-0">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xl-8 offset-xl-2">
+        <div class="section-title">
+          <h2>Extra Skills</h2>
+        </div>
+        <div class="row">
+          <div class="col-lg-3 col-md-6 pt-5">
+            <div class="fact-box trans">
+              <div class="fact-content">
+                <div class="circle-progress">
+                  <div id="progress1" class="prog-circle"></div>
+                  <div class="progress-info">
+                    <h2>75%</h2>
+                  </div>
+                  <div class="prog-title">
+                    <h3>Inspiration</h3>
+                    <p>Etiam nec odio vestibulum est.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 pt-5">
+            <div class="fact-box trans">
+              <div class="fact-content">
+                <div class="circle-progress">
+                  <div id="progress2" class="prog-circle"></div>
+                  <div class="progress-info">
+                    <h2>83%</h2>
+                  </div>
+                  <div class="prog-title">
+                    <h3>Inspiration</h3>
+                    <p>Etiam nec odio vestibulum est.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div class="fact-box">
+              <div class="fact-content">
+                <img src="img/icon/1-w.png" alt="">
+                <h2>14</h2>
+                <p>Years of Experience</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div class="fact-box">
+              <div class="fact-content">
+                <img src="img/icon/2-w.png" alt="">
+                <h2>9</h2>
+                <p>Awards Won</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+<!-- Extra section end -->
+
+<!-- Contact section start -->
+<section class="contact-section spad">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xl-8 offset-xl-2">
+        <div class="section-title">
+          <h2>Contact Me</h2>
+        </div>
+        <form class="contact-form">
+          <div class="row">
+            <div class="col-md-6">
+              <input type="text" placeholder="Name">
+            </div>
+            <div class="col-md-6">
+              <input type="text" placeholder="E-mail">
+            </div>
+            <div class="col-md-12">
+              <input type="text" placeholder="Subject">
+              <textarea placeholder="Message"></textarea>
+            </div>
+          </div>
+          <div class="text-md-right">
+            <button class="site-btn">Send message</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

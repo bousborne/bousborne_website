@@ -4,14 +4,12 @@
 <div class="row">
 
   <div class="text-center">
-    <button class="btn btn-sm btn-info" [class.active]="filterBy=='all'" (click)="filterBy='all'">All</button>
-    <button class="btn btn-sm btn-info" [class.active]="filterBy=='trees'" (click)="filterBy='trees'">Trees</button>
-    <!-- <div class="text-align-right">
-      <button class="btn btn-sm btn-info col-sm-1">Upload
-        <angular-file-uploader [config]="afuConfig" [resetUpload]=resetVar (ApiResponse)="DocUpload($event)">
-        </angular-file-uploader>
-      </button>
-    </div> -->
+    <div>
+      <button class="btn btn-sm btn-info" [class.active]="filterBy=='all'" (click)="filterBy='all'">All</button>
+      <button class="btn btn-sm btn-info" [class.active]="filterBy=='trees'" (click)="filterBy='trees'">Trees</button>
+      <button class="btn btn-sm btn-info" [class.active]="filterBy=='squirrel'" (click)="filterBy='squirrel'">Trees</button>
+      <button class="btn btn-sm btn-info pull-button-right" routerLink="image/create" routerLinkActive="active" href="#">Upload</button>
+    </div>
     <div class="card-columns deck-gallery zoom-on-hover">
       <div class="card text-center" *ngFor="let image of images">
         <a href="{{this.image.fileBuffer}}" class="img-fluid" data-size="1600x1067" data-toggle="lightbox">
@@ -21,7 +19,7 @@
           <!-- <div class="card-body">
           <h5 class="card-title-center">{{image.caption}}</h5>
         </div>  -->
-      </a>
+        </a>
       </div>
     </div>
   </div>
@@ -37,22 +35,22 @@
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-            <!-- <img class="card-img-top" src="../../assets/gallery/fjords.jpg" alt="{{image.caption}}"> -->
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- <img class="card-img-top" src="../../assets/gallery/fjords.jpg" alt="{{image.caption}}"> -->
 
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
+</div>

@@ -19,6 +19,11 @@ li { display: inline; }
     margin-bottom: 10px;
 }
 
+.pull-button-right {
+    float: right;
+    margin-right: 30px;
+}
+
 .card-columns {
     @include media-breakpoint-only(lg) {
       column-count: 4;
