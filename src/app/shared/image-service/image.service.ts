@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import Image from '../../shared/image-service/Image';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,7 @@ import Image from '../../shared/image-service/Image';
 export class ImageService {
   images: Image[];
 
-  uri = 'http://localhost:4000/gallery/image';
+  uri = environment.apiUrlRoot + '/gallery/image';
 
   constructor(private http: HttpClient) { }
 

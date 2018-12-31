@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import Webcam from './Webcam';
 import { Observable, of } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WebcamService {
   webcam: Webcam;
-  uri = 'http://localhost:4000/snow/webcam';
-
+  uri = environment.apiUrlRoot + '/snow/webcam'
   constructor(private http: HttpClient) { }
 
   addWebcam(webcam_url, webcam_name, webcam_location_tag) {

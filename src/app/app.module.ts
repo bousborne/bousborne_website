@@ -27,7 +27,7 @@ import { HomeComponent } from './home/home.component';
 import { AdminModule } from './admin/admin.module';
 import { LoginComponent } from './auth/login/login.component';
 import { AuthModule } from './auth/auth.module';
-
+import { ImagesFilterPipe } from './shared/filter/filter.pipe'
 import { AlertComponent } from './auth/alert/alert.component';
 import { JwtInterceptor } from './auth/_helpers/jwt.interceptor';
 import { ErrorInterceptor } from './auth/_helpers/error.interceptor';
@@ -38,6 +38,9 @@ import { Alert } from 'selenium-webdriver';
 // import { routing } from './app.routing';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NhlComponent } from './nhl/nhl.component';
+
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -56,7 +59,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HomeComponent,
     LoginComponent,
     RegisterComponent,
-    AlertComponent
+    AlertComponent,
+    NhlComponent,
+    ImagesFilterPipe
   ],
   imports: [
     BrowserModule,

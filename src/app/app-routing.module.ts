@@ -15,6 +15,8 @@ import { LoginComponent } from './auth/login/login.component'
 import { RegisterComponent } from './auth/register/register.component';
 import { AdminComponent } from '../app/admin/admin/admin.component'
 
+import { NhlComponent } from './nhl/nhl.component';
+
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { HomeComponent } from './home/home.component';
 import { AuthGuard } from './auth/auth.guard';
@@ -41,6 +43,7 @@ const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'admin', component: AdminComponent, canActivate: [AuthGuard] },
 
+  { path: 'nhl', component: NhlComponent },
 
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   // { path: '/', component: HomeComponent },

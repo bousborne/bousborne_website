@@ -3,6 +3,7 @@ import Image from '../../shared/image-service/Image';
 import { ImageService } from '../../shared/image-service/image.service';
 import { HttpClient } from '@angular/common/http';
 import { Buffer } from 'buffer';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-image-get',
@@ -11,7 +12,7 @@ import { Buffer } from 'buffer';
 })
 export class ImageGetComponent implements OnInit {
 
-  uri = 'http://localhost:4000/gallery/image';
+  uri = environment.apiUrlRoot + '/gallery/image';
 
   images: Image[];
   image;

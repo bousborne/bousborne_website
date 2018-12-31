@@ -1,0 +1,163 @@
+Install MongoDB and Node.js on a Raspberry Pi
+
+April 24, 2016 by Yannick Loriot
+
+This tutorial is the second part of the series on raspberry pi. In this part we will focus on the installation of MongoDB and Node.js that will run at startup. MongoDB is a popular NOSQL database that is often used with Node.js which is a JavaScript runtime mainly used to build server-side applications.
+
+MongoDB
+
+Let’s get started with the MongoDB installation which is pretty simple:
+
+$ sudo apt-get update
+$ sudo apt-get upgrade
+$ sudo apt-get install mongodb-server
+
+And to start it as a service when the raspberry pi starts just have to enter this command:
+
+$ sudo service mongodb start
+
+The binaries are stored in the /usr/bin/ folder while the datas are in the /var/lib/mongodb/ folder. You can check everything is ok by using the mongo shell:
+
+$ mongo
+
+Node.js
+
+Now we are going to install the Node.js server on our raspberry pi and put it as a service. Firstly download the latest version:
+
+$ wget https://nodejs.org/dist/latest-v5.x/node-v5.11.0-linux-armv7l.tar.gz
+
+You can download another version here but be careful to take the linux-armv7l distribution.
+
+Once the archive downloaded, extract the package, move it in the /opt/node folder and create the symbolic links:
+
+$ tar -xvzf node-v5.11.0-linux-armv7l.tar.gz
+$ sudo mv node-v5.11.0-linux-armv7l /opt/node
+ $ sudo mkdir /opt/bin 
+$ sudo ln -s /opt/node/bin/* /opt/bin/
+
+To finish the installation, let’s add the binaries in the PATH:
+
+$ sudo nano /etc/profile
+
+PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/bin"
+
+Press CTRL+O then CTRL+X to save the file. Voilà! The installation is done, check that everything is ok by taping these commands:
+
+$ npm --version
+3.7.3
+$ node -v
+v5.9.1
+
+Run your web server as a service
+
+Now that you have node and npm installed on your raspberry pi 2 you can work with your web server. Imagine you have a really simple on the /home/pi/dev/node folder named app.js with this code:
+
+const http = require('http');
+
+const hostname = '0.0.0.0';
+const port = 3000;
+
+const server = http.createServer((req, res) => {
+  res.statusCode = 200;
+  res.setHeader('Content-Type', 'text/plain');
+  res.end('Hello World\n');
+});
+
+server.listen(port, hostname, () => {
+  console.log(`Server running at http://${hostname}:${port}/`);
+});
+
+Here is just a hello world to illustrate the tutorial that you can run using this command node /home/pi/dev/node/app.js
+
+To run it as a service, we are firstly going to create a file in the /etc/init.d/ folder to have our own service. Let’s create a node file:
+
+$ sudo nano /etc/init.d/node
+
+And put the following content:
+
+#!/bin/sh
+# /etc/init.d/node
+
+if [ true != "$INIT_D_SCRIPT_SOURCED" ] ; then
+    set "$0" "$@"; INIT_D_SCRIPT_SOURCED=true . /lib/init/init-d-script
+fi
+
+### BEGIN INIT INFO
+# Provides:          node
+# Required-Start:    $all
+# Required-Stop:     $all
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Starts the DAEMON_PATH/DAEMONOPTS server
+# Description:       Starts the DAEMON_PATH/DAEMONOPTS server
+### END INIT INFO
+
+export PATH=$PATH:/opt/node/bin
+
+DAEMON_PATH="/home/pi/dev/node"
+
+DAEMON=node
+DAEMONOPTS="app.js"
+NAME=node
+DESC="myprogram"
+PIDFILE=/var/run/$NAME.pid
+SCRIPTNAME=/etc/init.d/$NAME
+
+case "$1" in
+start)
+    printf "%-50s" "Starting $NAME..."
+    cd $DAEMON_PATH
+    PID=`$DAEMON $DAEMONOPTS > /dev/null 2>&1 & echo $!`
+    #echo "Saving PID" $PID " to " $PIDFILE
+    if [ -z $PID ]; then
+        printf "%s\n" "Fail"
+    else
+        echo $PID > $PIDFILE
+        printf "%s\n" "Ok"
+    fi
+;;
+status)
+    printf "%-50s" "Checking $NAME..."
+    if [ -f $PIDFILE ]; then
+        PID=`cat $PIDFILE`
+        if [ -z "`ps axf | grep ${PID} | grep -v grep`" ]; then
+            printf "%s\n" "Process dead but pidfile exists"
+        else
+            echo "Running"
+        fi
+    else
+        printf "%s\n" "Service not running"
+    fi
+;;
+stop)
+    printf "%-50s" "Stopping $NAME"
+    PID=`cat $PIDFILE`
+    cd $DAEMON_PATH
+    if [ -f $PIDFILE ]; then
+        kill -HUP $PID
+        printf "%s\n" "Ok"
+        rm -f $PIDFILE
+    else
+        printf "%s\n" "pidfile not found"
+    fi
+;;
+restart)
+    $0 stop
+    $0 start
+;;
+
+*)
+    echo "Usage: $0 {status|start|stop|restart}"
+    exit 1
+esac
+
+exit 0                                
+
+This file simply describes how to service should start or stop. Then you can start your custom service using this command:
+
+$ sudo service node start
+
+You just have to restart your raspberry pi 2 and everything should be ok. If not try this command line sudo update-rc.d node defaults
+Conclusion
+
+The installation of MongoDB and Node.js is pretty simple. If you have some troubles or questions don’t hesitate to leave a comment.

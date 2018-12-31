@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-webcam-get',
@@ -13,7 +14,8 @@ import { switchMap } from 'rxjs/operators';
 })
 export class WebcamGetComponent implements OnInit {
 
-  uri = 'http://localhost:4000/snow/webcam';
+  uri = environment.apiUrlRoot + '/snow/webcam';
+  // uri = 'http://localhost:4000/snow/webcam';
 
   webcams: Webcam[];
   selectedID: number;

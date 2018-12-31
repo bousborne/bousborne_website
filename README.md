@@ -60,3 +60,7 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+## Notes to self
+
+This is run alongside mongoDB and nodejs. This is hosted on my pi. Deploy to /var/www/benousborne.com/html
