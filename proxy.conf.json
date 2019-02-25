@@ -1,0 +1,8 @@
+{
+  "/nhlapi/*": {
+    "target": "https://statsapi.web.nhl.com/api/v1/people/8471214",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  }
+}

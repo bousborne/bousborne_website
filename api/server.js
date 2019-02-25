@@ -25,7 +25,9 @@ const app = express();
 // Tell the bodyparser middleware to accept more data
 app.use(bodyParser.json({ limit: '50mb' }));
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
-app.use(cors());
+// cors({ credentials: true, origin: true })
+
+app.use(cors({ credentials: true, origin: true }));
 app.use('/gallery/image', imageRoute);
 app.use('/snow/webcam', webcamRoute);
 app.use('/snow/webcam', nhlRoute);

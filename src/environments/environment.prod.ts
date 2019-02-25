@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrlRoot: 'http://www.benousborne.com:4000',
+  apiUrlRoot: 'http://benousborne:4000',
 };

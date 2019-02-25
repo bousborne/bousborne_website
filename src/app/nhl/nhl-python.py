@@ -6,6 +6,7 @@ NHL_API_URL = "http://statsapi.web.nhl.com/api/v1/"
 NHL_URL = "http://statsapi.web.nhl.com"
 OVECHKIN = "https://statsapi.web.nhl.com/api/v1/people/8471214"
 
+
 def get_teams():
     """ Function to get a list of all the teams name"""
 
@@ -26,7 +27,7 @@ def get_team_id(team_name):
     url = '{0}/teams'.format(NHL_API_URL)
     response = requests.get(url)
     results = response.json()
-    teams = []
+    # teams = []
 
     for team in results['teams']:
         if team['franchise']['teamName'] == team_name:
@@ -51,16 +52,20 @@ def fetch_score(team_id):
         score = score.json()
         #import pdb; pdb.set_trace();
         if int(team_id) == int(score['dates'][0]['games'][0]['teams']['home']['team']['id']):
-            score = int(score['dates'][0]['games'][0]['teams']['home']['score'])
+            score = int(score['dates'][0]['games'][0]
+                        ['teams']['home']['score'])
         else:
-            score = int(score['dates'][0]['games'][0]['teams']['away']['score'])
+            score = int(score['dates'][0]['games'][0]
+                        ['teams']['away']['score'])
         fetch_goal_scorer(url, score)
         # Print score for test
-        print("Score: {0} Time: {1}:{2}:{3}".format(score, now.hour, now.minute, now.second))
+        print("Score: {0} Time: {1}:{2}:{3}".format(
+            score, now.hour, now.minute, now.second))
         return score
     except requests.exceptions.RequestException:
         print("Error encountered, returning 0 for score")
         return 0
+
 
 def fetch_goal_scorer(game_url, score):
     """ Function to determine who scored last goal. """
@@ -71,10 +76,12 @@ def fetch_goal_scorer(game_url, score):
     liveFeed = requests.get(live_url).json()
     #import pdb; pdb.set_trace();
     if score > 0:
-        playNumber = int(liveFeed['liveData']['plays']['scoringPlays'][score-1])
+        playNumber = int(liveFeed['liveData']['plays']
+                         ['scoringPlays'][score-1])
         scorer = liveFeed['liveData']['plays']['allPlays'][playNumber]['players'][0]['player']['fullName']
 
     return scorer
+
 
 def check_season():
     """ Function to check if in season. Returns True if in season, False in off season. """
@@ -89,9 +96,9 @@ def check_season():
 def check_if_game(team_id):
     """ Function to check if there is a game now with chosen team. Returns True if game, False if NO game. """
 
-    
     # Set URL depending on team selected
-    url = '{0}schedule?teamId={1}'.format(NHL_API_URL, team_id) #Only shows games after noon, so will sleep till 12:10 pm
+    # Only shows games after noon, so will sleep till 12:10 pm
+    url = '{0}schedule?teamId={1}'.format(NHL_API_URL, team_id)
     try:
         gameday_url = requests.get(url)
         if "gamePk" in gameday_url.text:
@@ -103,7 +110,7 @@ def check_if_game(team_id):
         print("Error encountered, returning True for check_game")
         return True
 
-      
+
 def check_game_end(team_id):
     """ Function to check if the game ofchosen team is over. Returns True if game, False if NO game. """
 
@@ -113,7 +120,8 @@ def check_game_end(team_id):
     try:
         game_status = requests.get(url)
         game_status = game_status.json()
-        game_status = int(game_status['dates'][0]['games'][0]['status']['statusCode'])
+        game_status = int(game_status['dates'][0]
+                          ['games'][0]['status']['statusCode'])
         if game_status == 7:
             return True
         else:
@@ -139,9 +147,12 @@ def check_ovechkin_season_goals():
         return False
 
 # Returns number of goals ovechkin is on pace for in 2017-2018 season. Must be in season to work.
+
+
 def check_ovechkin_on_pace_regular_season_goals():
-    url = '{0}/stats?stats=onPaceRegularSeason&season=20172018'.format(OVECHKIN)
-        #import pdb; pdb.set_trace();
+    url = '{0}/stats?stats=onPaceRegularSeason&season=20172018'.format(
+        OVECHKIN)
+    #import pdb; pdb.set_trace();
     try:
         goals = requests.get(url)
         goals = goals.json()
@@ -151,6 +162,7 @@ def check_ovechkin_on_pace_regular_season_goals():
         # Return False to allow for another pass for test
         print("Error encountered, returning False")
         return False
+
 
 def check_ovechkin_career_goals():
     import datetime
@@ -162,13 +174,15 @@ def check_ovechkin_career_goals():
         season_year_end = datetime.datetime.today().year
         season_year_begin = datetime.datetime.today().year - 1
 
-    print(season_year_end);
-    print(season_year_begin);
-    import pdb; pdb.set_trace();
+    print(season_year_end)
+    print(season_year_begin)
+    import pdb
+    pdb.set_trace()
     while season_year_begin >= 2004:
         curr_season_modifier = str(season_year_begin) + (str(season_year_end))
         print(curr_season_modifier)
-        url = '{0}/stats?stats=onPaceRegularSeason&season={1}'.format(OVECHKIN, curr_season_modifier)
+        url = '{0}/stats?stats=onPaceRegularSeason&season={1}'.format(
+            OVECHKIN, curr_season_modifier)
 
         try:
             goals = requests.get(url)
@@ -180,7 +194,7 @@ def check_ovechkin_career_goals():
             # Return False to allow for another pass for test
             print("Error encountered, returning False")
             return False
-        --season_year_begin
+        season_year_begin = season_year_begin - 1
         # career_goals = career_goals + goals
 
 # return goals

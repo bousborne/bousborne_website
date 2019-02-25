@@ -36,6 +36,19 @@ export class NhlComponent implements OnInit {
     //   console.log('finished');
     // });
     //your code
+
+    // fetch('https://statsapi.web.nhl.com/api/v1/people/8471214', { mode: 'no-cors' }
+    // ).then((resp) => console.log("resp= ", resp))
+    //   .then(function (data) {
+    //     console.log("data retrieved");
+    //   }).catch(function (error) {
+    //     console.log(error);
+    //   });
+
+
+    // var test1 = this.http.get<Object>('https://statsapi.web.nhl.com/api/v1/people/8471214').subscribe(res => console.log("test1 = ", res))
+    // console.log("nhl teams1= ", test1)
+
     var test = this.nhlService.getOvechkin()
     // .subscribe((data: Post) => this.teams = { ...data });
     console.log("nhl teams= ", test)

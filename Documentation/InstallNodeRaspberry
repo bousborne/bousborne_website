@@ -1,24 +1,5 @@
 Install MongoDB and Node.js on a Raspberry Pi
 
-April 24, 2016 by Yannick Loriot
-
-This tutorial is the second part of the series on raspberry pi. In this part we will focus on the installation of MongoDB and Node.js that will run at startup. MongoDB is a popular NOSQL database that is often used with Node.js which is a JavaScript runtime mainly used to build server-side applications.
-
-MongoDB
-
-Let’s get started with the MongoDB installation which is pretty simple:
-
-$ sudo apt-get update
-$ sudo apt-get upgrade
-$ sudo apt-get install mongodb-server
-
-And to start it as a service when the raspberry pi starts just have to enter this command:
-
-$ sudo service mongodb start
-
-The binaries are stored in the /usr/bin/ folder while the datas are in the /var/lib/mongodb/ folder. You can check everything is ok by using the mongo shell:
-
-$ mongo
 
 Node.js
 

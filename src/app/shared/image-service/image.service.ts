@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import Image from '../../shared/image-service/Image';
 import { environment } from '../../../environments/environment';
 
@@ -27,9 +27,19 @@ export class ImageService {
   }
 
   getImages() {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Access-Control-Allow-Origin': '*',
+        // 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+        // 'Accept-Language': 'en-US,en;q=0.5',
+        // 'Upgrade-Insecure-Requests': '1',
+        // 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:64.0) Gecko/20100101 Firefox/64.0'
+      })
+    };
+    console.log("getImages url: ", this.uri)
     return this
       .http
-      .get(`${this.uri}`);
+      .get(`${this.uri}`, httpOptions);
   }
 
   // getImages(images, imagesOutput) {

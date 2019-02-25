@@ -16,9 +16,10 @@ interface Post {
 export class NhlService {
   // uri = "https://statsapi.web.nhl.com/api/v1";
 
-  NHL_API_URL = "https://statsapi.web.nhl.com/api/v1/"
+  // NHL_API_URL = "https://statsapi.web.nhl.com/api/v1/"
+  NHL_API_URL = "/nhlapi/api/v1/"
   NHL_URL = "https://statsapi.web.nhl.com"
-  OVECHKIN = "https://statsapi.web.nhl.com/api/v1/people/8471214"
+  OVECHKIN = "/nhlapi/api/v1/people/8471214"
 
   currUrl;
 
@@ -55,14 +56,10 @@ export class NhlService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Access-Control-Allow-Origin': '*',
-        'Access-Control-Request-Method': 'GET',
-        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-        'Accept-Encoding': 'gzip, deflate, br',
-        'Accept-Language': 'en-US,en;q=0.5',
-        'Connection': 'keep-alive',
-        'Host': 'statsapi.web.nhl.com',
-        'Upgrade-Insecure-Requests': '1',
-        'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:64.0) Gecko/20100101 Firefox/64.0'
+        // 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+        // 'Accept-Language': 'en-US,en;q=0.5',
+        // 'Upgrade-Insecure-Requests': '1',
+        // 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:64.0) Gecko/20100101 Firefox/64.0'
       })
     };
 
@@ -79,15 +76,16 @@ export class NhlService {
     });
 
     var url = this.OVECHKIN;
-    console.log("url: ", httpOptions)
+    console.log("url: ", url)
 
     // return this.http.get(url, {
     //   headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*' })
     // });
 
+    console.log("about to get")
     return this
       .http
-      .get(`${url}`, httpOptions);
+      .get('https://statsapi.web.nhl.com/api/v1/people/8471214.text', { responseType: 'text' }).subscribe(res => { console.log("got it: ", res); });
   }
 
 }
