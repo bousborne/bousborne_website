@@ -6,8 +6,7 @@ mongoose.Promise = global.Promise;
 // import { environment } from '../../environments/environment';
 
 module.exports = {
-    // uri = 'mongodb://' + environment.apiUrlRoot + '/benousbornecom';
-
-    DB: 'mongodb://localhost:27017/benousbornecom',
+    // DB: 'mongodb://localhost:27017/benousbornecom',
+    DB: config.connectionString,
     User: require('./models/User')
 };

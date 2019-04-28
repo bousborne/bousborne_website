@@ -14,15 +14,20 @@ export class AuthenticationService {
   public currentUser: Observable<User>;
 
   constructor(private http: HttpClient) {
+    console.log("Authenticating on this uri: ", this.uri, "\n Authenticating with this http request: ", this.http)
+
     this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
     this.currentUser = this.currentUserSubject.asObservable();
   }
 
   public get currentUserValue(): User {
+    console.log("Authenticating on this uri: ", this.uri)
     return this.currentUserSubject.value;
   }
 
   login(username: string, password: string) {
+    console.log("Authenticating login on this uri: ", this.uri)
+
     return this.http.post<any>(`${this.uri}/users/authenticate`, { username, password })
       .pipe(map(user => {
         // login successful if there's a jwt token in the response

@@ -16,6 +16,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
     return of(null).pipe(mergeMap(() => {
 
       // authenticate
+      console.log("Authenticate with this request.url: ", request.url)
+
       if (request.url.endsWith('/users/authenticate') && request.method === 'POST') {
         // find if any user matches login credentials
         let filteredUsers = users.filter(user => {
