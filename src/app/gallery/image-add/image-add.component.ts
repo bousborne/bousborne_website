@@ -19,10 +19,12 @@ export class ImageAddComponent implements OnInit {
   }
 
   addImage(file, image_url, image_name, image_description, fileBuffer) {
+    console.log("addImage")
     this.is.addImage(file, image_url, image_name, image_description, fileBuffer);
   }
 
   onUpload(event, image_url, image_name: 'n/a', image_description: 'n/a') {
+    console.log("onUpload")
     this.addImage(this.file, image_url, image_name, image_description, this.fileBuffer);
   }
 

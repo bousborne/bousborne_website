@@ -22,10 +22,21 @@ mongoose.connect(config.DB, { useNewUrlParser: true }).then(
 
 const app = express();
 
+
+
 // Tell the bodyparser middleware to accept more data
-app.use(bodyParser.json({ limit: '50mb' }));
-app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
+app.use(bodyParser.json({ limit: '100MB' }));
+app.use(bodyParser.urlencoded({ limit: '100MB', extended: true }));
 // cors({ credentials: true, origin: true })
+
+//CORS Middleware
+app.use(function (req, res, next) {
+  //Enabling CORS
+  res.header('Access-Control-Allow-Origin', '*');
+  // res.header('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT');
+  // res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, x-client-key, x-client-token, x-client-secret, Authorization');
+  next();
+ });
 
 app.use(cors({ credentials: true, origin: true }));
 app.use('/gallery/image', imageRoute);

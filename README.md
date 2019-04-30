@@ -64,3 +64,6 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ## Notes to self
 
 This is run alongside mongoDB and nodejs. This is hosted on my pi. Deploy to /var/www/benousborne.com/html
+
+Run node server with:
+node --max_old_space_size=2000  server.js
