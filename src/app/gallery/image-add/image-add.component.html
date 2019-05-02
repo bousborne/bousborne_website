@@ -17,10 +17,12 @@
         <input type="file" (change)="onFileSelected($event)" class="btn btn-primary" text="Select Image">
       </div>
     </form>
+    <button type="submit" (click)="onUpload($event, image_url.value, image_name.value, image_description.value)"
+    class="btn btn-primary">Add
+    Image</button>
   </div>
 </div>
-<button type="submit" (click)="onUpload($event, image_url.value, image_name.value, image_description.value)" class="btn btn-primary">Add
-  Image</button>
+
   
 <!-- <div class="card">
   <div class="card-body">

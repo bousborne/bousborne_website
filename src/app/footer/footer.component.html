@@ -1,14 +1,11 @@
-<div style="align-self:center">
-  <button type="button" class="btn navbar-default" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Open
-    modal for @mdo</button>
-  <button type="button" class="btn navbar-default btn-primary" data-toggle="modal" data-target="#exampleModal"
-    data-whatever="@fat">Open modal for @fat</button>
-  <button type="button" class="btn navbar-default btn-primary" data-toggle="modal" data-target="#exampleModal"
-    data-whatever="@getbootstrap">Open
-    modal for @getbootstrap</button>
+<div></div>
+<div class="container-fluid">
+  <button type="button" class="btn container-fluid navbar-default btn-primary" data-toggle="modal"
+    data-target="#exampleModal" data-whatever="@getbootstrap">Contact Us!</button>
 </div>
 <div class="row col-sm-12">
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -20,60 +17,45 @@
         <div class="modal-body">
           <form>
             <div class="form-group">
-              <label for="recipient-name" class="form-control-label">Recipient:</label>
-              <input type="text" class="form-control" id="recipient-name">
+              <label for="first_name" class="form-control-label">First Name</label>
+              <input type="text" class="form-control" formControlName="first_name" #first_name />
             </div>
             <div class="form-group">
-              <label for="message-text" class="form-control-label">Message:</label>
-              <textarea class="form-control" id="message-text"></textarea>
+              <label for="last_name" class="form-control-label">Last Name</label>
+              <input type="text" class="form-control" id="last_name" #last_name />
+            </div>
+            <div class="form-group">
+              <label for="email_address" class="form-control-label">Email</label>
+              <input type="text" class="form-control" id="email_address" #email_address />
+            </div>
+            <div class="form-group">
+              <label for="message_text" class="form-control-label">Message:</label>
+              <textarea class="form-control" id="message_text" #message_text></textarea>
             </div>
           </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn navbar-default btn-primary">Send message</button>
+          <button type="submit"
+            (click)="onSendContactMessage($event, first_name.value, last_name.value, email_address.value, message_text.value)"
+            class="btn navbar-default btn-primary">Send message</button>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<div class="row">
-  <div class="col-sm-8">
-    <div class="card">
-      <div class="card-body">
-        <div class="paddRow contactRow">
-          <div class="wrap">
-            <div class="head">Contact Us</div>
-            <fa-icon icon="window-close" class="icons-default"></fa-icon>
-            <form ng-submit="save()" class="contactForm" name="form" ng-hide="loaded">
-              <input class="input" required="required" type="text" name="name" placeholder="your name" ng-model="message.name" />
-              <input class="input email" required="required" type="email" name="email" value="" placeholder="your email"
-                ng-model="message.email" />
-              <br />
-              <textarea class="textarea" rows="5" required="required" placeholder="your message" ng-model="message.text"></textarea>
-              <button class="btn green">send message</button>
-            </form>
-            <!-- contact us form response messages -->
-            <div ng-show="process" style="text-align:center">
-              <fa-icon icon="clock" class="icons-default"></fa-icon>
-            </div>
-            <div ng-show="success">
-              <p>Your message has been sent, thank you.</p>
-            </div>
-          </div>
+<div class="container-fluid">
+  <!-- <div class="row justify-content-md-center"> -->
+    <div class="col-4">
+      <div class="card">
+        <img class="card-img-top" src="../../assets/SmoothSak.png" alt="SmoothSak.com Logo">
+        <div class="card-body">
+          <nav class="nav">
+            <a class="nav-link active" href="http://www.smoothsak.com">Sponsored by SmoothSak.</a>
+          </nav>
         </div>
       </div>
-    </div>
-  </div>
-  <div class="col-sm-2 pull-card-right">
-    <div class="card">
-      <img class="card-img-top" src="../../assets/SmoothSak.png" alt="SmoothSak.com Logo">
-      <div class="card-body">
-        <nav class="nav">
-          <a class="nav-link active" href="http://www.smoothsak.com">Sponsored by SmoothSak.</a>
-        </nav>
-      </div>
-    </div>
+    <!-- </div> -->
   </div>
 </div>

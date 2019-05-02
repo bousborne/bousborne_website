@@ -21,6 +21,7 @@ export class ImageService {
       image_description: image_description,
       fileBuffer: fileBuffer
     };
+    console.log("uri = ", this.uri);
     console.log("image service upload", obj);
     this.http.post(`${this.uri}/add`, obj)
       .subscribe(res => console.log('Done', res));

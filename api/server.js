@@ -13,6 +13,7 @@ const errorHandler = require('./_helpers/error-handler');
 const imageRoute = require('./routes/image.route');
 const webcamRoute = require('./routes/webcam.route');
 const nhlRoute = require('./routes/nhl.route');
+const emailRoute = require('./routes/email.route');
 
 mongoose.Promise = global.Promise;
 mongoose.connect(config.DB, { useNewUrlParser: true }).then(
@@ -42,6 +43,7 @@ app.use(cors({ credentials: true, origin: true }));
 app.use('/gallery/image', imageRoute);
 app.use('/snow/webcam', webcamRoute);
 app.use('/snow/webcam', nhlRoute);
+app.use('/gallery/image', emailRoute);
 
 
 // use JWT auth to secure the api
