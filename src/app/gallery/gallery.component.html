@@ -1,14 +1,19 @@
-<div class="row">
+<!-- <div class="row">
 
-</div>
+</div> -->
 <div class="row">
 
   <div class="text-center">
-    <div>
+    <div class="row">
+      <div class="col-2"></div>
+      <div class="col-8">
       <button class="btn btn-sm btn-info" [class.active]="filterBy=='all'" (click)="filterBy='all'">All</button>
       <button class="btn btn-sm btn-info" [class.active]="filterBy=='trees'" (click)="filterBy='trees'">Trees</button>
       <button class="btn btn-sm btn-info" [class.active]="filterBy=='squirrel'" (click)="filterBy='squirrel'">Trees</button>
+      </div>
+      <div class="col-2">
       <button class="btn btn-sm btn-info pull-button-right" routerLink="image/create" routerLinkActive="active" href="#">Upload</button>
+    </div>
     </div>
     <div class="card-columns deck-gallery zoom-on-hover">
       <div class="card text-center" *ngFor="let image of images">

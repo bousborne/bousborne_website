@@ -1,99 +1,105 @@
 <nav class="navbar sticky-top navbar-expand-sm navbar-default">
-  <a class="navbar-brand" href="#" *ngIf="currentUser">{{currentUser.username}}
-    <svg height="30" width="45">
-      <text x="0" y="15" fill="white" class="icons-default" font-size="20px" font-weight="bold">BJO</text>
-
-    </svg>
-  </a>
-  <a class="navbar-brand" href="#" *ngIf="!currentUser">Guest
-    <svg height="30" width="45">
-      <text x="0" y="15" fill="white" class="icons-default" font-size="20px" font-weight="bold">BJO</text>
-
-    </svg>
-  </a>
-  <button class="navbar-toggler sl-auto custom-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" routerLink="/home" routerLinkActive="active" href="#">Home
-          <fa-icon icon="home" class="icons-default"></fa-icon>
-          <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" routerLink="/snow" routerLinkActive="active" href="#">Snow
-          <!-- <fa-icon icon="skiing" class="icons-default"></fa-icon> -->
-          <fa-icon icon="snowflake" class="icons-default"></fa-icon>
-          <!-- <fa-icon icon="snowman" class="icons-default"></fa-icon> -->
-        </a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" routerLink="/gallery" routerLinkActive="active" href="#">Gallery
-          <!-- <fa-icon icon="image" class="icons-default"></fa-icon> -->
-          <fa-icon icon="images" class="icons-default"></fa-icon>
-        </a>
-      </li>
-      <li class="nav-item dropdown" *ngIf="currentUser">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-          aria-haspopup="true" aria-expanded="false">
-          Webcam Options
-          <fa-icon icon="camera" class="icons-default"></fa-icon>
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" routerLink="snow/webcam" routerLinkActive="active" href="#">View Webcam List</a>
-          <a class="dropdown-item" routerLink="snow/webcam/create" routerLinkActive="active" href="#">Add Webcam</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-      <li class="nav-item dropdown" *ngIf="currentUser">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-          aria-haspopup="true" aria-expanded="false">
-          Image Options
-          <fa-icon icon="file-image" class="icons-default"></fa-icon>
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" routerLink="gallery/image" routerLinkActive="active" href="#">View Image List</a>
-          <a class="dropdown-item" routerLink="gallery/image/create" routerLinkActive="active" href="#">Add
-            Image</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" routerLink="admin" routerLinkActive="active" href="#">Admin Dash</a>
-        </div>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" routerLink="/nhl" routerLinkActive="active" href="#">NHL
-          <!-- <fa-icon icon="image" class="icons-default"></fa-icon> -->
-          <fa-icon icon="hockey-puck" class="icons-default"></fa-icon>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="https://github.com/bousborne">
-          <fa-icon [icon]="['fab', 'github']" class="icons-default"></fa-icon>
-          <!-- <fa-icon [icon]="['fab', 'github-alt']" class="icons-default"></fa-icon> -->
-          <!-- <fa-icon [icon]="['fab', 'github-square']" class="icons-default"></fa-icon> -->
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="https://linkedin.com/in/bousborne">
-          <fa-icon [icon]="['fab', 'linkedin']" class="icons-default"></fa-icon>
-        </a>
-      </li>
-
-    </ul>
-    <ul class="navbar-nav mr-sm-2">
-      <li class="nav-item active mr-auto">
-        <a *ngIf="currentUser; Else logout_content" class="nav-link" (click)="logout()" href="#">Logout</a>
-        <ng-template #logout_content>
-          <a class="nav-link" routerLink="/login" routerLinkActive="active" href="#">Login</a>
-          <!-- <a class="nav-link" ng-click="logout()">Logout</a> -->
-        </ng-template>
-      </li>
-    </ul>
-    <!-- <form class="form-inline my-2 my-lg-0">
+  <div class="row justify-content-between">
+    <div class="col-xs-2 mr-auto">
+      <a class="navbar-brand" href="#" *ngIf="currentUser">{{currentUser.username}}
+        <svg height="30" width="45">
+          <text x="0" y="15" fill="white" class="icons-default" font-size="20px" font-weight="bold">BJO</text>
+        </svg>
+      </a>
+    </div>
+    <div class="col-xs-2 mr-auto">
+      <a class="navbar-brand" href="#" *ngIf="!currentUser">Guest
+        <svg height="30" width="45">
+          <text x="0" y="15" fill="white" class="icons-default" font-size="20px" font-weight="bold">BJO</text>
+        </svg>
+      </a>
+    </div>
+    <div class="justify-content-end col-xs-8 mr-auto">
+      <button class="navbar-toggler sl-auto custom-toggler" type="button" data-toggle="collapse"
+        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+        aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto col-xs-4">
+          <li class="nav-item active">
+            <a class="nav-link" routerLink="/home" routerLinkActive="active" href="#">Home
+              <fa-icon icon="home" class="icons-default"></fa-icon>
+              <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" routerLink="/snow" routerLinkActive="active" href="#">Snow
+              <!-- <fa-icon icon="skiing" class="icons-default"></fa-icon> -->
+              <fa-icon icon="snowflake" class="icons-default"></fa-icon>
+              <!-- <fa-icon icon="snowman" class="icons-default"></fa-icon> -->
+            </a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" routerLink="/gallery" routerLinkActive="active" href="#">Gallery
+              <!-- <fa-icon icon="image" class="icons-default"></fa-icon> -->
+              <fa-icon icon="images" class="icons-default"></fa-icon>
+            </a>
+          </li>
+          <li class="nav-item dropdown" *ngIf="currentUser">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              Webcam Options
+              <fa-icon icon="camera" class="icons-default"></fa-icon>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" routerLink="snow/webcam" routerLinkActive="active" href="#">View Webcam List</a>
+              <a class="dropdown-item" routerLink="snow/webcam/create" routerLinkActive="active" href="#">Add Webcam</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </li>
+          <li class="nav-item dropdown" *ngIf="currentUser">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              Image Options
+              <fa-icon icon="file-image" class="icons-default"></fa-icon>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" routerLink="gallery/image" routerLinkActive="active" href="#">View Image List</a>
+              <a class="dropdown-item" routerLink="gallery/image/create" routerLinkActive="active" href="#">Add
+                Image</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" routerLink="admin" routerLinkActive="active" href="#">Admin Dash</a>
+            </div>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" routerLink="/nhl" routerLinkActive="active" href="#">NHL
+              <!-- <fa-icon icon="image" class="icons-default"></fa-icon> -->
+              <fa-icon icon="hockey-puck" class="icons-default"></fa-icon>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="https://github.com/bousborne">
+              <fa-icon [icon]="['fab', 'github']" class="icons-default"></fa-icon>
+              <!-- <fa-icon [icon]="['fab', 'github-alt']" class="icons-default"></fa-icon> -->
+              <!-- <fa-icon [icon]="['fab', 'github-square']" class="icons-default"></fa-icon> -->
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="https://linkedin.com/in/bousborne">
+              <fa-icon [icon]="['fab', 'linkedin']" class="icons-default"></fa-icon>
+            </a>
+          </li>
+        </ul>
+        <ul class="navbar-nav mr-sm-2">
+          <li class="nav-item active mr-auto">
+            <a *ngIf="currentUser; Else logout_content" class="nav-link" (click)="logout()" href="#">Logout</a>
+            <ng-template #logout_content>
+              <a class="nav-link" routerLink="/login" routerLinkActive="active" href="#">Login</a>
+              <!-- <a class="nav-link" ng-click="logout()">Logout</a> -->
+            </ng-template>
+          </li>
+        </ul>
+        <!-- <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form> -->
+      </div>
+    </div>
   </div>
 </nav>

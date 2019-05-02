@@ -20,7 +20,7 @@ nhlRoutes.route('/add').post(function (req, res) {
 });
 
 // Defined get data(index or listing) route
-nhlRoutes.route('/').get(function (req, res) {
+nhlRoutes.route('/nhl').get(function (req, res) {
   nhl.find(function (err, nhls) {
     if (err) {
       console.log(err);
