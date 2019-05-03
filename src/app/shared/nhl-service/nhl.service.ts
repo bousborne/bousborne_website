@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 interface Post {
   title: string;
@@ -19,37 +20,52 @@ export class NhlService {
   // NHL_API_URL = "https://statsapi.web.nhl.com/api/v1/"
   NHL_API_URL = "/nhlapi/api/v1/"
   NHL_URL = "https://statsapi.web.nhl.com"
-  OVECHKIN = "/nhlapi/api/v1/people/8471214"
+  OVECHKIN = "/api/v1/people/8471214"
 
   currUrl;
+  products = [];
 
 
 
   constructor(private http: HttpClient) { }
+  uri = environment.apiUrlRoot +'/nhl';
 
   // public get(endpoint: string, query?: any): Promise<any> {
   // const url = `${this.baseUrl}${endpoint}`;
 
   // return get(url, { query }).then((response: any) => JSON.parse(response.body));
   getNHL() {
-    return this
-      .http
-      .get(`${this.NHL_API_URL}`);
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Access-Control-Allow-Origin': '*'
+      })    
+    };
+    var nhlurl = this.NHL_URL + this.OVECHKIN;
+    console.log("about to get getnhl")
+    // var getnhlout = this
+    //   .http
+    //   .get(nhlurl, httpOptions).subscribe((res : any[])=>{
+    //     console.log(res);
+    //     this.products = res;
+    //     });
+    //   console.log("just got getnhl")
+
+      // console.log(getnhlout)
+      // debugger
+      // return getnhlout
   }
 
   getTeams() {
     const httpOptions = {
       headers: new HttpHeaders({
-        'Access-Control-Allow-Origin': '*',
-        'Authorization': 'authkey',
-        'userid': '1'
+        'Access-Control-Allow-Origin': '*'
       })
     };
     var url = this.NHL_API_URL + 'teams';
     console.log("url: ", url)
-    return this
-      .http
-      .get<Post>(`${url}`, httpOptions);
+    // return this
+    //   .http
+    //   .get<Post>(`${url}`, httpOptions);
   }
 
   getOvechkin() {
@@ -63,29 +79,54 @@ export class NhlService {
       })
     };
 
-    const httpOptions1 = {
-      headers: new HttpHeaders({
-        // 'Content-Type': 'application/json',
-        // 'Access-Control-Allow-Credentials': 'true',
-        'Access-Control-Allow-Origin': '*'
-      })
-    };
+
 
     const headers = new HttpHeaders({
       'Access-Control-Allow-Origin': '*',
     });
 
-    var url = this.OVECHKIN;
-    console.log("url: ", url)
+    var nhlurl = this.NHL_URL + this.OVECHKIN;
+    console.log("url: ", nhlurl)
+
+    const httpOptions1 = {
+      headers: new HttpHeaders({
+        // 'Content-Type': 'application/json',
+        // 'Access-Control-Allow-Credentials': 'true',
+        'Access-Control-Allow-Origin': '*',
+        'nhlurl': nhlurl
+      })
+    };
 
     // return this.http.get(url, {
     //   headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*' })
     // });
 
-    console.log("about to get")
-    return this
-      .http
-      .get('https://statsapi.web.nhl.com/api/v1/people/8471214.text', { responseType: 'text' }).subscribe(res => { console.log("got it: ", res); });
+    console.log("about to get from ", nhlurl)
+    console.log("about to post to ", `${this.uri}`)
+ 
+
+    // return this
+    //   .http
+    //   .get(`${this.uri}/nhl`, httpOptions);
+
+    // debugger
+
+    // return this
+    //   .http
+    //   .get(`${this.uri}`, httpOptions);
+
+    const nhlRequestInfo = {
+      url: nhlurl
+    }
+    // return this
+    // .http
+    // .get(`${this.uri}`, httpOptions);
+ 
+    console.log("gotsta send nhlRequustInfo reqbody = ", nhlRequestInfo.url)
+    var json = this.http.post(`${this.uri}/nhlpost`, headers)
+      .subscribe(res => console.log('Done', res));
+
+      console.log("json = ", json)
   }
 
 }

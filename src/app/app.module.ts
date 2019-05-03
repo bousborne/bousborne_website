@@ -13,6 +13,7 @@ import { ImageEditComponent } from './gallery/image-edit/image-edit.component';
 import { ImageGetComponent } from './gallery/image-get/image-get.component';
 import { ImageService } from './shared/image-service/image.service';
 import { EmailService } from './shared/email-service/email.service';
+import { NhlService } from './shared/nhl-service/nhl.service';
 import { WebcamAddComponent } from './snow/webcam-add/webcam-add.component';
 import { WebcamEditComponent } from './snow/webcam-edit/webcam-edit.component';
 import { WebcamGetComponent } from './snow/webcam-get/webcam-get.component';
@@ -86,6 +87,7 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
     ImageService,
     WebcamService,
     EmailService,
+    NhlService,
 
     // provider used to create fake backend
     // fakeBackendProvider

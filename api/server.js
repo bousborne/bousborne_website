@@ -42,7 +42,7 @@ app.use(function (req, res, next) {
 app.use(cors({ credentials: true, origin: true }));
 app.use('/gallery/image', imageRoute);
 app.use('/snow/webcam', webcamRoute);
-app.use('/snow/webcam', nhlRoute);
+app.use('/nhl', nhlRoute);
 app.use('/gallery/image', emailRoute);
 
 

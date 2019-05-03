@@ -16,7 +16,8 @@
     "emailjs": "^2.2.0",
     "express": "^4.16.4",
     "express-jwt": "^5.3.1",
-    "mongoose": "^5.3.16"
+    "mongoose": "^5.3.16",
+    "node-fetch": "^2.5.0"
   },
   "devDependencies": {
     "nodemon": "^1.18.8"

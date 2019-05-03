@@ -48,10 +48,14 @@ export class NhlComponent implements OnInit {
 
     // var test1 = this.http.get<Object>('https://statsapi.web.nhl.com/api/v1/people/8471214').subscribe(res => console.log("test1 = ", res))
     // console.log("nhl teams1= ", test1)
+    var nhltest = this.nhlService.getNHL()
 
     var test = this.nhlService.getOvechkin()
+
     // .subscribe((data: Post) => this.teams = { ...data });
     console.log("nhl teams= ", test)
+    console.log("nhl nhlteams= ", nhltest)
+
   }
 
   // python() {
