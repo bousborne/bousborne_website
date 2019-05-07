@@ -15,7 +15,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ml-auto">
+        <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
             <a class="nav-link" routerLink="/home" routerLinkActive="active" href="#">Home
               <fa-icon icon="home" class="icons-default"></fa-icon>
@@ -80,7 +80,7 @@
             </a>
           </li>
         </ul>
-        <ul class="navbar-nav mr-sm-2">
+        <ul class="navbar-nav ml-auto">
           <li class="nav-item active mr-auto">
             <a *ngIf="currentUser; Else logout_content" class="nav-link" (click)="logout()" href="#">Logout</a>
             <ng-template #logout_content>
