@@ -17,51 +17,38 @@ interface Post {
 })
 export class NhlComponent implements OnInit {
   teams: Post;
+  ovechkin;
+  capitals;
+  ovechkin_curr_season_goals;
 
-
-  constructor(private nhlService: NhlService, private http: HttpClient) { }
-
-  ngOnInit() {
-
-    // import { PythonShell } from 'python-shell';
-
-    // PythonShell.run('my_script.py', null, function (err) {
-    //   if (err) throw err;
-    //   console.log('finished');
-    // });
-    // var PythonShell = require('python-shell');
-    // //you can use error handling to see if there are any errors
-    // PythonShell.run('my_script.py', null, function (err, results) {
-    //   if (err) throw err;
-    //   console.log('finished');
-    // });
-    //your code
-
-    // fetch('https://statsapi.web.nhl.com/api/v1/people/8471214', { mode: 'no-cors' }
-    // ).then((resp) => console.log("resp= ", resp))
-    //   .then(function (data) {
-    //     console.log("data retrieved");
-    //   }).catch(function (error) {
-    //     console.log(error);
-    //   });
-
-
-    // var test1 = this.http.get<Object>('https://statsapi.web.nhl.com/api/v1/people/8471214').subscribe(res => console.log("test1 = ", res))
-    // console.log("nhl teams1= ", test1)
-    var nhltest = this.nhlService.getNHL()
-
-    var test = this.nhlService.getOvechkin()
-
-    // .subscribe((data: Post) => this.teams = { ...data });
-    console.log("nhl teams= ", test)
-    console.log("nhl nhlteams= ", nhltest)
-
+  constructor(private nhlService: NhlService, private http: HttpClient) {
+    // this.initializeOvechkin();
   }
 
-  // python() {
-  //   PythonShell.run('nhl-python.py', null, function (err) {
-  //     if (err) throw err;
-  //     console.log('finished');
-  //   });
-  // }
+  public async initializeOvechkin() {
+    await this.nhlService.getOvechkin().then((response) => {
+      this.ovechkin = response;
+      // console.log("FART = ", this.ovechkin);
+      // debugger
+    });
+
+    await this.nhlService.getCapitals().then((response) => {
+      this.capitals = response;
+      // console.log("FART = ", this.capitals);
+      // debugger
+    });
+
+    await this.nhlService.getOvechkinCurrGoals().then((response) => {
+      this.ovechkin_curr_season_goals = response;
+      // console.log("FART = ", this.capitals);
+      // debugger
+    });
+  }
+
+  async ngOnInit() {
+    await this.initializeOvechkin();
+    console.log("OVI", this.ovechkin)
+    console.log("CAPS", this.capitals)
+
+  }
 }

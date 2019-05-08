@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
-import { environment } from '../../../environments/environment';
 
 interface Post {
   title: string;
@@ -12,48 +10,19 @@ interface Post {
   providedIn: 'root'
 })
 
-
-
 export class NhlService {
-  // uri = "https://statsapi.web.nhl.com/api/v1";
-
   // NHL_API_URL = "https://statsapi.web.nhl.com/api/v1/"
   NHL_API_URL = "/nhlapi/api/v1/"
-  NHL_URL = "https://statsapi.web.nhl.com"
-  OVECHKIN = "/api/v1/people/8471214"
-
-  currUrl;
-  products = [];
-
-
+  NHL_BASE_URL = "https://statsapi.web.nhl.com"
+  OVECHKIN_URL = "/api/v1/people/8471214"
+  CAPITALS_URL = "/api/v1/teams/15"
+  CURRENT_SEASON = "20182019";
+  NEXT_SEASON = "20192020";
+  ON_TRACK_FOR_PLAYER_MODIFIER = "/stats?stats=onPaceRegularSeason&season=" + this.NEXT_SEASON;
+  SINGLE_SEASON_STATS_MODIFIER = "/stats/?stats=statsSingleSeason&season=" + this.CURRENT_SEASON;
 
   constructor(private http: HttpClient) { }
-  uri = environment.apiUrlRoot +'/nhl';
-
-  // public get(endpoint: string, query?: any): Promise<any> {
-  // const url = `${this.baseUrl}${endpoint}`;
-
-  // return get(url, { query }).then((response: any) => JSON.parse(response.body));
-  getNHL() {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Access-Control-Allow-Origin': '*'
-      })    
-    };
-    var nhlurl = this.NHL_URL + this.OVECHKIN;
-    console.log("about to get getnhl")
-    // var getnhlout = this
-    //   .http
-    //   .get(nhlurl, httpOptions).subscribe((res : any[])=>{
-    //     console.log(res);
-    //     this.products = res;
-    //     });
-    //   console.log("just got getnhl")
-
-      // console.log(getnhlout)
-      // debugger
-      // return getnhlout
-  }
+  // uri = environment.apiUrlRoot +'/nhl';
 
   getTeams() {
     const httpOptions = {
@@ -63,70 +32,75 @@ export class NhlService {
     };
     var url = this.NHL_API_URL + 'teams';
     console.log("url: ", url)
-    // return this
-    //   .http
-    //   .get<Post>(`${url}`, httpOptions);
   }
 
   getOvechkin() {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Access-Control-Allow-Origin': '*',
-        // 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-        // 'Accept-Language': 'en-US,en;q=0.5',
-        // 'Upgrade-Insecure-Requests': '1',
-        // 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:64.0) Gecko/20100101 Firefox/64.0'
-      })
-    };
+    var oviURL = this.NHL_BASE_URL + this.OVECHKIN_URL;
 
+    const fetchOvechkin = async () => {
+      try {
+        let player = await fetch(oviURL);
+        let jsonPlayer = await player.json();
+        console.log("main", jsonPlayer);
+        return jsonPlayer.people[0]
+      } catch(err) {
+        return {
+          fullName: 'error'
+        };
+      }
 
-
-    const headers = new HttpHeaders({
-      'Access-Control-Allow-Origin': '*',
-    });
-
-    var nhlurl = this.NHL_URL + this.OVECHKIN;
-    console.log("url: ", nhlurl)
-
-    const httpOptions1 = {
-      headers: new HttpHeaders({
-        // 'Content-Type': 'application/json',
-        // 'Access-Control-Allow-Credentials': 'true',
-        'Access-Control-Allow-Origin': '*',
-        'nhlurl': nhlurl
-      })
-    };
-
-    // return this.http.get(url, {
-    //   headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*' })
-    // });
-
-    console.log("about to get from ", nhlurl)
-    console.log("about to post to ", `${this.uri}`)
- 
-
-    // return this
-    //   .http
-    //   .get(`${this.uri}/nhl`, httpOptions);
-
-    // debugger
-
-    // return this
-    //   .http
-    //   .get(`${this.uri}`, httpOptions);
-
-    const nhlRequestInfo = {
-      url: nhlurl
     }
-    // return this
-    // .http
-    // .get(`${this.uri}`, httpOptions);
- 
-    console.log("gotsta send nhlRequustInfo reqbody = ", nhlRequestInfo.url)
-    var json = this.http.post(`${this.uri}/nhlpost`, headers)
-      .subscribe(res => console.log('Done', res));
+    let jsonOut = fetchOvechkin();
+    //These below currently do nothing.
+    console.log("jsonOut = ", jsonOut)
 
-      console.log("json = ", json)
+    return jsonOut
   }
 
+  getCapitals() {
+    var oviURL = this.NHL_BASE_URL + this.CAPITALS_URL;
+
+    const fetchCapitals = async () => {
+      try {
+        let team = await fetch(oviURL);
+        let jsonTeam = await team.json();
+        console.log("main", jsonTeam);
+        return jsonTeam.teams[0];
+      } catch(err) {
+        return {
+          name: 'error'
+        };
+      }
+
+    }
+    let jsonOut = fetchCapitals();
+    //These below currently do nothing.
+    console.log("jsonOut = ", jsonOut)
+
+    return jsonOut
+  }
+
+  getOvechkinCurrGoals() {
+    var oviSeasonURL = this.NHL_BASE_URL + this.OVECHKIN_URL + this.SINGLE_SEASON_STATS_MODIFIER;
+
+    console.log("This url = ", oviSeasonURL)
+    const fetchCapitals = async () => {
+      try {
+        let team = await fetch(oviSeasonURL);
+        let jsonTeam = await team.json();
+        console.log("main", jsonTeam);
+        return jsonTeam.stats[0].splits[0].stat.goals
+      } catch(err) {
+        return {
+          name: 'error'
+        };
+      }
+
+    }
+    let jsonOut = fetchCapitals();
+    //These below currently do nothing.
+    console.log("jsonOut = ", jsonOut)
+
+    return jsonOut
+  }
 }
