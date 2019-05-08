@@ -1,4 +1,4 @@
-ul { padding: 0; width: 1200px; margin: 20px auto }
+ul { padding: 0; width: 100% auto; margin: 20px auto; max-width: 100%; }
 li { display: inline; }
 
 .tn {
