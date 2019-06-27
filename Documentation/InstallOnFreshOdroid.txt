@@ -1,0 +1,119 @@
+Step 1: Start up new system, and run full updates
+
+    sudo apt update
+    sudo apt upgrade
+    sudo apt full-upgrade
+    sudo apt reboot
+
+Step 2: Install mongodb
+
+    sudo apt install mongodb
+
+Step 3: Set up mongodb user
+
+    grep mongodb /etc/passwd
+        and confirm a user exists
+
+        if not, run
+            sudo adduser --ingroup nogroup --shell /etc/false --disabled-password --gecos "" --no-create-home mongodb
+    
+    sudo mkdir /data
+    sudo mkdir /data/db 
+
+    you can run "mongo" to enter database to confirm it exists. ".exit" to leave
+
+Step 4: Create MongoDB config files
+
+    sudo vim /data/db/mongodb.conf 
+    Enter the following in file:
+        # /etc/mongodb.conf
+        # minimal config file (old style)
+        # Run mongod --help to see a list of options
+        
+        bind_ip = 127.0.0.1
+        quiet = true
+        dbpath = /data/db/mongodb
+        logpath = /data/db/mongodb/mongod.log
+        logappend = true
+        storageEngine = mmapv1
+
+Step 5: Create MongoDb Service
+
+    cd /lib/systemd/system
+    sudo vim mongodb.service
+    Enter in the following:
+        [Unit]
+        Description=An object/document-oriented database
+        Documentation=man:mongod(1)
+        After=network.target
+        
+        [Service]
+        #User=mongodb
+        #Group=mongodb
+        #RuntimeDirectory=mongodb
+        RuntimeDirectoryMode=0755
+        #EnvironmentFile=-/etc/default/mongodb
+        #Environment=CONF=/etc/mongodb.conf
+        #Environment=SOCKETPATH=/run/mongodb
+        ExecStart=/usr/bin/mongod --quiet --config /data/db/mongodb.conf
+        #ExecStart=/usr/bin/mongod --unixSocketPrefix=${SOCKETPATH} --config ${CONF} $DAEMON_OPTS
+        #LimitFSIZE=infinity
+        #LimitCPU=infinity
+        #LimitAS=infinity
+        LimitNOFILE=64000
+        LimitNPROC=64000
+        
+        [Install]
+        WantedBy=multi-user.target
+
+    sudo service mongodb start
+    sudo service mongodb status
+        if this fails, maybe run:
+            sudo systemctl daemon-reload
+            sudo service mongodb start
+            sudo service mongodb status
+    
+    mongo
+        -> To test that it is running
+
+Step 6: Install npm and nodejs
+    sudo apt install nodejs npm
+    nodejs --version
+    npm --version
+
+Step 7: Install Nginx
+    sudo apt install Nginx
+
+Step 8: Setup Nginx
+    Move the documents in this folder labelled benousborne.com and smoothsak.com to
+    /etc/nginx/sites-available
+
+    cd /etc/nginx/sites-enabled
+    sudo ln -s ../sites-available/smoothsak.com smoothsak.com
+    sudo ln -s ../sites-available/benousborne.com benousborne.com
+
+Step 9: Create html folders
+    cd /var/www/html
+    sudo mkdir benousborne.com
+    sudo mkdir benousborne.com/html
+    sudo mkdir benousborne.com/html/api
+
+Step 10: deploy zipped files of the angular build of html.tar.gz and api.tar.gz
+    from development machine
+        ng build --prod 
+        zip the build folder: tar -czvf html.tar.gz /pathToBuild/
+        zip the api folder: tar -czvf api.tar.gz /pathToApi/
+        sudo scp html.tar.gz targetMachine:~/var/www/html/benousborne.com/html 
+        sudo scp api.tar.gz targetMachine:~/var/www/html/benousborne.com/html/api 
+
+Step 11: Launch the site
+    From server machine
+    cd /var/www/html/benousborne.com/html
+    sudo tar -xvf html.tar.gz
+    cd api
+    sudo tar -xvf api.tar.gz
+
+Step 12: Start server
+    sudo service nginx restart
+    sudo service mongodb restart
+    sudo node server.js
