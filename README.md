@@ -67,3 +67,11 @@ This is run alongside mongoDB and nodejs. This is hosted on my pi. Deploy to /va
 
 Run node server with:
 node --max_old_space_size=2000  server.js
+
+
+## Testing
+
+In one terminal, cd to api, then run
+sudo node server.js
+In another terminal, run
+ng serve
