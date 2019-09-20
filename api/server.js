@@ -55,6 +55,35 @@ app.use('/users', require('./users/users.controller'));
 // global error handler
 app.use(errorHandler);
 
+const webcamStartupDB = require('./webcamStartupDB');
+let cams = webcamStartupDB.cams();
+let Webcam = require('./models/Webcam');
+
+Object.size = function(obj) {
+  var size = 0, key;
+  for (key in obj) {
+      if (obj.hasOwnProperty(key)) size++;
+  }
+  return size;
+};
+
+cams.forEach((item) => {
+  Webcam.find(item, function(err, data){
+    if(err){
+        console.log(err);
+        return
+    }
+  
+    if(data.length == 0) {
+        console.log("No record found. Inserting item: ", item)
+        let webcamInsert = new Webcam(item)
+        webcamInsert.save()
+        return
+    }
+    console.log("Record found. Not updating with item: ", item)
+  })
+});
+
 // const port = process.env.PORT || 4000;
 const port = process.env.NODE_ENV === 'production' ? (process.env.PORT || 80) : 4000;
 const server = app.listen(port, function () {
