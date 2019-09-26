@@ -75,3 +75,9 @@ In one terminal, cd to api, then run
 sudo node server.js
 In another terminal, run
 ng serve
+
+
+## To deploy
+Zip up dist to html, and api. SCP to node. Unzip in html
+run sudo mongodb restart and status to make sure running
+sudo node server.js, then ctrl-Z and 'bg' to put in background.
