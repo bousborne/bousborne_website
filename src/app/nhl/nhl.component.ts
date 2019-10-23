@@ -21,6 +21,7 @@ export class NhlComponent implements OnInit {
   capitals;
   ovechkin_curr_season_goals;
   ovechkin_curr_career_goals;
+  ovechkin_curr_season_pace;
   record_career_goals;
 
   constructor(private nhlService: NhlService, private http: HttpClient) {
@@ -52,6 +53,12 @@ export class NhlComponent implements OnInit {
       // debugger
     });
 
+    await this.nhlService.getOvechkinSeasonPace().then((response) => {
+      this.ovechkin_curr_season_pace = response;
+      // console.log("FART = ", this.capitals);
+      // debugger
+    });
+
     // await this.nhlService.getRecordGoals().then((response) => {
     //   this.record_career_goals = response;
     // });
@@ -62,6 +69,8 @@ export class NhlComponent implements OnInit {
     console.log("OVI", this.ovechkin)
     console.log("CAPS", this.capitals)
     console.log("RECORD", this.record_career_goals)
+    console.log("PACE", this.ovechkin_curr_season_pace)
+
 
 
   }

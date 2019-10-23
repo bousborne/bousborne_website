@@ -18,10 +18,10 @@ export class NhlService {
   RECORDS_API_URL = "/site/api"
   OVECHKIN_URL = "/api/v1/people/8471214"
   CAPITALS_URL = "/api/v1/teams/15"
-  CURRENT_SEASON = "20182019";
-  NEXT_SEASON = "20192020";
+  CURRENT_SEASON = "20192020";
+  NEXT_SEASON = "20202021";
   SINGLE_SEASON_STATS_MODIFIER = "/stats/?stats=statsSingleSeason&season="
-  ON_TRACK_FOR_PLAYER_MODIFIER = "/stats?stats=onPaceRegularSeason&season=" + this.NEXT_SEASON;
+  ON_TRACK_FOR_PLAYER_MODIFIER = "/stats?stats=onPaceRegularSeason&season=" + this.CURRENT_SEASON;
   SINGLE_SEASON_STATS_MODIFIER_THIS_SEASON = "/stats/?stats=statsSingleSeason&season=" + this.CURRENT_SEASON;
   SINGLE_CAREER_STATS_MODIFIER = "/stats/?stats=careerRegularSeason"
   NHL_RECORDS_GOAL = "/skater-career-scoring-regular-season?cayenneExp=goals>=850"
@@ -108,6 +108,30 @@ export class NhlService {
     return jsonOut
   }
 
+  getOvechkinSeasonPace() {
+    var oviPaceURL = this.NHL_BASE_URL + this.OVECHKIN_URL + this.ON_TRACK_FOR_PLAYER_MODIFIER;
+
+    console.log("This url = ", oviPaceURL)
+    const fetchCapitals = async () => {
+      try {
+        let team = await fetch(oviPaceURL);
+        let jsonTeam = await team.json();
+        console.log("main", jsonTeam);
+        return jsonTeam.stats[0].splits[0].stat.goals
+      } catch(err) {
+        return {
+          name: 'error'
+        };
+      }
+
+    }
+    let jsonOut = fetchCapitals();
+    //These below currently do nothing.
+    console.log("jsonOut = ", jsonOut)
+
+    return jsonOut
+  }
+
   getOvechkinCareerGoals() {
     var oviCareerURL = this.NHL_BASE_URL + this.OVECHKIN_URL + this.SINGLE_CAREER_STATS_MODIFIER;
 
@@ -131,6 +155,8 @@ export class NhlService {
 
     return jsonOut
   }
+
+  
 
   getRecordGoals() {
     var recordGoalsURL = this.RECORDS_BASE_URL + this.RECORDS_API_URL + this.NHL_RECORDS_GOAL;
