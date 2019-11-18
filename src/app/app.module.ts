@@ -43,6 +43,8 @@ import { Alert } from 'selenium-webdriver';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NhlComponent } from './nhl/nhl.component';
+import { LogService } from './shared/log-service/log.service';
+import { LogPublishersService } from "./shared/log-service/log-publishers.service";
 
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
@@ -88,6 +90,8 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
     WebcamService,
     EmailService,
     NhlService,
+    LogService,
+    LogPublishersService,
 
     // provider used to create fake backend
     // fakeBackendProvider
