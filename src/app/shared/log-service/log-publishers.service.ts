@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
+import { Http } from '@angular/http';
 
-import { LogPublisher, LogConsole, LogLocalStorage } from "./log-publishers";
+import { LogPublisher, LogConsole, LogLocalStorage, LogWebApi } from "./log-publishers";
 
 @Injectable()
 export class LogPublishersService {
-  constructor() {
+  constructor(private http: Http) {
     // Build publishers arrays
     this.buildPublishers();
   }
@@ -18,5 +19,7 @@ export class LogPublishersService {
     this.publishers.push(new LogConsole());
     // Create instance of LogLocalStorage Class
     this.publishers.push(new LogLocalStorage());
+    // Create instance of LogWebApi Class
+    this.publishers.push(new LogWebApi(this.http));
   }
 }

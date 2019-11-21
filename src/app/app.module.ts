@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpModule } from '@angular/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SnowComponent } from './snow/snow.component';
@@ -79,6 +80,7 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
     // FaIconComponent,
     AdminModule,
     AuthModule,
+    HttpModule,
     //Always last (I think)
     AppRoutingModule
   ],

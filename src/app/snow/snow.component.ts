@@ -19,12 +19,9 @@ export class SnowComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.logger.debug("Test Debug");
-    this.logger.warn("Test Warn");
-    this.logger.log("Test log");
+    this.logger.log("Getting all Webcams.");
     this.is.getWebcams().subscribe((data: Webcam[]) => {
       this.webcams = data;
     });
   }
-
 }

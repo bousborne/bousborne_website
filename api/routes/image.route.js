@@ -21,6 +21,7 @@ imageRoutes.route('/add').post(function (req, res) {
 
 // Defined get data(index or listing) route
 imageRoutes.route('/').get(function (req, res) {
+  console.log("Here in images get")
   Image.find(function (err, images) {
     if (err) {
       console.log(err);

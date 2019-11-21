@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import Webcam from './Webcam';
 import { Observable, of } from 'rxjs';
 import { environment } from '../../../environments/environment';
+import { LogService } from '../../shared/log-service/log.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ import { environment } from '../../../environments/environment';
 export class WebcamService {
   webcam: Webcam;
   uri = environment.apiUrlRoot + '/snow/webcam'
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private logger: LogService) { }
 
   addWebcam(webcam_url, webcam_name, webcam_location_tag) {
     const obj = {
@@ -18,9 +19,9 @@ export class WebcamService {
       webcam_name: webcam_name,
       webcam_location_tag: webcam_location_tag,
     };
-    console.log("webcam service upload", obj);
+    this.logger.log("Adding webcam from webcam service: ", obj);
     this.http.post(`${this.uri}/add`, obj)
-      .subscribe(res => console.log('Done', res));
+      .subscribe(res => this.logger.log('Done', res));
   }
 
   getWebcams(): Observable<Webcam[]> {

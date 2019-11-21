@@ -1,11 +1,4 @@
 import { Injectable } from '@angular/core';
-// import 'node';
-// import { require, process } from '@types/node';
-// import 'node';
-// import * as fs from "fs";
-// import Fs from 'fs';
-// import { writeFileSync, readFileSync, createWriteStream } from 'fs';
-import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { LogPublisher } from "./log-publishers";
 import { LogPublishersService } from "./log-publishers.service";
@@ -20,7 +13,9 @@ export enum LogLevel {
   Off = 6
 }
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class LogService {
 
   publishers: LogPublisher[];
@@ -35,29 +30,6 @@ export class LogService {
   uri = environment.apiUrlRoot;
   level: LogLevel = LogLevel.All;
   logWithDate: boolean = true;
-
-  // log(msg: any) {
-  //   console.log(new Date() + ": "
-  //     + JSON.stringify(msg));
-
-  //   console.log("We here");
-
-  //   // this.http.get(`${this.uri}/logget`);
-  //   // this.http.get()
-  //   // this.http.
-
-  //   // var fs = require('Fs');
-  //   // var util = require('util');
-  //   // var logFile = fs.createWriteStream('log.txt', { flags: 'a' });
-  //   // // Or 'w' to truncate the file every time the process starts.
-  //   // var logStdout = process.stdout;
-
-  //   // console.log = function () {
-  //   //   logFile.write(util.format.apply(null, arguments) + '\n');
-  //   //   logStdout.write(util.format.apply(null, arguments) + '\n');
-  //   // }
-  //   // console.error = console.log;
-  // }
 
   debug(msg: string, ...optionalParams: any[]) {
     this.writeToLog(msg, LogLevel.Debug,

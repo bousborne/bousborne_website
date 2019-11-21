@@ -43,3 +43,6 @@ testem.log
 .DS_Store
 Thumbs.db
 bousborne_website_workspace.code-workspace
+
+# Logs
+/api/log*

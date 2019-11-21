@@ -14,6 +14,7 @@ const imageRoute = require('./routes/image.route');
 const webcamRoute = require('./routes/webcam.route');
 const nhlRoute = require('./routes/nhl.route');
 const emailRoute = require('./routes/email.route');
+const logRoute = require('./routes/log.route');
 
 mongoose.Promise = global.Promise;
 mongoose.connect(config.DB, { useNewUrlParser: true }).then(
@@ -44,6 +45,7 @@ app.use('/gallery/image', imageRoute);
 app.use('/snow/webcam', webcamRoute);
 app.use('/nhl', nhlRoute);
 app.use('/gallery/image', emailRoute);
+app.use('/api', logRoute)
 
 
 // use JWT auth to secure the api
