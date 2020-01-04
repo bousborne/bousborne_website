@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import { LogEntry } from './log.service';
 import { Http, Headers, RequestOptions } from '@angular/http';
-import { environment } from '../../../../environments/environment';
+import { environment } from '../../../environments/environment';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
