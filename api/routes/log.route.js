@@ -17,18 +17,29 @@ app.use(cors());
 
 var LogEntry = require('../models/LogEntry');
 
+const LogLevel = {
+  All: 'LOG',
+  Debug: 'DEBUG',
+  Info: 'INFO',
+  Warn: 'WARN',
+  Error: 'ERROR',
+  Fatal: 'FATAL',
+  Off: 'OFF'
+}
+
+
+
 // Defined store route
 logRoutes.route('/log').post(function (req, res) {
-
   console.log("loggin! on snap we here in post");
-  // debugger;
   let logEntry = new LogEntry(req.body);
+  logToFile(logEntry);
+});
 
-  console.log("logEntry: ", logEntry)
-  // console.log("req.body: ", req.body)
-  // console.log("req, body.fileContent: ", req.body.fileContent)
+function logToFile(logEntry) {
+  var fileData = logEntry.entryDate + ": [LOG LEVEL " + logEntry.level + "] - Message: " + logEntry.message + "\n";
 
-  var fileData = logEntry.entryDate + " - " + "Type: " + logEntry.level + " - Message: " + logEntry.message + "\n";
+  console.log("Writing message to log file: " + fileData);
 
   fs.appendFile('log.txt', fileData, function(err) {
     if (err) {
@@ -37,7 +48,49 @@ logRoutes.route('/log').post(function (req, res) {
     }
     console.log("File write success");
   });
-});
+}
+
+logRoutes.log = function (logEntry) { 
+  logToFileFromServer(logEntry, LogLevel.Log);
+};
+
+logRoutes.debug = function (logEntry)  {
+  logToFileFromServer(logEntry, LogLevel.Debug);
+}
+
+logRoutes.info = function (logEntry)  {
+  logToFileFromServer(logEntry, LogLevel.Info);
+}
+
+logRoutes.warn = function (logEntry)  {
+  logToFileFromServer(logEntry, LogLevel.Warn);
+}
+
+logRoutes.error = function (logEntry)  {
+  logToFileFromServer(logEntry, LogLevel.Error);
+}
+
+logRoutes.fatal = function (logEntry)  {
+  logToFileFromServer(logEntry, LogLevel.Fatal);
+}
+
+logRoutes.log = function (logEntry)  {
+  logToFileFromServer(logEntry, LogLevel.All);
+}
+
+function logToFileFromServer(logEntry, logLevel) { 
+  var date = new Date();
+  var fileData = date + ": [SERVER " + logLevel + "] - Message: " + logEntry + "\n";
+
+  console.log("Writing message to log file: " + fileData);
+  fs.appendFile('log.txt', fileData, function(err) {
+    if (err) {
+      console.log("Failed to write to log file")
+      //  res.status(500).jsonp({ error: 'Failed to write file' });
+    }
+    console.log("File write to log success");
+  });
+};
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

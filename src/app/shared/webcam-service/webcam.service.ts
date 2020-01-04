@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import Webcam from './Webcam';
 import { Observable, of } from 'rxjs';
 import { environment } from '../../../environments/environment';
-import { LogService } from '../../shared/log-service/log.service';
+import { LogService } from '../libraries/log-service/log.service';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +19,7 @@ export class WebcamService {
       webcam_name: webcam_name,
       webcam_location_tag: webcam_location_tag,
     };
-    this.logger.log("Adding webcam from webcam service: ", obj);
+    this.logger.log("Adding webcam from webcam service: " + JSON.stringify(obj));
     this.http.post(`${this.uri}/add`, obj)
       .subscribe(res => this.logger.log('Done', res));
   }

@@ -72,12 +72,27 @@ node --max_old_space_size=2000  server.js
 ## Testing
 
 In one terminal, cd to api, then run
+
 sudo node server.js
 In another terminal, run
 ng serve
 
 
 ## To deploy
+Set up modem:
+Set DNS mapping to:
+host ip to website.com
+
+Set Port Forwarding:
+Host IP to the following:
+80: TCP/UDP
+4000: TCP/UDP
+22: TCP/UDP
+8180: TCP/UDP
+3389: TCP/UDP
+27017: TCP/UDP
+
+
 Zip up dist to html, and api. SCP to node. Unzip in html
 run sudo mongodb restart and status to make sure running
 sudo node server.js, then ctrl-Z and 'bg' to put in background.

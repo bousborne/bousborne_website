@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { environment } from '../../../environments/environment';
+import { environment } from '../../../../environments/environment';
 import { LogPublisher } from "./log-publishers";
 import { LogPublishersService } from "./log-publishers.service";
 
@@ -102,7 +102,7 @@ export class LogEntry {
     let ret: string = "";
 
     if (this.logWithDate) {
-      ret = new Date() + " - ";
+      ret = this.entryDate.toUTCString() + " - ";
     }
     ret += "Type: " + LogLevel[this.level];
     ret += " - Message: " + this.message;

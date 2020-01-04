@@ -2,7 +2,7 @@ import { Component, OnInit, OnChanges } from '@angular/core';
 import Webcam from '../shared/webcam-service/Webcam';
 import { WebcamService } from '../shared/webcam-service/webcam.service';
 import { HttpClient } from '@angular/common/http';
-import { LogService } from '../shared/log-service/log.service';
+import { LogService } from '../shared/libraries/log-service/log.service';
 
 @Component({
   selector: 'app-snow',
@@ -19,7 +19,7 @@ export class SnowComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.logger.log("Getting all Webcams.");
+    this.logger.log("Snow.Component ngOnInit(): Getting all Webcams.");
     this.is.getWebcams().subscribe((data: Webcam[]) => {
       this.webcams = data;
     });

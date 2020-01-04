@@ -44,8 +44,8 @@ import { Alert } from 'selenium-webdriver';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NhlComponent } from './nhl/nhl.component';
-import { LogService } from './shared/log-service/log.service';
-import { LogPublishersService } from "./shared/log-service/log-publishers.service";
+import { LogService } from './shared/libraries/log-service/log.service';
+import { LogPublishersService } from "./shared/libraries/log-service/log-publishers.service";
 
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 

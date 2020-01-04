@@ -6,20 +6,22 @@ const express = require('express'),
   cors = require('cors'),
   mongoose = require('mongoose'),
   config = require('./DB');
+  cron = require("node-cron");
 
 const jwt = require('./_helpers/jwt');
 const errorHandler = require('./_helpers/error-handler');
+const updateIP = require('./_helpers/updateIP');
 
 const imageRoute = require('./routes/image.route');
 const webcamRoute = require('./routes/webcam.route');
 const nhlRoute = require('./routes/nhl.route');
 const emailRoute = require('./routes/email.route');
-const logRoute = require('./routes/log.route');
+let logRoute = require('./routes/log.route');
 
 mongoose.Promise = global.Promise;
 mongoose.connect(config.DB, { useNewUrlParser: true }).then(
-  () => { console.log('Database is connected') },
-  err => { console.log('Can not connect to the database' + err) }
+  () => { logRoute.log('Database is connected') },
+  err => { logRoute.log('Can not connect to the database' + err) }
 );
 
 const app = express();
@@ -77,17 +79,25 @@ cams.forEach((item) => {
     }
   
     if(data.length == 0) {
-        console.log("No record found. Inserting item: ", item)
+        logRoute.log("No record found. Inserting item: " + JSON.stringify(item))
         let webcamInsert = new Webcam(item)
         webcamInsert.save()
         return
     }
-    console.log("Record found. Not updating with item: ", item)
+    logRoute.log("Record found. Not updating with item: " + JSON.stringify(item))
   })
 });
+
+// updateIP();
+// logToFile();
+
+// logToFile();
+
+logRoute.log("test message");
+// logEntry.logToFileFromServer("test")
 
 // const port = process.env.PORT || 4000;
 const port = process.env.NODE_ENV === 'production' ? (process.env.PORT || 80) : 4000;
 const server = app.listen(port, function () {
-  console.log('Listening on port ' + port);
+  logRoute.log('Listening on port ' + JSON.stringify(port));
 });
