@@ -88,7 +88,7 @@ cams.forEach((item) => {
   })
 });
 
-// updateIP();
+updateIP();
 // logToFile();
 
 // logToFile();
