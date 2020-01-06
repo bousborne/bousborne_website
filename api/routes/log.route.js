@@ -47,7 +47,7 @@ logRoutes.route('/log').post(function (req, res) {
 });
 
 function logToFile(logEntry) {
-  var fileData = JSON.stringify(logEntry) + "\n";
+  var fileData = logEntry.entryStringObj + "\n";
 
   console.log("Writing message to log file: " + fileData);
 

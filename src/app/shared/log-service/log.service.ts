@@ -102,7 +102,7 @@ export class LogEntry {
     let ret: string = "";
 
     if (this.logWithDate) {
-      ret = this.entryDate.toUTCString() + ": ";
+      ret = this.entryDate + ": ";
     }
     ret += "[WEB " + LogLevel[this.level] + "]";
     ret += " - Message: " + this.message;
