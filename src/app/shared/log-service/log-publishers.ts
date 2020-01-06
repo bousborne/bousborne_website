@@ -93,7 +93,7 @@ export class LogWebApi extends LogPublisher {
   log(entry: LogEntry): Observable<boolean> {
     let headers = new Headers(
       { 'Content-Type': 'application/json',
-      // 'Access-Control-Allow-Origin': '*'
+      'Access-Control-Allow-Origin': '*'
     });
     let options = new
       RequestOptions({ headers: headers });
@@ -101,8 +101,11 @@ export class LogWebApi extends LogPublisher {
     console.log("about to call return.this.http.post", entry, "loc:", this.location);
     var entryString = entry.buildLogString();
     console.log("string:", entryString)
+    const obj = {
+      entryStringObj: entryString
+    };
     return this.http.post(this.location,
-      entry, options)
+      obj, options)
       .map(response => response.json())
       .catch(this.handleErrors);
   }
@@ -110,6 +113,8 @@ export class LogWebApi extends LogPublisher {
   // Clear all log entries from local storage
   clear(): Observable<boolean> {
     // TODO: Call Web API to clear all values
+    // WebApi.removeItem(this.location);
+    // this.removeItem(this.location);
     return Observable.of(true);
   }
 

@@ -1,5 +1,5 @@
 cron = require("node-cron");
-let logRoute = require('./routes/log.route');
+let logRoute = require('../routes/log.route');
 
 // var exec = require('child_process').exec;
 

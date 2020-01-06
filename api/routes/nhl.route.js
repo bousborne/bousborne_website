@@ -5,8 +5,22 @@ const fetch = require('node-fetch');
 const fs = require('fs');
 const app = express();
 const nhlRoutes = express.Router();
+var cors = require('cors');
+
 // Require nhl model in our routes module
 // let nhl = require('../models/nhl');
+
+app.use(cors());
+
+//CORS Middleware
+app.use(function (req, res, next) {
+  //Enabling CORS
+  res.header('Access-Control-Allow-Origin', '*');
+  // res.header('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT');
+  // res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, x-client-key, x-client-token, x-client-secret, Authorization');
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+ });
 
 // Defined store route
 nhlRoutes.route('/nhlpost').post(function (req, res) {
