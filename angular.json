@@ -19,6 +19,8 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
+              "src/app/snow/snow.component.css",
+              "src/app/navigation/navigation.component.css",
               "src/assets/favicon.ico",
               "src/assets"
             ],
