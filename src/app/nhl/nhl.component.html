@@ -6,11 +6,13 @@
           <div class="bio-text">
             <h2 *ngIf="ovechkin">{{ovechkin.fullName}}</h2>
             <h2 *ngIf="capitals">{{capitals.name}}</h2>
-            <h2 *ngIf="ovechkin_curr_season_goals">Current Season Goals: {{ovechkin_curr_season_goals}}</h2>
-            <h2 *ngIf="ovechkin_curr_season_goals">Current Career Goals: {{ovechkin_curr_career_goals}}</h2>
-            <h2 *ngIf="ovechkin_curr_season_goals">Current Season Pace: {{ovechkin_curr_season_pace}}</h2>
+            <h2 *ngIf="ovechkin_curr_season">Current Season Goals: {{ovechkin_curr_season.goals}}</h2>
+            <h2 *ngIf="ovechkin_career">Current Career Goals: {{ovechkin_career.goals}}</h2>
+            <h2 *ngIf="ovechkin_on_pace_season">Current Season Pace: {{ovechkin_on_pace_season.goals}}</h2>
+            <h2 *ngIf="ovechkin_curr_season">Current Season Games Played: {{ovechkin_curr_season.games}}</h2>
             <h2 *ngIf="ovechkin_curr_season_goals">Record Career Goals: 894</h2>
-
+            <h2 *ngIf="capitals_schedule">Caps next game: {{capitals_schedule.dates[0].games[0].gameDate}}</h2>
+            <h2 *ngIf="capitals_schedule">{{capitals_schedule.dates[0].games[0].teams.away.team.name}} @ {{capitals_schedule.dates[0].games[0].teams.home.team.name}}</h2>
           </div>
         </div>
         <div class="col-sm-6">

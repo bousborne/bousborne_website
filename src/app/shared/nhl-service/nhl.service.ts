@@ -181,4 +181,108 @@ export class NhlService {
 
     return jsonOut
   }
+
+  getOvechkinOnPace() {
+    var oviPaceURL = this.NHL_BASE_URL + this.OVECHKIN_URL + this.ON_TRACK_FOR_PLAYER_MODIFIER;
+
+    console.log("This url = ", oviPaceURL)
+    const fetchCapitals = async () => {
+      try {
+        let team = await fetch(oviPaceURL);
+        let jsonTeam = await team.json();
+        console.log("main", jsonTeam);
+        return jsonTeam.stats[0].splits[0].stat
+      } catch(err) {
+        return {
+          name: 'error'
+        };
+      }
+
+    }
+    let jsonOut = fetchCapitals();
+    //These below currently do nothing.
+    console.log("jsonOut = ", jsonOut)
+
+    return jsonOut
+  }
+
+  getOvechkinCareer() {
+    var oviCareerURL = this.NHL_BASE_URL + this.OVECHKIN_URL + this.SINGLE_CAREER_STATS_MODIFIER;
+
+    console.log("This url = ", oviCareerURL)
+    const fetchCapitals = async () => {
+      try {
+        let team = await fetch(oviCareerURL);
+        let jsonTeam = await team.json();
+        console.log("main", jsonTeam);
+        return jsonTeam.stats[0].splits[0].stat
+      } catch(err) {
+        return {
+          name: 'error'
+        };
+      }
+
+    }
+    let jsonOut = fetchCapitals();
+    //These below currently do nothing.
+    console.log("jsonOut = ", jsonOut)
+
+    return jsonOut
+  }
+
+  getOvechkinSeason() {
+    var oviSeasonURL = this.NHL_BASE_URL + this.OVECHKIN_URL + this.SINGLE_SEASON_STATS_MODIFIER_THIS_SEASON;
+
+    console.log("This url = ", oviSeasonURL)
+    const fetchCapitals = async () => {
+      try {
+        let team = await fetch(oviSeasonURL);
+        let jsonTeam = await team.json();
+        console.log("main", jsonTeam);
+        return jsonTeam.stats[0].splits[0].stat
+      } catch(err) {
+        return {
+          name: 'error'
+        };
+      }
+
+    }
+    let jsonOut = fetchCapitals();
+    //These below currently do nothing.
+    console.log("jsonOut = ", jsonOut)
+
+    return jsonOut
+  }
+
+  getSchedule() {
+    var scheduleURL = this.NHL_BASE_URL;
+
+    var dateToday = new Date();
+    var dateTodayStr = dateToday.toISOString().replace(/T/, '.').replace(/\..+/, '')
+    var dateLater = new Date();
+    dateLater.setDate(dateToday.getDate() + 7);
+    var dateLaterStr = dateLater.toISOString().replace(/T/, '.').replace(/\..+/, '')
+
+    var scheduleURL = this.NHL_BASE_URL + "/api/v1/schedule?teamId=15&startDate="
+        + dateTodayStr + "&endDate=" + dateLaterStr;
+    
+    const fetchCapitalsSchedule = async () => {
+      try {
+        let team = await fetch(scheduleURL);
+        let jsonTeam = await team.json();
+        console.log("schedule", jsonTeam);
+        return jsonTeam
+      } catch(err) {
+        return {
+          name: 'error'
+        };
+      }
+
+    }
+    let jsonOut = fetchCapitalsSchedule();
+    //These below currently do nothing.
+    console.log("jsonOut = ", jsonOut)
+
+    return jsonOut
+  }
 }
