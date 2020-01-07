@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import Webcam from './Webcam';
 import { Observable, of } from 'rxjs';
 import { environment } from '../../../environments/environment';
-import { LogService } from '../libraries/log-service/log.service';
+import { LogService } from '../log-service/log.service';
 
 @Injectable({
   providedIn: 'root'

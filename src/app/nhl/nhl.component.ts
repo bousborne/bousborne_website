@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NhlService } from '../shared/nhl-service/nhl.service'
 import { HttpClient } from '@angular/common/http';
+import { LogService } from '../shared/log-service/log.service';
 import { Buffer } from 'buffer';
 // import { PythonShell } from 'python-shell';
 // import { PythonShell } from 'python-shell';
@@ -24,7 +25,7 @@ export class NhlComponent implements OnInit {
   ovechkin_curr_season_pace;
   record_career_goals;
 
-  constructor(private nhlService: NhlService, private http: HttpClient) {
+  constructor(private nhlService: NhlService, private http: HttpClient, private logger: LogService) {
     // this.initializeOvechkin();
   }
 
@@ -43,7 +44,7 @@ export class NhlComponent implements OnInit {
 
     await this.nhlService.getOvechkinCurrGoals().then((response) => {
       this.ovechkin_curr_season_goals = response;
-      // console.log("FART = ", this.capitals);
+      // this.logger.log("FART = ", JSON.stringify(response));
       // debugger
     });
 
@@ -66,10 +67,10 @@ export class NhlComponent implements OnInit {
 
   async ngOnInit() {
     await this.initializeOvechkin();
-    console.log("OVI", this.ovechkin)
-    console.log("CAPS", this.capitals)
-    console.log("RECORD", this.record_career_goals)
-    console.log("PACE", this.ovechkin_curr_season_pace)
+    this.logger.log("OVI", this.ovechkin)
+    this.logger.log("CAPS", this.capitals)
+    this.logger.log("RECORD", this.record_career_goals)
+    this.logger.log("PACE", this.ovechkin_curr_season_pace)
 
 
 

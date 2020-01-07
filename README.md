@@ -92,6 +92,8 @@ Host IP to the following:
 3389: TCP/UDP
 27017: TCP/UDP
 
+ng build --prod
+tar -czvf html.tar.gz temp/
 
 Zip up dist to html, and api. SCP to node. Unzip in html
 run sudo mongodb restart and status to make sure running

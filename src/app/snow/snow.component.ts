@@ -2,7 +2,7 @@ import { Component, OnInit, OnChanges } from '@angular/core';
 import Webcam from '../shared/webcam-service/Webcam';
 import { WebcamService } from '../shared/webcam-service/webcam.service';
 import { HttpClient } from '@angular/common/http';
-import { LogService } from '../shared/libraries/log-service/log.service';
+import { LogService } from '../shared/log-service/log.service';
 
 @Component({
   selector: 'app-snow',
