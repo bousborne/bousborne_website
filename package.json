@@ -44,7 +44,7 @@
     "graceful-fs": "^4.1.15",
     "http": "0.0.0",
     "https": "^1.0.0",
-    "mongoose": "^5.5.4",
+    "mongoose": "^5.7.5",
     "net": "^1.0.2",
     "ng2-slim-loading-bar": "^4.0.0",
     "nodemailer": "^2.7.2",
