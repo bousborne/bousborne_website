@@ -25,6 +25,7 @@ export class NhlService {
   SINGLE_SEASON_STATS_MODIFIER_THIS_SEASON = "/stats/?stats=statsSingleSeason&season=" + this.CURRENT_SEASON;
   SINGLE_CAREER_STATS_MODIFIER = "/stats/?stats=careerRegularSeason"
   NHL_RECORDS_GOAL = "/skater-career-scoring-regular-season?cayenneExp=goals>=850"
+  NEXT_GAME_MODIFIER = "?expand=team.schedule.next"
   constructor(private http: HttpClient) { }
   // uri = environment.apiUrlRoot +'/nhl';
 
@@ -62,7 +63,7 @@ export class NhlService {
   }
 
   getCapitals() {
-    var oviURL = this.NHL_BASE_URL + this.CAPITALS_URL;
+    var oviURL = this.NHL_BASE_URL + this.CAPITALS_URL + this.NEXT_GAME_MODIFIER;
 
     const fetchCapitals = async () => {
       try {

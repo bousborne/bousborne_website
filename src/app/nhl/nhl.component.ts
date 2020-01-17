@@ -82,11 +82,11 @@ export class NhlComponent implements OnInit {
       // debugger
     });
 
-    await this.nhlService.getSchedule().then((response) => {
-      this.capitals_schedule = response;
-      // console.log("FART = ", this.capitals);
-      // debugger
-    });
+    // await this.nhlService.getSchedule().then((response) => {
+    //   this.capitals_schedule = response;
+    //   // console.log("FART = ", this.capitals);
+    //   // debugger
+    // });
 
     // await this.nhlService.getRecordGoals().then((response) => {
     //   this.record_career_goals = response;
