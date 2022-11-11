@@ -36,6 +36,19 @@ def get_team_id(team_name):
     raise Exception("Could not find ID for team {0}".format(team_name))
 
 
+def get_current_season_years():
+  import datetime
+
+  if datetime.datetime.today().month > 6:
+    season_year_end = datetime.datetime.today().year + 1
+    season_year_begin = datetime.datetime.today().year
+  else:
+    season_year_end = datetime.datetime.today().year
+    season_year_begin = datetime.datetime.today().year - 1
+
+  return season_year_begin, season_year_end
+
+
 def fetch_score(team_id):
     """ Function to get the score of the game depending on the chosen team.
     Inputs the team ID and returns the score found on web. """
@@ -133,8 +146,10 @@ def check_game_end(team_id):
 
 
 def check_ovechkin_season_goals():
-
-    url = '{0}/stats?stats=statsSingleSeason&season=20172018'.format(OVECHKIN)
+    season_year_begin, season_year_end = get_current_season_years()
+    curr_season_modifier = str(season_year_begin) + (str(season_year_end))
+    url = '{0}/stats?stats=statsSingleSeason&season={1}'.format(
+            OVECHKIN, curr_season_modifier)
     #import pdb; pdb.set_trace();
     try:
         goals = requests.get(url)
@@ -150,8 +165,10 @@ def check_ovechkin_season_goals():
 
 
 def check_ovechkin_on_pace_regular_season_goals():
-    url = '{0}/stats?stats=onPaceRegularSeason&season=20172018'.format(
-        OVECHKIN)
+    season_year_begin, season_year_end = get_current_season_years()
+    curr_season_modifier = str(season_year_begin) + (str(season_year_end))
+    url = '{0}/stats?stats=onPaceRegularSeason&season={1}'.format(
+            OVECHKIN, curr_season_modifier)
     #import pdb; pdb.set_trace();
     try:
         goals = requests.get(url)
@@ -165,14 +182,7 @@ def check_ovechkin_on_pace_regular_season_goals():
 
 
 def check_ovechkin_career_goals():
-    import datetime
-
-    if datetime.datetime.today().month > 6:
-        season_year_end = datetime.datetime.today().year + 1
-        season_year_begin = datetime.datetime.today().year
-    else:
-        season_year_end = datetime.datetime.today().year
-        season_year_begin = datetime.datetime.today().year - 1
+    season_year_begin, season_year_end = get_current_season_years()
 
     print(season_year_end)
     print(season_year_begin)

@@ -18,8 +18,8 @@ export class NhlService {
   RECORDS_API_URL = "/site/api"
   OVECHKIN_URL = "/api/v1/people/8471214"
   CAPITALS_URL = "/api/v1/teams/15"
-  CURRENT_SEASON = "20192020";
-  NEXT_SEASON = "20202021";
+  CURRENT_SEASON = "20222023";
+  NEXT_SEASON = "20232024";
   SINGLE_SEASON_STATS_MODIFIER = "/stats/?stats=statsSingleSeason&season="
   ON_TRACK_FOR_PLAYER_MODIFIER = "/stats?stats=onPaceRegularSeason&season=" + this.CURRENT_SEASON;
   SINGLE_SEASON_STATS_MODIFIER_THIS_SEASON = "/stats/?stats=statsSingleSeason&season=" + this.CURRENT_SEASON;
@@ -157,7 +157,7 @@ export class NhlService {
     return jsonOut
   }
 
-  
+
 
   getRecordGoals() {
     var recordGoalsURL = this.RECORDS_BASE_URL + this.RECORDS_API_URL + this.NHL_RECORDS_GOAL;
@@ -266,7 +266,7 @@ export class NhlService {
 
     var scheduleURL = this.NHL_BASE_URL + "/api/v1/schedule?teamId=15&startDate="
         + dateTodayStr + "&endDate=" + dateLaterStr;
-    
+
     const fetchCapitalsSchedule = async () => {
       try {
         let team = await fetch(scheduleURL);
