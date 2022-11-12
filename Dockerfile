@@ -1,5 +1,5 @@
 # NPM Node.js version
-FROM node:14-alpine
+FROM node:16-alpine
 
 ARG PYTHON_VERSION=2.7.18
 
