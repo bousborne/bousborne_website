@@ -33,6 +33,14 @@ webpack                           4.23.1
 
 # npm version 6.4.1
 
+# How to build BOusborne Website for Development:
+docker build -t bousbornewebsite .
+docker run -dit -p 4200:4200 -p 55153:49153 bousbornewebsite
+http://localhost:4200
+
+
+Then, "docker ps" will list it and 
+docker attach <value> will get in
 # Temp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.0.
