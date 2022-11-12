@@ -1,22 +1,9 @@
-#COPY . /app
-#RUN npm install
-#FROM python:3 AS python3builder
-#WORKDIR /app
-#COPY requirements.txt ./
-#RUN pip install --no-cache-dir --upgrade pip \
-#  && pip install --no-cache-dir -r requirements.txt
-
-#FROM python:2.7 AS python2base
-#WORKDIR /app
-#COPY requirements.txt ./
-#RUN pip install --no-cache-dir --upgrade pip \
-#  && pip install --no-cache-dir -r requirements.txt
-
-
+# NPM Node.js version
 FROM node:14-alpine
 
 ARG PYTHON_VERSION=2.7.18
 
+# install dependencies
 RUN apk add \
     wget \
     gcc \
@@ -38,26 +25,25 @@ RUN apk add \
 #    && rm /opt/Python-${PYTHON_VERSION}.tgz /opt/Python-${PYTHON_VERSION} -rf
 
 
-
+# install python
 RUN apk add --update --no-cache python3 && ln -sf python3 /usr/bin/python
 RUN python3 -m ensurepip
 RUN pip3 install --no-cache --upgrade pip setuptools
 
-
+# set working directory
 WORKDIR /app
+
+# add `/app/node_modules/.bin` to $PATH
 ENV PATH /app/node_modules/.bin:$PATH
 ADD . /app
 
+# install and cache app dependencies
 RUN npm install
 RUN npm install -g @angular/cli
+
+# expose ports
 EXPOSE 4200:4200 55153:49153
+
+# serve up to localhost
 CMD ng serve --host 0.0.0.0
 
-
-
-
-#CMD npm start
-#CMD ng serve --host 0.0.0.0
-#USER node
-#EXPOSE 4200 49153
-#CMD ng serve
