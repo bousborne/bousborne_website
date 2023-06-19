@@ -19,7 +19,7 @@ const emailRoute = require('./routes/email.route');
 let logRoute = require('./routes/log.route');
 
 mongoose.Promise = global.Promise;
-mongoose.connect(config.DB, { useNewUrlParser: true }).then(
+mongoose.connect(config.DB, { useNewUrlParser: true, useUnifiedTopology: true }).then(
   () => { logRoute.log('Database is connected') },
   err => { logRoute.log('Can not connect to the database' + err) }
 );

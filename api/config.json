@@ -1,4 +1,4 @@
 {
-  "connectionString": "mongodb://benousborne.com/benousbornecom",
+  "connectionString": "mongodb://mongodb:27017/benousbornecom",
   "secret": "secretTest"
 }
