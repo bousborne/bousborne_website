@@ -1,0 +1,20 @@
+.git
+**/node_modules
+**/dist
+**/build
+**/coverage
+**/out-tsc
+**/tmp
+**/.DS_Store
+**/*.log
+api/log.txt
+.env
+.env.*
+**/*.pem
+**/*.key
+yes
+yes.pub
+# Legacy DNS credentials must only be supplied intentionally at runtime.
+api/godaddy.sh
+api/config.json
+api/emailConfig.json

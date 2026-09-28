@@ -42,10 +42,18 @@ const LogLevel = {
 // Defined store route
 logRoutes.route('/log').post(function (req, res) {
   let logEntry = req.body;
-  logToFile(logEntry);
+  if (!logEntry || typeof logEntry.entryStringObj !== 'string') {
+    return res.status(400).json({ error: 'entryStringObj must be a string' });
+  }
+  logToFile(logEntry, function (err) {
+    if (err) {
+      return res.status(500).json({ error: 'Failed to write file' });
+    }
+    res.json(true);
+  });
 });
 
-function logToFile(logEntry) {
+function logToFile(logEntry, callback) {
   var fileData = logEntry.entryStringObj + "\n";
 
   console.log("Writing message to log file: " + fileData);
@@ -53,8 +61,8 @@ function logToFile(logEntry) {
   fs.appendFile('log.txt', fileData, function(err) {
     if (err) {
       console.log("Failed to write file")
-       res.status(500).jsonp({ error: 'Failed to write file' });
     }
+    callback(err);
   });
 }
 
@@ -94,7 +102,6 @@ function logToFileFromServer(logEntry, logLevel) {
   fs.appendFile('log.txt', fileData, function (err) {
     if (err) {
       console.log("Failed to write to log file")
-       res.status(500).jsonp({ error: 'Failed to write file' });
     }
   });
 };

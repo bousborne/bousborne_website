@@ -6,8 +6,17 @@
 /out-tsc
 
 # dependencies
-/node_modules
-api/node_modules
+node_modules/
+
+# Local deployment settings and legacy credentials
+.env
+.env.*
+!.env.example
+/yes
+/yes.pub
+/api/config.json
+/api/emailConfig.json
+/api/godaddy.sh
 
 # IDEs and editors
 /.idea

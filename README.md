@@ -1,4 +1,62 @@
-# Angular Version - ng --version
+# Production deployment
+
+The supported container deployment is in the sibling
+[website-deploy repository](https://github.com/bousborne/website-deploy#clone-and-build-directly-on-the-h5).
+It builds this local checkout and serves the Angular app through nginx behind
+HomeNet's Caddy proxy. The production app calls `/backend-api` on its own HTTPS
+origin; nginx strips that prefix before forwarding requests to the Node API.
+The historical standalone Dockerfiles and deployment notes below are not the
+current production entry point.
+
+Clone both repositories directly on the ODROID-H5 and build there. For fresh
+checkouts, with HomeNet's Caddy already running and the H5's existing GitHub SSH
+access (`website-deploy` is private):
+
+```bash
+cd /home/bousborne
+git clone --branch main git@github.com:bousborne/bousborne_website.git
+git clone --branch main git@github.com:bousborne/website-deploy.git
+cd /home/bousborne/website-deploy
+./run.sh --main-only
+./check.sh
+```
+
+If either checkout already exists, follow the update instructions in the
+deployment guide instead of cloning over it. `run.sh` uses the sibling source
+checkout and creates a private `.env` signing secret on first use.
+
+Node.js and npm run inside the Docker build containers; neither needs to be
+installed on the H5 host. Keep both `package-lock.json` and
+`api/package-lock.json` tracked: the images install those locked dependencies
+with `npm ci`. `node_modules` and compiled output are generated locally and
+must not be committed or copied between machines.
+
+The backend reads runtime environment variables rather than the legacy local
+`api/config.json`, `api/emailConfig.json`, or DNS credentials:
+
+- `JWT_SECRET`: required in production, at least 32 characters. Keep it stable and
+  private; changing it expires existing login tokens.
+- `MONGODB_URI`: defaults to `mongodb://mongodb:27017/benousbornecom`.
+- `PORT`: defaults to `80` in production and `4000` otherwise.
+- `SMTP_HOST`, `SMTP_USER`, `SMTP_PASSWORD`: optional email settings. Email returns
+  HTTP 503 when these are absent. `SMTP_SSL` defaults to true.
+- `ENABLE_DDNS`: defaults to disabled. Set exactly `true` only when intentionally
+  mounting a configured `godaddy.sh` into the API directory and providing Bash
+  and curl. HomeNet normally owns DNS updates; the website does not need this.
+
+`GET /healthz` returns 200 only when MongoDB is connected, otherwise 503. Through
+the public website the same check is `/backend-api/healthz`. The database name is
+`benousbornecom`; an empty database does not recover old accounts or gallery data.
+
+For development, run the dependency-free startup and NHL regression checks with:
+
+```bash
+npm test --prefix api
+```
+
+# Historical development notes
+
+## Angular Version - ng --version
      _                      _                 ____ _     ___
     / \   _ __   __ _ _   _| | __ _ _ __     / ___| |   |_ _|
    / △ \ | '_ \ / _` | | | | |/ _` | '__|   | |   | |    | |
@@ -86,26 +144,12 @@ In another terminal, run
 ng serve
 
 
-## To deploy
-Set up modem:
-Set DNS mapping to:
-host ip to website.com
+## Obsolete deployment procedure
 
-Set Port Forwarding:
-Host IP to the following:
-80: TCP/UDP
-4000: TCP/UDP
-22: TCP/UDP
-8180: TCP/UDP
-3389: TCP/UDP
-27017: TCP/UDP
-
-ng build --prod
-tar -czvf html.tar.gz temp/
-
-Zip up dist to html, and api. SCP to node. Unzip in html
-run sudo mongodb restart and status to make sure running
-sudo node server.js, then ctrl-Z and 'bg' to put in background.
+The former manual copy, background Node process, and database port-forwarding
+procedure has been retired. Use the production deployment instructions above.
+HomeNet's Caddy owns the public HTTP/HTTPS ports; the website API and MongoDB
+remain on the internal Docker network.
 
 
 NHL API

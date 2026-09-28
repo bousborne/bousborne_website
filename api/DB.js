@@ -1,8 +1,5 @@
 // DB.js
-const config = require('./config.json');
-const mongoose = require('mongoose');
-mongoose.connect(process.env.MONGODB_URI || config.connectionString);
-mongoose.Promise = global.Promise;
+const config = require('./runtime-config');
 // import { environment } from '../../environments/environment';
 
 module.exports = {

@@ -3,27 +3,29 @@
 const express = require('express');
 const app = express();
 const emailRoutes = express.Router();
-const emailConfig = require('../emailConfig.json');
+const emailConfig = require('../runtime-config').email;
 
 emailRoutes.route('/emailpost').post(function (req, res) {
+    if (!emailConfig.host || !emailConfig.user || !emailConfig.password) {
+        return res.status(503).json({ error: 'Email is not configured' });
+    }
     let sendEmailData = req.body;
 
     console.log("Made it into email post somehow!");
     console.log("About to email");
-    console.log("Node Server Email Post, sendEmailData = ", sendEmailData);
-
-    var email = require('../node_modules/emailjs');
+    var email = require('emailjs');
     var server = email.server.connect({
         user: emailConfig.user,
         password: emailConfig.password,
         host: emailConfig.host,
-        ssl: true
-    }, function (err, message) {
-        console.log(err || message);
+        ssl: emailConfig.ssl
     });
 
     server.send(sendEmailData, function (err, message) {
-        console.log(err || message);
+        if (err) {
+            return res.status(502).json({ error: 'Email delivery failed' });
+        }
+        res.json({ sent: true });
     });
 });
 module.exports = emailRoutes;

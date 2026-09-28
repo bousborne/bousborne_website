@@ -1,4 +1,5 @@
 export const environment = {
   production: true,
-  apiUrlRoot: 'http://benousborne.com:4000',
+  // Keep API traffic on the HTTPS origin; website-deploy strips this prefix.
+  apiUrlRoot: '/backend-api',
 };

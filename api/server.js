@@ -26,7 +26,14 @@ mongoose.connect(config.DB, { useNewUrlParser: true, useUnifiedTopology: true })
 
 const app = express();
 
-
+// Readiness is public so Docker can verify both the API and its database.
+app.get('/healthz', function (req, res) {
+  const ready = mongoose.connection.readyState === 1;
+  res.status(ready ? 200 : 503).json({
+    status: ready ? 'ok' : 'unavailable',
+    database: ready ? 'connected' : 'disconnected'
+  });
+});
 
 // Tell the bodyparser middleware to accept more data
 app.use(bodyParser.json({ limit: '100MB' }));
@@ -89,7 +96,10 @@ cams.forEach((item) => {
   })
 });
 
-updateIP();
+// HomeNet owns public DNS unless this legacy updater is explicitly enabled.
+if (process.env.ENABLE_DDNS === 'true') {
+  updateIP();
+}
 // logToFile();
 
 // logToFile();
@@ -98,7 +108,7 @@ logRoute.log("test message");
 // logEntry.logToFileFromServer("test")
 
 // const port = process.env.PORT || 4000;
-const port = process.env.NODE_ENV === 'production' ? (process.env.PORT || 80) : 4000;
+const port = process.env.PORT || (process.env.NODE_ENV === 'production' ? 80 : 4000);
 const server = app.listen(port, function () {
   logRoute.log('Listening on port ' + JSON.stringify(port));
 });

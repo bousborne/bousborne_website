@@ -1,67 +1,61 @@
-// nhl.route.js
-
 const express = require('express');
 const fetch = require('node-fetch');
-const fs = require('fs');
-const app = express();
 const nhlRoutes = express.Router();
-var cors = require('cors');
+const NHL_API = 'https://api-web.nhle.com/v1';
 
-// Require nhl model in our routes module
-// let nhl = require('../models/nhl');
+async function fetchNhl(path) {
+  const response = await fetch(NHL_API + path, { timeout: 8000 });
+  if (!response.ok) {
+    throw new Error('NHL returned HTTP ' + response.status);
+  }
+  return response.json();
+}
 
-app.use(cors());
+function teamName(team) {
+  return [team.placeName && team.placeName.default,
+    team.commonName && team.commonName.default].filter(Boolean).join(' ') || team.abbrev;
+}
 
-//CORS Middleware
-app.use(function (req, res, next) {
-  //Enabling CORS
-  res.header('Access-Control-Allow-Origin', '*');
-  // res.header('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT');
-  // res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, x-client-key, x-client-token, x-client-secret, Authorization');
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
- });
+// Keep NHL requests on the server: the browser uses the website's own API origin.
+nhlRoutes.get('/summary', async function (req, res) {
+  try {
+    const [player, schedule] = await Promise.all([
+      fetchNhl('/player/8471214/landing'),
+      fetchNhl('/club-schedule-season/WSH/now').catch(() => null)
+    ]);
+    const featured = player.featuredStats || {};
+    const season = featured.regularSeason && featured.regularSeason.subSeason;
+    const career = player.careerTotals && player.careerTotals.regularSeason;
+    if (!player.firstName || !player.lastName || !career || !Number.isFinite(career.goals)) {
+      throw new Error('NHL player data is incomplete');
+    }
+    const hasSeason = season && Number.isFinite(season.goals) && Number.isFinite(season.gamesPlayed);
+    const scheduleAvailable = !!(schedule && Array.isArray(schedule.games));
+    const nextGame = scheduleAvailable ? schedule.games
+      .filter(game => ['FUT', 'PRE'].includes(game.gameState) &&
+        game.gameScheduleState === 'OK' && Date.parse(game.startTimeUTC) >= Date.now())
+      .sort((a, b) => Date.parse(a.startTimeUTC) - Date.parse(b.startTimeUTC))[0] : null;
 
-// Defined store route
-nhlRoutes.route('/nhlpost').post(function (req, res) {
-  var datatop = {}
-
-  let nhlUrl = req.body;
-  console.log("on snap we here");
-  debugger
-  console.log("In nhl node service. req = ", req.body);
-  console.log("In nhl node service. nhlUrl = ", nhlUrl);
-  const server = 'https://statsapi.web.nhl.com/api/v1/people/8471214.json';
-
-  buf = new Buffer(256);
-  path = 'ovipath.json';
-  const downloadFile = (async (url, path) => {
-    const res = await fetch(url);
-    const fileStream = fs.createWriteStream(path);
-    await new Promise((resolve, reject) => {
-      res.body.pipe(fileStream);
-      res.body.on("error", (err) => {
-        reject(err);
-      });
-      fileStream.on("finish", function () {
-        return resolve();
-      });
+    res.json({
+      playerName: player.firstName.default + ' ' + player.lastName.default,
+      teamName: 'Washington Capitals',
+      // During the offseason the NHL may still feature the completed season.
+      season: hasSeason ? String(featured.season) : null,
+      seasonGoals: hasSeason ? season.goals : null,
+      seasonGamesPlayed: hasSeason ? season.gamesPlayed : null,
+      goalsPerGame: hasSeason && season.gamesPlayed > 0 ? season.goals / season.gamesPlayed : null,
+      careerGoals: career.goals,
+      scheduleAvailable,
+      nextGame: nextGame ? {
+        startTimeUTC: nextGame.startTimeUTC,
+        awayTeam: teamName(nextGame.awayTeam),
+        homeTeam: teamName(nextGame.homeTeam)
+      } : null
     });
-  });
-  return downloadFile(server, path);
-});
-
-// Defined get data(index or listing) route
-nhlRoutes.route('/nhlget').get(function (req, res) {
-  nhlurl = 'https://statsapi.web.nhl.com/api/v1/people/8471214';
-  const server = 'https://statsapi.web.nhl.com/api/v1/people/8471214.json';
-
-  console.log("actually getting nhl");
-  fetch(server)
-    .then(response => response.json())
-    .then(data => {
-      console.log(data)
-    });
+  } catch (error) {
+    console.error('NHL summary unavailable:', error.message);
+    res.status(502).json({ message: 'NHL statistics are temporarily unavailable. Please try again later.' });
+  }
 });
 
 module.exports = nhlRoutes;
